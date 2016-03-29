@@ -1,0 +1,1607 @@
+%<<echo=FALSE>>=
+%OLD <- options(width=90)
+%@
+%<<echo=FALSE>>=
+%options(OLD) 
+%@
+
+\documentclass{beamer}% regular slides (with pauses)
+%\documentclass[handout]{beamer}% handout (no pauses)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% Change the lecture information here %%%%%%%%%%%%%%%%
+\def\chapnum{Week \#1}
+\title{STAT234: Lecture 1 - Basics of Data Analysis !!}
+\author{Kushal K. Dey}
+\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%% Start of suggested definitions and packages %%%%%%%%%%%%
+%%%%%% Do not change unless you really know what you are doing %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{enumerate}
+\usepackage{amsmath, bbm}
+\usepackage[misc]{ifsym} % for the dice symbol \Cube{}
+\usepackage[latin1]{inputenc}
+\usepackage{hyperref}
+
+%\usepackage{comment}
+%\usepackage{pstricks}
+%\usepackage{graphicx}
+%\usepackage{booktabs}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=3mm]
+%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=3mm
+
+\usepackage{setspace}
+\ifdefined\knitrout
+  \renewenvironment{knitrout}{\begin{spacing}{0.75}\begin{tiny}}{\end{tiny}\end{spacing}}
+\else
+\fi
+
+%%%%%%%%%%%%%%% Defined Shortcuts (macros) %%%%%%%%%%%%%
+% parameters and statistics
+\newcommand{\xbar}{\overline{x}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\ybar}{\overline{y}}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\dbar}{\overline{d}}
+\newcommand{\Dbar}{\overline{D}}
+\newcommand{\zbar}{\overline{z}}
+\newcommand{\Zbar}{\overline{Z}}
+\newcommand{\ehat}{\widehat{\epsilon}}
+\newcommand{\yhat}{\widehat{y}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\betaa}{{\beta_0}}
+\newcommand{\betab}{{\beta_1}}
+\newcommand{\betac}{{\beta_2}}
+\newcommand{\betad}{{\beta_3}}
+\newcommand{\BETA}{{\boldsymbol\beta}}
+\newcommand{\betahata}{\widehat{\beta_0}}
+\newcommand{\betahatb}{\widehat{\beta_1}}
+\newcommand{\betahatc}{\widehat{\beta_2}}
+\newcommand{\betahatd}{\widehat{\beta_3}}
+\newcommand{\bhat}{\widehat{b}}
+\newcommand{\btilde}{\widetilde{b}}
+\newcommand{\ahat}{\widehat{a}}
+\newcommand{\atilde}{\widetilde{a}}
+\newcommand{\rss}{\mathit{SSE}}
+\newcommand{\sigmahat}{\widehat{\sigma}}
+\newcommand{\betahat}{\widehat{\beta}}
+\newcommand{\thetahat}{\widehat{\theta}}
+\newcommand{\phat}{\widehat{p}}
+\newcommand{\pihat}{\widehat{\pi}}
+\newcommand{\muhat}{\widehat{\mu}}
+% real numbers and integers
+\newcommand{\reals}{\mathbbm{R}}
+\newcommand{\integers}{\mathbbm{N}}
+%distributions
+\newcommand{\normal}{\textsf{Norm}}
+\newcommand{\Bin}{\textsf{Binom}}
+\newcommand{\Uni}{\textsf{Unif}}
+\newcommand{\Poisson}{\textsf{Pois}}
+\newcommand{\Exp}{\textsf{Exp}}
+\newcommand{\Beta}{\textsf{Beta}}
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+% probability and expected value
+\newcommand{\rv}{r.v.\ }
+\newcommand{\prob}{{\rm P}}
+\newcommand{\mean}{\mathrm{E}}
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{Cov}}
+\newcommand{\corr}{\mathop{\mathrm{Corr}}}
+% measures of spread
+\newcommand{\IQR}{\textit{IQR}}
+\newcommand{\SAD}{\textit{SAD}}
+\newcommand{\MAD}{\textit{MAD}}
+\newcommand{\SSD}{\textit{SSD}}
+\newcommand{\MSD}{\textit{MSD}}
+\newcommand{\RMSD}{\textit{RMSD}}
+\newcommand{\MSE}{\textit{MSE}}
+\newcommand{\MSR}{\textit{MSR}}
+% formatting code and such
+\providecommand{\variable}[1]{}
+\renewcommand{\variable}[1]{{\color{green!50!black}\texttt{#1}}}
+\providecommand{\function}[1]{}
+\renewcommand{\function}[1]{{\color{purple!75!blue}\texttt{\StrSubstitute{#1}{()}{}()}}}
+\providecommand{\option}[1]{}
+\renewcommand{\option}[1]{{\color{brown!80!black}\texttt{#1}}}
+\providecommand{\pkg}[1]{}
+\renewcommand{\pkg}[1]{{\color{red!80!black}\texttt{#1}}}
+\providecommand{\code}[1]{}
+\renewcommand{\code}[1]{{\color{blue!80!black}\texttt{#1}}}
+
+%%%%%%%%%
+% Changed by Kushal K Dey, University of Chicago
+%\providecommand{\file}[1]{}
+%\renewcommand{\file}[1]{{\tt #1}}
+\providecommand{\file}[1]{}
+\renewcommand{\file}[1]{{\color{orange!80!black}\texttt{#1}}}
+%\providecommand{\dataframe}[1]{}
+%\renewcommand{\dataframe}[1]{{\color{blue!80!black}\texttt{#1}}}
+\providecommand{\dataframe}[1]{}
+\renewcommand{\dataframe}[1]{{\color{cyan!80!black}\texttt{#1}}}
+%%%%%%%%%
+
+% other
+\def\Sum{\sum\nolimits}
+\def\b#1{\fboxsep=0pt\colorbox{black}{\color{white}\Cube{#1}}}
+\def\w#1{\Cube{#1}}
+%%%%%%%%%%%% End of shortcuts (macros) ##############
+
+%%%%%%%%% One way to hide answers until you want to show them %%%%%%%%%
+\def\Hide#1#2{\ul{~~~\onslide<#1>{\alert{#2}}~~~}}
+\def\hide#1#2{\ul{~~\onslide<#1>{\alert{#2}}~~}}
+\def\hid#1#2{\onslide<#1>{\alert{#2}}}
+% Choose the color of answers here too
+\setbeamercolor{alerted text}{fg=darkgray} 
+%\setbeamercolor{alerted text}{fg=black} 
+
+%------Centered Page Number Setup ------
+\defbeamertemplate{footline}{centered page number}
+{%
+  \hspace*{\fill}%
+  %\usebeamercolor[fg]{page number in head/foot}%
+  %\usebeamerfont{page number in head/foot}%
+  \tiny \chapnum: Page \insertframenumber\, of \inserttotalframenumber%
+  \hspace*{\fill}\vskip2pt%
+}
+%\setbeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber}
+\setbeamertemplate{footline}[centered page number]
+%--------------------------------
+
+%\usetheme{Copenhagen}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[english]{babel}
+\def\ul{\underline}
+\linespread{1.1}
+% or whatever
+
+
+
+%\parskip=0pt
+
+\begin{document}%large
+
+%<<setup, include=FALSE, cache=FALSE>>=
+%options(replace.assign=TRUE,width=90, digits=4)
+%opts_chunk$set(fig.path='figure/graphics-', cache.path='cache/graphics-', fig.align='center', fig.width=8, fig.height=5.5, fig.show='as.is', out.width='0.9\\linewidth', cache=FALSE, par=TRUE, size = 'tiny', tidy=TRUE, cache.extra=rand_seed)
+%knit_hooks$set(par=function(before, options, envir){
+%if (before && options$fig.show!='none') par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+%}, document = function(x) {
+%  gsub('\\\\(begin|end)\\{kframe\\}', '', x)
+%}, crop=hook_pdfcrop)
+%@
+%<<setup2, include=FALSE, cache=FALSE>>=
+%knit_theme$set("print")
+%@
+
+<<setup, include=FALSE, cache=FALSE>>=
+require(xtable)
+# require(mosaic)
+require(Hmisc)
+require(fastR)
+require(Lock5Data)
+options(format.R.blank=FALSE) 
+options(width=60)
+options(continue=" ")
+options(replace.assign=TRUE)
+options(scipen=8, digits=4)
+opts_chunk$set(
+  fig.path='figure/graphics-', 
+  cache.path='cache/graphics-', 
+  dev="pdf",
+  fig.align='center', 
+  fig.width=8, 
+  fig.height=5.5, 
+  fig.pos='H', 
+  fig.show='asis', 
+  out.width='0.99\\linewidth', 
+  par=TRUE, 
+  size = 'small', 
+  tidy=FALSE,
+  prompt=FALSE,
+  comment=NA
+)
+# Tighten the spacing within R output from knitr
+hook1 <- function(x){ gsub("```\n*```r*\n*", "", x) }
+hook2 <- function(x){ gsub("```\n+```\n", "", x) }
+knit_hooks$set(
+  crop=hook_pdfcrop,
+  document = hook1,
+  par=function(before, options, envir){
+    if (before) {
+    ## load packages before a chunk is executed
+    for (p in options$packages) library(p, character.only = TRUE)
+    }
+    if (before && options$fig.show!='none') par(oma=c(0,0,0,0)+0.01, mar=c(4,4,0,0)+0.01, cex=0.9, cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+  } 
+)
+opts_knit$set(concordance=TRUE)
+# For printing code blocks in black and white
+knit_theme$set("greyscale0") 
+
+# trellis.par.set(theme=col.mosaic(bw=FALSE))
+uchicago.lattice.theme=col.fastR(bw=TRUE)
+uchicago.lattice.theme$box.dot$pch=20
+uchicago.lattice.theme$dot.symbol$pch=20
+uchicago.lattice.theme$plot.symbol$pch=20
+trellis.par.set(theme=uchicago.lattice.theme, warn=FALSE)
+trellis.par.set(fontsize=list(text=18,points=10))
+@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% End of suggested definitions and packages %%%%%%%%%%%%
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+
+%%%%%%%%%% Title frame (optional) %%%%%%%%%%%%%
+\begin{frame}{}
+\maketitle
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%% Begin slides here %%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Requisites}
+
+Main software for this course: R and RStudio \pause \newline
+
+Rstudio Installation: 
+\url{http://statistics.uchicago.edu/~collins/Rinstall/} \pause \newline 
+
+You would need to load the package \emph{mosaic} every time
+you start R. \pause \newline
+
+Office hour time (7 sessions) + Problem session (4 hrs) each week:
+Timings to be decided later
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Let's Start!}
+
+What is Data? \pause\newline
+Simply put, a collection of facts that can be analyzed !  
+\newline \pause
+
+Collection and analysis of data is called \textit{statistics}. \pause \newline
+
+Where can I get data?\pause\newline
+Everywhere! ....well almost!
+\newline\pause 
+ 
+
+Examples:  \pause (Rather questions ! )
+\pause
+\begin{itemize}
+\item How many apps do you have on your phone? \pause
+\item How much money did you spend on lunch? \pause 
+\item How What grade did you get in STAT 234? \pause
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Backdrop}
+
+Beginning of Statistics? \pause\newline
+1532 $\rightarrow$ First weekly data on deaths in London (Sir W. Petty) \newline
+1539 $\rightarrow$ Data collection on marriages, baptism and death in France
+1654 $\rightarrow$ Correspondence with gambling and probability (Fermat and Pascal)
+\newline \pause
+
+Topics covered in this course will focus on the period between 1890s-1960s.
+\newline \pause 
+
+Recently there is a lot of interest in Data Science and Big Data Analysis, which
+are essentially applying statistics on data of large size (many GBs or TBs). For example, Facebook, Twitter and Google generates massive data of user activity 
+for billions of users daily!
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Lets look at some Data!!}
+
+As a toy exercise, lets analyze twitter feed of..... \pause \newline
+
+\includegraphics[width=8cm,keepaspectratio]{trump.png}
+
+Load the data 
+
+<<setup_2_1, echo=FALSE, eval=FALSE>>=
+library(twitteR)
+trump_tweets <- userTimeline("realDonaldTrump", n=3200)
+trump_tweets_df <- do.call("rbind", lapply(trump_tweets, as.data.frame))
+
+library(twitteR)
+
+
+df1 <- do.call("rbind", lapply(tweet_list_1, as.data.frame))
+df2 <- do.call("rbind", lapply(tweet_list_2, as.data.frame))
+df3 <- do.call("rbind", lapply(tweet_list_3, as.data.frame))
+
+df1 <- data.frame(cbind.data.frame(df$created, df$screenName, df$retweetCount, df$favoriteCount))
+head(df1)
+
+df2 <- df1[1:20,];
+counts=table(df2$df.retweetCount)
+
+retweets <- df2$df.retweetCount;
+names(retweets) <- df2$df.screenName
+barplot(retweets, las=2, cex.names=0.5)
+
+tweet_list <- searchTwitter("#trump", since='2016-03-14', until='2016-03-15')
+
+trump_tweets <- userTimeline("realDonaldTrump", n=3200)
+trump_tweets_df <- do.call("rbind", lapply(trump_tweets, as.data.frame))
+
+
+tweet_dates <- substr(trump_tweets_df$created,1,10)
+tweet_days <- factor(substr(tweet_dates, 9, 10));
+tweet_months <- factor(substr(tweet_dates, 6,7));
+
+library(plyr)
+
+tweet_months_fixed <- mapvalues(tweet_months, from=levels(tweet_months), 
+                  to=c("2016-Jan", "2016-Feb","2016-Mar","2015-Oct",
+                                "2015-Nov", "2015-Dec"));
+
+tweet_months_fixed <- factor(tweet_months_fixed, levels=c("2015-Oct", "2015-Nov","2015-Dec","2016-Jan", "2016-Feb", "2016-Mar"))
+
+tweet_years <- substr(trump_tweets_df$created,1,4)
+
+retweets <- trump_tweets_df$retweetCount;
+favtweets <- trump_tweets_df$favoriteCount;
+
+barplot(retweets)
+scatter.smooth(retweets, favtweets, lwd=1, pch=20, col="blue",
+               main="Trump Twitter Feed")
+
+library(fastR)
+library(mosaic)
+
+trump.data.frame <- cbind.data.frame(tweet_months_fixed, tweet_years, tweet_days, retweets, favtweets, trump_tweets_df$text);
+
+colnames(trump.data.frame) <- c("tweet_month", "tweet_year", "tweet_day",
+                                "retweets", "favorites", "tweet_text");
+
+
+@ %def
+
+<<setup_2_2, echo=FALSE, eval=FALSE>>=
+library(devtools)
+install_github('kkdey/TrumpTwitterFeed')
+@ %def
+
+<<setup_2_3, echo=TRUE, eval=TRUE>>=
+#library(devtools); install_github('kkdey/TrumpTwitterFeed')
+library(TrumpTwitterFeed)
+data("trump.data.frame")
+dim(trump.data.frame)
+@ %def
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Snapshot of the Data-1}
+
+<<glimpse_trump_1, eval=TRUE, echo=TRUE>>=
+head(trump.data.frame[,1:5], 3)
+tail(trump.data.frame[,1:5], 3)
+@ %def
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Snapshot of the Data- 2}
+
+<<glimpse_trump_2, eval=TRUE, echo=TRUE>>=
+glimpse(trump.data.frame)
+summary(trump.data.frame)
+@ %def
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Sorting number of retweets}
+
+<<sort_retweets, eval=TRUE, echo=TRUE>>=
+sorted_retweet_counts <- sort(trump.data.frame$retweets)
+
+
+tail(sorted_retweet_counts)
+head(sorted_retweet_counts)
+@
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Sorting number of retweets}
+
+<<quantile_retweets, eval=TRUE, echo=TRUE>>=
+quantile(~retweets, data=trump.data.frame)
+@ %def
+
+IQR or inter-quartile range is the difference between the $75$ th quantile and the 
+$25$ tquantile.
+
+<<quantile_retweets_2, eval=TRUE, echo=TRUE>>=
+IQR(~retweets, data=trump.data.frame)
+@ %def
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Box plot of retweets}
+
+<<bw_retweets, eval=TRUE, echo=TRUE>>=
+bwplot(~ retweets, data=trump.data.frame, 
+       xlab="Retweets box plot distribution")
+@ %def
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Bar graph}
+
+<<bar_retweets_1, eval=TRUE, echo=TRUE>>=
+bargraph(retweets ~ tweet_month, data=trump.data.frame, 
+   type="percent", xlab="Trump Retweets by month", cex=0.5)
+@
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Bar graph}
+
+<<bar_retweets_2, eval=TRUE, echo=TRUE, fig.height=3.5, fig.width=6>>=
+bargraph(retweets ~ tweet_year, 
+         data=trump.data.frame, type="percent",
+          xlab="Trump Retweets by years", cex=0.5)
+@
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Bar graph}
+
+<<bar_retweets_3, eval=TRUE, echo=TRUE, fig.height=3.5, fig.width=9>>=
+bargraph(retweets~ tweet_day | tweet_year, 
+         data=trump.data.frame, type="percent",
+         xlab="Trump Retweets by days in years", 
+         ylab="Percent", layout=c(1,2))
+@
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Histogram}
+
+<<histogram, eval=TRUE, echo=TRUE, fig.height=3.5, fig.width=9, warning=FALSE,message=FALSE>>=
+histogram(retweets ~ tweet_month, data=trump.data.frame, 
+          type="percent", xlab="Trump Retweets per month")
+@
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Scatter Plot}
+
+<<scatter, eval=TRUE, echo=TRUE, fig.height=4, fig.width=6, warning=FALSE,message=FALSE>>=
+scatter.smooth(trump.data.frame$retweets, 
+      trump.data.frame$favorites, lwd=1, pch=20, 
+      col="blue",xlab="Retweets", ylab="Favorites")
+
+@
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{The Average is the Balancing Point\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+Consider the data $x_1=9, x_2=3, x_3=15, x_4=1$
+\begin{itemize}
+\item What is the average of these values?
+\pause
+\item What are the deviations of the data from the average?
+\pause
+\item What is the sum of the deviations from the average?
+\pause
+\item The average is the ``balancing point" of the data, the ``center of mass" (assigning each data value the same mass = $1/4$)
+\end{itemize}
+\vskip0.5cm
+\pause
+Talk a moment with your neighbor.  See if you can 
+come up an equation to express this ``balancing point"
+property of the average.
+\vskip0.5cm
+\pause
+\textbf{Proof:} Show that for \textbf{any} sample of size $n,$
+\;\;$\displaystyle{\sum_{i=1}^n\, (x_i-\overline{x}) = 0}$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{How to Prove the Math Stuff\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+\begin{itemize}
+\item
+A proof is a ``paragraph"
+of mathematical ``sentences",
+\item
+written in order to make logical sense to the reader.\\
+...just like you do in the Core all the time!
+\item
+It's your personal argument as to why
+a claim must be true.
+\item
+Justify each step ("sentence") using statistics\\
+(and using results already proven in the course).
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+OK. Our first proof is to confirm an equation.
+\vskip0.5cm
+\textbf{Proof:} Show that for \textbf{any} sample of size $n,$
+\;\;$\displaystyle{\sum_{i=1}^n\, (x_i-\xbar) = 0}$
+\vskip0.5cm
+
+Start on the left side:\;\;
+\;\;$\displaystyle{\sum_{i=1}^n\, (x_i-\xbar) }$
+
+= rewrite
+
+= and rewrite
+
+= and rewrite again
+
+= until arriving at the right side = 0
+\vskip0.5cm
+\textbf{In groups:} Write down a first step.
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Our First Proof!\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+Four common starting points.\\
+Three are great, but one is incorrect.
+Which one?  Why?
+
+
+\begin{enumerate}
+
+\item $\displaystyle{
+\sum_{i=1}^n (x_i - \xbar)
+= (x_1 -\xbar) + (x_2 - \xbar) + \cdots + (x_n-\xbar)
+}$
+
+\item $\displaystyle{
+\sum_{i=1}^n (x_i - \xbar) 
+= \sum_{i=1}^n \left[x_i - \frac{1}{n}\sum_{j=1}^n x_j\right] 
+}$
+
+\item $\displaystyle{
+\sum_{i=1}^n (x_i - \xbar) 
+= 0
+}$
+
+\item $\displaystyle{
+\sum_{i=1}^n (x_i - \xbar) 
+= \left[\sum_{i=1}^n x_i\right]  - \left[\sum_{i=1}^n \xbar\right] 
+}$
+
+\end{enumerate}
+Is ``$\Sigma$" confusing you? Read Chapter 0 (Math Supplement).
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Our First Proof!\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+Starting with the first option:
+\begin{align*}
+ \sum_{i=1}^n (x_i - \xbar)
+&= (x_1 -\xbar) + (x_2 - \xbar) + \cdots + (x_n-\xbar) \\
+&= \hid{2-}{(x_1 + x_2 + \cdots + x_n) - \underbrace{(\xbar + \xbar + \cdots + \xbar)}_{n \text{ times}}}\\
+&= \hid{3-}{\left[\sum_{i=1}^n x_i\right]  - n\xbar}
+\hid{4-}{\;\;=\;\; \left[\frac{n}{n}\sum_{i=1}^n x_i\right]  - n\xbar}\\
+&= \hid{5-}{n\xbar - n\xbar}
+\hid{6-}{\hskip0.5cm \text{since } 
+\xbar = \frac{1}{n}\sum_{i=1}^n x_i 
+\quad\text{(Justification required!)}}\\
+&= \hid{7-}{0} 
+\end{align*}
+\hid{7-}{Let's agree that $b-b=0$ for any real number $b$.\;\; :)}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Measuring Spread of Data Distribution\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+The average devation
+$\displaystyle{
+\frac{1}{n}  \sum_{i=1}^n (x_i - \xbar) 
+}$
+\;\textbf{always} = 0!
+
+Need a different measure for ``typical size of deviations"  (spread)
+\vskip0.35cm
+
+There are many measures of spread: 
+\begin{itemize}
+\item
+mean squared deviation (\MSD\ or ``variance"), 
+\item
+mean absolute deviation (\MAD),
+\item
+standard deviation (\textit{SD}) = root \MSD\ = \RMSD\ = $\sqrt{MSD}$, 
+\item
+interquartile range (\IQR = range of middle 50\% of data) 
+\item range,
+\item ...and more (not covered in this course).
+\end{itemize}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+Let's consider two common loss functions (measures of spread)
+\begin{itemize}
+\item The mean of absolute deviations: 
+$$MAD(w) = \frac{1}{n} \sum_{i=1}^n\, |x_i-w|$$
+\item The mean of squared deviations: 
+$$MSD(w) = \frac{1}{n} \sum_{i=1}^n\, (x_i-w)^2$$
+\end{itemize}
+What value of $w$ should we choose using \MAD?  Using \MSD? 
+\vskip0.2cm
+It seems reasonable that $w$ should be in the ``center" of the data
+for each measure.  But which value in the middle would be best?
+\vskip0.2cm
+One optimality criteria: Choose $w$ that 
+minimizes \MAD\ or \MSD.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{A more objective qualification}
+\begin{itemize}
+\item Let's say $w$ is a good candidate for the center. Then in some sense $x_1-w$, $x_2-w$, $x_n-w$ should be small in a collective fashion. 
+\item How about we combine these quantities?
+\item $$MSD(w)=\frac{1}{n} \{  (x_1-w)^2+(x_2-w)^2+\cdots (x_n-w)^2 \}=\frac{1}{n}\sum_{i=1}^n(x_i-w)^2$$
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Behavior of MSD function}
+Let's take the very simple dataset comprising of only 4 points 1, 3, 15 and 9.
+\begin{center}
+\includegraphics[width = 0.4\textwidth, keepaspectratio]{msdtable.jpeg} 
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Behavior of MSD function}
+Let's take the very simple dataset comprising of only 4 points 1, 3, 15 and 9.
+\begin{center}
+\includegraphics[width = 0.5\textwidth, keepaspectratio]{msdw.jpeg} 
+\end{center}
+
+\pause
+\begin{center}
+\item 7 is the mean !! \pause Can we prove it analytically as well?
+
+\item We call MSD as this function evaluated at $\bar{x}$, i.e $$MSD= L_1(\bar{x})= \frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2$$
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Loss function}
+\begin{itemize}
+\item MSD function: $$L_1(w)=\frac{1}{n}\sum_{i=1}^{n} (x_i-w)^2$$ \\
+\item MAD function: $$L_2(w)= \frac{1}{n}\sum_{i=1}^{n} |x_i-w|$$ \\
+
+\item MAD stands for Mean Absolute Deviation
+\item Minimize MSD function $\rightarrow$ Mean \pause
+\item Minimize MAD function $\rightarrow$ Median \pause
+\item Median is another measure of central tendency
+
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Behavior of MAD}
+Let's take the same dataset again 1, 3, 15 and 9.
+\begin{center}
+\includegraphics[width = 0.28\textwidth, keepaspectratio]{madtable.jpeg} 
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Behavior of MAD}
+Let's take the same dataset again 1, 3, 15 and 9.
+\begin{center}
+\includegraphics[width = 0.6\textwidth, keepaspectratio]{madw.jpeg} 
+\end{center}
+
+\pause
+\begin{center}
+Minimum attained at any point between 3 to 9. \pause All the points in [3,9] qualify as the median. \pause To keep it definite we will take (3+9)/2=6 as our median here.
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Measures of Center: Median}
+\textcolor{blue}{Definition} First order the data points $x_1, x_2, \cdots x_n$ in ascending order (including repetitions). Then \textbf{sample median} $\tilde{x}$ of the \emph{sample} $x_1, x_2, \cdots x_n$ is the single middle value of the \emph{ordered set} is $n$ is odd and the average of two middle values if $n$ is even.
+\vspace{0.2in}
+\begin{center}
+Let's take an example.
+\end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Measures of Center: Median}
+\textcolor{blue}{Example} Consider the following data set:\newline
+$6.3, 10.2, 3.8, 7.9, 8.0, 5.5, 6.8$
+\begin{itemize}
+\item Number of observations? Odd or even? \pause \newline
+      Ans. 7. Odd. \pause 
+\item What's the next step? \pause \newline
+      Ans. Order them. $3.8, 5.5, 6.3, 6.8, 7.9, 8.0, 10.2$ \pause
+\item What is the middle position? What is the median? \pause \newline
+      Ans. Middle position is 4. Median is 6.8
+
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Measures of Center: Median}
+\textcolor{blue}{Example} Now consider the following data set:\newline
+$6.3, 10.2, 3.8, 7.9, 8.0, 5.5, 6.8, 7.3$
+\begin{itemize}
+\item Number of observations 8 which is even \pause
+
+\item Order them from smallest to largest: $3.8, 5.5, 6.3, 6.8, 7.3, 7.9, 8.0, 10.2$\pause
+
+\item What are the 2 middle positions? What is the median? \pause \newline
+      Ans. Middle positions are 4 and 5. Median is $\tfrac{6.8 + 7.3}{2} =7.05$.
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Measures of Center: Median}
+So we can formulate the sample median $\tilde{x}$ as: 
+\begin{itemize}
+\item The $\big(\tfrac{n+1}{2}\big)$th ordered valued in the ordered list obtained from the sample when $n$ is odd.
+
+\item The average of $\big(\tfrac{n}{2}\big)$th and $\big(\tfrac{n}{2} + 1\big)$th ordered values in the ordered list when $n$ is even.
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Formulas for Sample Average, Variance, SD\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+$$\mbox{sample average } = \overline{x} = \mbox{ ``x-bar" }
+= \frac{1}{n} \sum_{i=1}^n\, x_i$$
+
+$$\mbox{sample variance } = s^2 = \mbox{ ``s-squared" }
+= \frac{1}{n-1} \sum_{i=1}^n\, (x_i-\overline{x})^2$$
+
+\begin{align*}
+\mbox{sample standard deviation } &= s
+= \sqrt{s^2} = \sqrt{\frac{1}{n-1} \sum_{i=1}^n\, (x_i-\overline{x})^2}\\
+&= \mbox{ ``typical" distance from the average}
+\end{align*}
+\vskip0.1cm
+Why divide by $(n-1)$ instead of $n$ for sample variance and SD?
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Why divide by $(n-1)$ for sample variance and SD?\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+\textbf{Variance} has a particular meaning in
+statistics: \\
+\textbf{mean squared distance from the average}
+\begin{equation*}
+MSD_n(\,\xbar\,)
+= \frac{1}{n}\sum_{i=1}^n (x_i-\xbar)^2
+%\label{eqn:MSDxbar}
+\end{equation*}
+Why collect data (\textbf{statistics})?  
+
+To learn about the population (\textbf{parameters}).
+\begin{equation*}
+\text{population mean} = \mu = \text{``myoo"}
+= \frac{1}{N}\sum_{i=1}^N x_i
+%\label{eqn:mu}
+\end{equation*}
+\begin{equation*}
+\text{popn variance} = \sigma^2 = \text{``sigma squared"}
+= \frac{1}{N}\sum_{i=1}^N (x_i-\mu)^2
+\end{equation*}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+$\displaystyle{
+\text{truth} = \text{popn variance}
+= \sigma^2 = MSD_N(\,\mu\,) = \frac{1}{N}\sum_{i=1}^N (x_i-\mu)^2
+}$
+\vskip0.1cm
+
+If we know the true popn mean ($\mu$)
+and had a sample of $n$, use
+\begin{equation}
+\text{estimate}
+= \sigmahat_{\mu}^2 = MSD_n(\,\mu\,) = \frac{1}{n}\sum_{i=1}^n (x_i-\mu)^2
+\label{eqn:MSDmu}
+\end{equation}
+But, we almost never know $\mu$!  That's why we sample!
+\begin{equation}
+\text{realistic estimate}
+= \sigmahat_{\xbar}^2 = MSD_n(\,\xbar\,) = \frac{1}{n}\sum_{i=1}^n (x_i-\xbar)^2
+\label{eqn:MSDxbar}
+\end{equation}
+The problem: $\eqref{eqn:MSDxbar} \le \eqref{eqn:MSDmu}$.
+\quad Why?\;\; ...and why is this a problem?\\
+How does dividing by $(n-1)$ for \eqref{eqn:MSDxbar} help?
+solve the problem?
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+OK. So, we should divide by a number smaller than $n$.
+
+But, why $(n-1)$ in particular?
+\vskip0.25cm
+
+\textbf{Claim:}\;
+Just $(n-1)$ observations and $\xbar$ are sufficient
+to determine the one remaining observation.
+\vskip0.25cm
+
+\textbf{Proof:}\;
+We know $n\xbar = x_1+x_2+\cdots +x_n$, since
+$\xbar = \frac{1}{n} \sum x_i$
+
+So, $x_n = n\xbar - (x_1+x_2+\cdots+x_{n-1})$.
+
+\vskip0.4cm
+In a sense, $\sum (x_i-\xbar)^2$  
+adds up $(n-1)$ ``independent" values.
+\vskip0.1cm
+
+We say that the sum $\sum (x_i-\xbar)^2$
+has $(n-1)$ \textbf{degrees of freedom} .
+\vskip0.1cm
+
+So, the sample average squared deviation (variance) is defined as
+\vskip0.4cm
+
+$\displaystyle{
+s^2 = \mbox{ ``s-squared" }
+= \frac{1}{n-1} \sum_{i=1}^n\, (x_i-\overline{x})^2
+}$
+
+\end{frame}
+
+
+<<remaining, eval=FALSE, echo=FALSE>>=
+histogram(~ tweet_months_fixed, data=trump.data.frame, type="percent",
+xlab="Trump Tweets per month")
+
+bargraph(~ tweet_months_fixed, data=trump.data.frame, type="percent",
+xlab="Trump Tweets per month", cex=0.5)
+
+bargraph(~ tweet_years, data=trump.data.frame, type="percent",
+xlab="Trump Tweets per month", cex=0.5)
+
+bargraph(retweets~ tweet_days | tweet_years, data=trump.data.frame, type="percent",
+xlab="Average Speed by Frame", ylab="Percent", layout=c(1,2))
+
+mean(retweets ~ tweet_months_fixed, data=trump.data.frame)
+sd(retweets ~ tweet_months_fixed, data=trump.data.frame)
+
+mean(retweets ~ tweet_months_fixed | tweet_years, data=trump.data.frame)
+
+favstats(retweets ~ tweet_months_fixed, data=trump.data.frame)
+
+bwplot(~ retweets, data=trump.data.frame, xlab="retweets distribution")
+
+sorted_retweet_counts <- sort(trump.data.frame$retweets)
+tail(sorted_retweet_counts)
+head(sorted_retweet_counts)
+
+quantile(~retweets, data=trump.data.frame)
+IQR(~retweets, data=trump.data.frame)
+
+
+@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Linear Transformation of Data\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+Sometimes we want to analyze data in different units \newline
+
+Temperature unit in USA :  degree Fahrenheit \newline
+Temperature unit in India: degree Celsius \newline
+
+Temperature: 
+$\displaystyle{ \text{Celsius} = \frac{5}{9} (\text{Fahrenheit} - 32)}$  
+
+Temperature: 
+$\displaystyle{ \text{Celsius}  = -\left(\frac{160}{9}\right) + \left(\frac{5}{9}\right)\text{Fahrenheit}}$
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+High temperature in Chicago last 5 days of December
+<<echo=TRUE, eval=TRUE>>=
+Fahrenheit <- c(39, 39, 29, 28, 31)
+OLD <- options(digits=3)
+
+Fahrenheit
+mean(Fahrenheit)
+
+@ %def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=TRUE, eval=TRUE>>=
+
+Celsius = -(160/9) + (5/9)*Fahrenheit
+
+rbind(Fahrenheit, Celsius)
+mean(Celsius)
+
+mean(Celsius)
+-(160/9) + (5/9) * mean(Fahrenheit)
+@
+
+
+\textbf{Claim:} \;
+If data $x_1, x_2,\ldots, x_n$ \\
+are
+linearly transformed to
+$y_i = a + b x_i$
+\vskip0.2cm
+
+Then, $\ybar = a + b\xbar$.
+\vskip0.5cm
+
+\textbf{Proof:}\;
+
+A proof appears in Section 1.4 (Math Supplement).
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<>>=
+sd(Celsius)
+(5/9) * sd(Fahrenheit)
+@
+
+\textbf{Claim:} \;
+If data $x_1, x_2,\ldots, x_n$ \\
+are
+linearly transformed to
+$y_i = a + b x_i$
+\vskip0.2cm
+
+Then, $SD(y) = s_y = |b|s_x = |b|SD(x)$.
+\vskip0.5cm
+
+\textbf{Proof:}\;
+On your own for HW \#2.
+
+<<echo=FALSE>>=
+options(OLD) 
+@
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]{The distribution of retweets\;\;}
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+histogram(~ retweets, data=trump.data.frame, type="count", xlab="Retweets", breaks=seq(0,30000,1000))
+@
+
+\newpage
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='1\\linewidth'>>=
+histogram(~ retweets | tweet_month, data=trump.data.frame, type="count", xlab="Retweets", layout=c(3,3), breaks=seq(0,30000,1000))
+@
+
+\newpage
+Let's make the comparison based on percentages, not counts
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='1\\linewidth'>>=
+histogram(~ retweets | tweet_month, data=trump.data.frame, type="percent", breaks=seq(0,30000,1000), layout=c(3,3))
+@
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]{The distribution of logarithm of retweets\;\;}
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+log_retweets <- log(trump.data.frame$retweets+1);
+mtweets <- mean(log_retweets)
+stweets <- sd(log_retweets)
+hist(log_retweets, xlab="Log of number of retweets", 
+     xlim=c(mtweets-3*stweets,mtweets+3*stweets), freq=FALSE, col="lightgray", ylim=c(0,0.5))
+lines(density(log_retweets, na.rm=TRUE))
+@
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+mtweets <- mean(log_retweets)
+stweets <- sd(log_retweets)
+hist(log_retweets, xlab="Log of number of retweets", 
+     xlim=c(mtweets-3*stweets,mtweets+3*stweets), breaks=10,
+     freq=FALSE, col="lightgray", ylim=c(0,0.5), main="Histogram (10 bins)")
+lines(density(log_retweets, na.rm=TRUE))
+@
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+hist(log_retweets, xlab="Log of number of retweets", 
+     xlim=c(mtweets-3*stweets,mtweets+3*stweets), breaks=100,
+     freq=FALSE, col="lightgray", ylim=c(0,0.5), main="Histogram (100 bins)")
+lines(density(log_retweets, na.rm=TRUE))
+@
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+hist(log_retweets, xlab="Log of number of retweets", 
+     xlim=c(mtweets-3*stweets,mtweets+3*stweets), breaks=1000,
+     freq=FALSE, col="lightgray", ylim=c(0,1), main="Histogram (1000 bins)")
+lines(density(log_retweets, na.rm=TRUE))
+@
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+hist(log_retweets, xlab="Log of number of retweets", 
+     xlim=c(mtweets-3*stweets,mtweets+3*stweets), breaks=100,
+     freq=FALSE, col="lightgray", ylim=c(0,0.55), main="Histogram (100 bins)")
+lines(density(log_retweets, na.rm=TRUE))
+curve(dnorm(x, mtweets, stweets), lwd=4, lty=2, from = mtweets-3*stweets, to = mtweets+3*stweets, add=TRUE)
+@
+\newpage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Normal Distribution}
+\begin{center}
+\includegraphics[width=7cm,keepaspectratio]{Normal_distribution.png} 
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{ Facts about Normal Distribution}
+\begin{itemize}
+\item Two parameters. Mean ($\mu$) and standard deviation ($\sigma$) \pause
+\item $\mu$ and $\sigma$ are population parameters. \pause
+\item $\mu=0$ and $\sigma=1$ refers to the standard normal distribution. \pause
+\item Centred around $\mu$.
+\item For standard normal $$ P( X>1) = P( X <-1) $$ Why? 
+\item The formula for $N(\mu, \sigma)$ is (don't be scared - just FYI!)
+$$f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} $$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Properties of Normal distribution}
+ For a  Normal Distribution ( mean $\mu=0$ and sd $\sigma=1$)
+\begin{center}
+\includegraphics[width=7cm,keepaspectratio]{6895997.jpeg} 
+\end{center}
+
+This is called the $68 \%- 95 \% - 99.7 \% $ rule. This often simplifies our calculations.
+
+What happens for a general $\mu$ and $\sigma$?
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Properties of Normal distribution}
+ For a Normal Distribution ( $\mu=1000$ and $\sigma=100$)
+\begin{center}
+\includegraphics[width=7cm,keepaspectratio]{generalnormal6895997.jpeg} 
+\end{center}
+\begin{center}
+\tiny{700 \hspace{0.09 in}  800  \hspace{0.09 in}    900  \hspace{0.09 in}   1000  \hspace{0.06 in}   1100   \hspace{0.06 in}  1200 \hspace{0.06 in}    1300 }
+\end{center}
+
+\begin{center}
+\tiny{$\mu-3\sigma$ \hspace{0.03 in}  $\mu-2\sigma$  \hspace{0.03 in}    $\mu-\sigma$  \hspace{0.03 in}   $\mu$  \hspace{0.03 in}   $\mu+\sigma$   \hspace{0.03 in}  $\mu+2\sigma$ \hspace{0.03 in}    $\mu+3\sigma$ }
+
+
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Cumulative Proportions and Standard Normal Table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+\item \textbf{Cumulative proportions}: The proportion of observations in a distribution that lie at or below a given value $x$.
+\item For $N(0,1)$, use the standard normal table (Table A in textbook) to calculate cumulative proportions for $x$.
+\end{itemize}
+\begin{center}
+\includegraphics[height=2in]{P10.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Cumulative Proportions and Standard Normal Table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For $N(0,1)$, we can calculate all of the following areas using cumulative proportions:
+\begin{center}
+\includegraphics[height=1.8in]{P9.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Normal Distribution}
+\begin{itemize}
+\item Many sets of data follow normal distribution. \pause
+\item It is a symmetric, bell-curved distribution and has many nice properties ! \pause
+\item A lot of statistical methodologies are based on the properties of this distribution. \pause
+\item Naturally, there is a tendency to use it everywhere we can even though the data is not actually coming from a normal distribution. \pause
+\item We should start by comparing the data with normal distribution. \pause
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Standardization and z-score }
+\begin{itemize}
+
+\item If $x$ is an observation from a distribution with mean (Population mean) $\mu$ and standard deviation $\sigma$ then , the standardized value is 
+$$z=\frac{x-\mu}{\sigma}$$ \pause 
+
+\item This is also called the $z-score$. \pause
+\item Example?\pause   Assume that, time spent on the calls ( The data from Lecture 1 ) follows approximately a normal distribution with mean $\mu= 1000$ and $\sigma=100$. \pause
+\item Suppose on particular observation is 870, $$z-\text{score}= \frac{670-1000}{100}= -1.3$$
+\item We will use this z-score later to make some conclusions.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{frame}[allowframebreaks, fragile]{The normal density model in R\;\;}
+
+The "normal density" model.  \newline
+
+A good fit for these data distributions? \newline
+
+A numerical look \newline 
+
+What percent of area under standard normal density is above/below 1?
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+pnorm(-1, m=0, s=1)
+pnorm(-1)
+1 - pnorm(1)
+@
+\newpage
+
+What percent of area under \emph{any} normal density is above/below 1 sd from mean?
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+mtweets <- mean(log_retweets)
+mtweets
+stweets <- sd(log_retweets)
+stweets
+1 - pnorm(mtweets + stweets, m=mtweets, s=stweets)
+pnorm(mtweets - stweets, m=mtweets, s=stweets)
+@
+\newpage
+
+What percent of the observed data are right/left of 1 sd from mean?
+<<message=FALSE, warning=FALSE, echo=FALSE, eval <- TRUE, fig.height=5, out.width='0.89\\linewidth'>>=
+n <- dim(trump.data.frame)[1]
+@
+
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+sum(log_retweets >= mtweets + stweets, na.rm=TRUE) / n
+sum(log_retweets <= mtweets - stweets, na.rm=TRUE) / n
+@
+\newpage
+
+What percent of the model/data are 2 sd to the right mean?
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+1 - pnorm(2)
+sum(log_retweets >= mtweets + 2*stweets, na.rm=TRUE) / n
+@
+
+What percent of the model/data are 2 sd to the left of mean?
+<<message=FALSE, eval=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+pnorm(-2)
+sum(log_retweets <= mtweets - 2*stweets, na.rm=TRUE) / n
+@
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{When things are not normal!!}
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+mtweets2 <- mean(trump.data.frame$retweets); stweets2 <- sd(trump.data.frame$retweets);
+hist(trump.data.frame$retweets, xlab="Log of number of retweets", 
+     xlim=c(min(trump.data.frame$retweets), max(trump.data.frame$retweets)), breaks=100,
+     freq=FALSE, col="lightgray", main="Histogram (100 bins)")
+lines(density(trump.data.frame$retweets, na.rm=TRUE))
+curve(dnorm(x, mtweets2, stweets2), lwd=4, lty=2, from = mtweets2-3*stweets2, to = mtweets2+3*stweets2, add=TRUE)
+@
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Skewness}
+\begin{center}
+\includegraphics[width=7cm,keepaspectratio]{skewness.jpg} 
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{A Step back: Quantiles}
+
+\begin{itemize}
+\item The \emph{k} th quantile of a set of values divides them so that $100*k$  
+of the values lie below and $100*(1-k)$ of the values lie above. \pause \newline
+
+\item the $0.25$th quantile is known first/lower quartile ($Q_1$)  \pause \newline
+
+\item the $0.50$th quantile is known as median ($Q_2$) \pause \newline
+
+\item the $0.75$th quantile is known as third/upper quartile ($Q_3$) \pause \newline
+
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{A Step back: Quantiles}
+
+Lets look at the quantiles of a set of values - $3.4, 2.3, 6.7, 2.1, 5.0$ \pause \newline
+
+First sort the values in order
+$$ 2.1, \; \; 2.3 \; \; 3.4 \;\; 5.0 \;\; 6.7 $$
+
+Then the quantiles for this data is given as follows 
+
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Sample fraction & 0 & 0.25 & 0.50 & 0.75 & 1 \\ \hline
+Quantiles & 2.1 & 2.3 & 3.4 & 5.0 & 6.7 \\ \hline
+\end{tabular}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Quantiles in R}
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+vec <- c(3.4, 2.3, 6.7, 2.1, 5.0);
+quantile(vec)
+@
+
+Consider the Trump twitter feed data
+
+<<echo=TRUE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+favstats(retweets | tweet_year, data=trump.data.frame)
+@
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{IQR, Boxplot and outliers}
+\begin{itemize} 
+\item Another measure is $IQR= Q_3-Q_1$ \pause
+\item $1.5 \times$  IQR rule : If an observation falls more than $1.5  \times IQR $ above the third quartile or below the first quartile, call it a \emph{suspected} outlier (Caution: Not always!!). \pause 
+\end{itemize}
+<<bw_retweets_2, eval=TRUE, echo=TRUE, fig.height=2.5, out.width='0.89\\linewidth'>>=
+bwplot(~ retweets, data=trump.data.frame, 
+       xlab="Retweets box plot distribution")
+@ %def
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Normal Quantile Plot}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+How can I tell whether my data is sufficiently close to normal?
+
+\begin{itemize}
+\item Given data $x=(x_1, x_2, \cdots, x_n)$, compute
+$$ y_{i} = \frac{x_{i} - \bar{x}}{s} $$
+where $\bar{x} = mean(x)$ and $s = sd(x)$.
+
+\item Arrange the $y$ data in increasing order: 
+$$ y_{[1]} \leq y_{[2]} \leq ... \leq y_{[n]} $$
+
+\item Find the z-scores for all the percentiles $(\frac{1}{n}, \frac{2}{n}, ..., \frac{n}{n})$ from standard normal table
+
+\item  Plot $y_{[i]}$ values on the vertical axis against z-scores on the horizontal axis from $i = 1, ..., n$.
+
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{How Normal Quantile plot looks!}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\includegraphics[height=1.5in]{P13.png}
+\end{center}
+
+If the data are approximately normal,the Q-Q plot will be \textbf{close to a straight line}.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Normal Quantile Plot}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Systematic deviations} from a straight line indicate a non-normal distribution
+
+\begin{table}
+\footnotesize
+\centering
+\begin{tabular}{ c  | c }			
+   Heavy tails at both end & Light tails at both end \\
+   \includegraphics[height=1.1in]{QQ3.png}  &  \includegraphics[height=1.1in]{QQ4.png} \\
+   \hline
+   Left skewed & Right skewed \\
+   \includegraphics[height=1.1in]{QQ2.png}  &  \includegraphics[height=1.1in]{QQ1.png} \\
+   
+\end{tabular}
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Association between Variables}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<scatter_2, eval=TRUE, echo=FALSE, fig.height=4, fig.width=6, warning=FALSE,message=FALSE>>=
+scatter.smooth(trump.data.frame$retweets, 
+      trump.data.frame$favorites, lwd=1, pch=20, 
+      col="blue", xlab="Retweets of Trump posts", 
+      ylab="Favorites of Trump posts")
+@ %def
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Describing Scatterplots}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+You can describe patterns in a scatterplot in three aspects:
+\begin{itemize}
+\item Form: Linear, curved...
+\item Direction: Positive, negative
+\item Strength: Strong, weak
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Scatterplot}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Examples of linear relationships:
+\begin{center}
+\includegraphics[height=2.5in]{P1.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Applying quantile plots to log Retweets data}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=TRUE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+mtweets <- mean(log(trump.data.frame$retweets+1))
+
+stweets <- sd(log(trump.data.frame$retweets+1))
+
+stdtweets = (log(trump.data.frame$retweets+1) - mtweets) / stweets
+
+head(sort(stdtweets),3)
+tail(sort(stdtweets),3)
+
+@
+
+\newpage
+
+<<echo=TRUE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+p = c(0.01, 0.025, 0.16, 0.25, 0.50, 0.75, 0.84, 0.975, 0.99)
+modelQuantile = qnorm(p)
+modelQuantile
+
+dataQuantile = quantile(stdtweets, p, na.rm=TRUE)
+dataQuantile
+
+rbind(dataQuantile, modelQuantile)
+
+@
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Quantile plots}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+limits = c(0.9*min(dataQuantile,modelQuantile), 1.1*max(dataQuantile,modelQuantile))
+limits = c(-4,4)
+
+xyplot(dataQuantile ~ modelQuantile, abline=list(a=0,b=1), xlim=limits, 
+       ylim=limits, cex=1.5, lwd=1,pch=20)
+@ %def
+\newpage
+
+I wish the "normal probability plot" was actually plotted like this
+(much easier to read)
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+xyplot((dataQuantile-modelQuantile) ~ modelQuantile, abline=list(h=0), 
+       cex=1.5, lwd=1,pch=20)
+@ %def
+\newpage
+
+ But here is the style of plot traditionally called the "normal probability plot" or "normal quantile plot"
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+xyplot(dataQuantile ~ modelQuantile, abline=list(a=0,b=1), xlim=limits, 
+       ylim=limits, cex=1.5, lwd=1,pch=20)
+@ %def
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Quantile plot for Retweets Data}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+mtweets2 <- mean(trump.data.frame$retweets)
+
+stweets2 <- sd(trump.data.frame$retweets)
+
+stdtweets2 = (trump.data.frame$retweets - mtweets2) / stweets2
+
+dataQuantile = quantile(stdtweets2, p, na.rm=TRUE)
+
+limits = c(0.9*min(dataQuantile,modelQuantile), 1.1*max(dataQuantile,modelQuantile))
+limits = c(-4,4)
+
+xyplot(dataQuantile ~ modelQuantile, abline=list(a=0,b=1), xlim=limits, 
+       ylim=limits, cex=1.5, lwd=1,pch=20)
+@ %def
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\centering \large{\textcolor{blue}{Questions?}}
+
+\end{frame}
+
+%%%%%%%%%%%%%% End of slides %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

@@ -1,0 +1,1964 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 MAR 2016 14:06
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**16spr_01week.tex
+(./16spr_01week.tex
+LaTeX2e <2014/05/01>
+Babel <3.9k> and hyphenation patterns for 78 languages loaded.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamer.cls
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasercs.sty
+Package: beamerbasercs 2013/12/25 (rcs-revision 31cc758a62ae)
+)
+Document Class: beamer 2013/12/02 3.33 A class for typesetting presentations (r
+cs-revision 332bfd3ce558)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasemodes.sty
+Package: beamerbasemodes 2013/09/03 (rcs-revision 768f2d98ca64)
+\beamer@tempbox=\box26
+\beamer@tempcount=\count79
+\c@beamerpauses=\count80
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasedecode.sty
+Package: beamerbasedecode 2010/05/01 (rcs-revision efa082c6111d)
+\beamer@slideinframe=\count81
+\beamer@minimum=\count82
+)
+\beamer@commentbox=\box27
+\beamer@modecount=\count83
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+\headheight=\dimen102
+\headdp=\dimen103
+\footheight=\dimen104
+\sidebarheight=\dimen105
+\beamer@tempdim=\dimen106
+\beamer@finalheight=\dimen107
+\beamer@animht=\dimen108
+\beamer@animdp=\dimen109
+\beamer@animwd=\dimen110
+\beamer@leftmargin=\dimen111
+\beamer@rightmargin=\dimen112
+\beamer@leftsidebar=\dimen113
+\beamer@rightsidebar=\dimen114
+\beamer@boxsize=\dimen115
+\beamer@vboxoffset=\dimen116
+\beamer@descdefault=\dimen117
+\beamer@descriptionwidth=\dimen118
+\beamer@lastskip=\skip41
+\beamer@areabox=\box28
+\beamer@animcurrent=\box29
+\beamer@animshowbox=\box30
+\beamer@sectionbox=\box31
+\beamer@logobox=\box32
+\beamer@linebox=\box33
+\beamer@sectioncount=\count84
+\beamer@subsubsectionmax=\count85
+\beamer@subsectionmax=\count86
+\beamer@sectionmax=\count87
+\beamer@totalheads=\count88
+\beamer@headcounter=\count89
+\beamer@partstartpage=\count90
+\beamer@sectionstartpage=\count91
+\beamer@subsectionstartpage=\count92
+\beamer@animationtempa=\count93
+\beamer@animationtempb=\count94
+\beamer@xpos=\count95
+\beamer@ypos=\count96
+\beamer@showpartnumber=\count97
+\beamer@currentsubsection=\count98
+\beamer@coveringdepth=\count99
+\beamer@sectionadjust=\count100
+\beamer@tocsectionnumber=\count101
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaseoptions.sty
+Package: beamerbaseoptions 2013/03/10 (rcs-revision 47431932db0d)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+))
+\beamer@paperwidth=\skip42
+\beamer@paperheight=\skip43
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count102
+\Gm@cntv=\count103
+\c@Gm@tempcnt=\count104
+\Gm@bindingoffset=\dimen119
+\Gm@wd@mp=\dimen120
+\Gm@odd@mp=\dimen121
+\Gm@even@mp=\dimen122
+\Gm@layoutwidth=\dimen123
+\Gm@layoutheight=\dimen124
+\Gm@layouthoffset=\dimen125
+\Gm@layoutvoffset=\dimen126
+\Gm@dimlist=\toks15
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/04/25 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count105
+))
+\Gin@req@height=\dimen127
+\Gin@req@width=\dimen128
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks16
+\pgfutil@tempdima=\dimen129
+\pgfutil@tempdimb=\dimen130
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box34
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2013/12/20 v3.0.0 (rcs-revision 1.28)
+))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2013/11/30 v3.0.0 (rcs-revision 1.47)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks17
+\pgfkeys@temptoks=\toks18
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
+\pgfkeys@tmptoks=\toks19
+))
+\pgf@x=\dimen131
+\pgf@y=\dimen132
+\pgf@xa=\dimen133
+\pgf@ya=\dimen134
+\pgf@xb=\dimen135
+\pgf@yb=\dimen136
+\pgf@xc=\dimen137
+\pgf@yc=\dimen138
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count106
+\c@pgf@countb=\count107
+\c@pgf@countc=\count108
+\c@pgf@countd=\count109
+\t@pgf@toka=\toks20
+\t@pgf@tokb=\toks21
+\t@pgf@tokc=\toks22
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+File: pgfsys-pdftex.def 2013/07/18  (rcs-revision 1.33)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count110
+\pgfsyssoftpath@bigbuffer@items=\count111
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) (/usr/local/texlive/2014/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.0 (rcs-revision 1.7)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen139
+\pgfmath@count=\count112
+\pgfmath@box=\box35
+\pgfmath@toks=\toks23
+\pgfmath@stack@operand=\toks24
+\pgfmath@stack@operation=\toks25
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count113
+))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen140
+\pgf@picmaxx=\dimen141
+\pgf@picminy=\dimen142
+\pgf@picmaxy=\dimen143
+\pgf@pathminx=\dimen144
+\pgf@pathmaxx=\dimen145
+\pgf@pathminy=\dimen146
+\pgf@pathmaxy=\dimen147
+\pgf@xx=\dimen148
+\pgf@xy=\dimen149
+\pgf@yx=\dimen150
+\pgf@yy=\dimen151
+\pgf@zx=\dimen152
+\pgf@zy=\dimen153
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen154
+\pgf@path@lasty=\dimen155
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2013/12/13  (rcs-revision 1.23)
+\pgf@shorten@end@additional=\dimen156
+\pgf@shorten@start@additional=\dimen157
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2013/10/09  (rcs-revision 1.44)
+\pgfpic=\box36
+\pgf@hbox=\box37
+\pgf@layerbox@main=\box38
+\pgf@picture@serial@count=\count114
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2013/09/19  (rcs-revision 1.11)
+\pgflinewidth=\dimen158
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2013/10/10  (rcs-revision 1.17)
+\pgf@pt@x=\dimen159
+\pgf@pt@y=\dimen160
+\pgf@pt@temp=\dimen161
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2013/11/07  (rcs-revision 1.40)
+\pgfarrowsep=\dimen162
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen163
+\pgf@sys@shading@range@num=\count115
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2013/07/15  (rcs-revision 1.20)
+\pgfexternal@startupbox=\box39
+))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/xxcolor.sty
+Package: xxcolor 2003/10/24 ver 0.1
+\XC@nummixins=\count116
+\XC@countmixins=\count117
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package hobsub Info: Skipping package `atbegshi' (already loaded).
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen164
+\Hy@linkcounter=\count118
+\Hy@pagecounter=\count119
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count120
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `bookmarks' set `true' on input line 4319.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 4319.
+Package hyperref Info: Option `implicit' set `false' on input line 4319.
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode OFF; no redefinition of LaTeX internals.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count121
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen165
+\Fld@menulength=\count122
+\Field@Width=\dimen166
+\Fld@charsize=\dimen167
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count123
+
+
+Package hyperref Message: Stopped early.
+
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count124
+\c@bookmark@seq@number=\count125
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaserequires.sty
+Package: beamerbaserequires 2010/05/01  (rcs-revision efa082c6111d)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasecompatibility.st
+y
+Package: beamerbasecompatibility 2012/05/01  (rcs-revision 67c48b3b652d)
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasefont.sty
+Package: beamerbasefont 2013/10/18  (rcs-revision 72f39e01808a)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks26
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/sansmathaccent/sansmathaccent.sty
+Package: sansmathaccent 2013/03/28
+(/usr/local/texlive/2014/texmf-dist/tex/latex/filehook/filehook.sty
+Package: filehook 2011/10/12 v0.5d Hooks for input files
+)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasetranslator.sty
+Package: beamerbasetranslator 2010/06/11  (rcs-revision 85fd1cc7fc42)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/translator.sty
+Package: translator 2010/06/12 ver 1.10
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/translator-lang
+uage-mappings.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasemisc.sty
+Package: beamerbasemisc 2013/09/03  (rcs-revision a55719c41d85)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasetwoscreens.sty
+Package: beamerbasetwoscreens 2010/05/01  (rcs-revision efa082c6111d)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaseoverlay.sty
+Package: beamerbaseoverlay 2013/12/25  (rcs-revision f6bd5e3805da)
+\beamer@argscount=\count126
+\beamer@lastskipcover=\skip44
+\beamer@trivlistdepth=\count127
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasetitle.sty
+Package: beamerbasetitle 2010/09/21  (rcs-revision f0446ed0b6ae)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasesection.sty
+Package: beamerbasesection 2013/06/07  (rcs-revision 60b9fe0f342f)
+\c@lecture=\count128
+\c@part=\count129
+\c@section=\count130
+\c@subsection=\count131
+\c@subsubsection=\count132
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaseframe.sty
+Package: beamerbaseframe 2013/10/02  (rcs-revision cdc8e9a3aaac)
+\beamer@framebox=\box40
+\beamer@frametitlebox=\box41
+\beamer@zoombox=\box42
+\beamer@zoomcount=\count133
+\beamer@zoomframecount=\count134
+\beamer@frametextheight=\dimen168
+\c@subsectionslide=\count135
+\beamer@frametopskip=\skip45
+\beamer@framebottomskip=\skip46
+\beamer@frametopskipautobreak=\skip47
+\beamer@framebottomskipautobreak=\skip48
+\beamer@envbody=\toks27
+\framewidth=\dimen169
+\c@framenumber=\count136
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaseverbatim.sty
+Package: beamerbaseverbatim 2012/08/30  (rcs-revision dfdb135076b3)
+\beamer@verbatimfileout=\write4
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaseframesize.sty
+Package: beamerbaseframesize 2011/09/12  (rcs-revision 70f9d8411e54)
+\beamer@splitbox=\box43
+\beamer@autobreakcount=\count137
+\beamer@autobreaklastheight=\dimen170
+\beamer@frametitletoks=\toks28
+\beamer@framesubtitletoks=\toks29
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaseframecomponents.
+sty
+Package: beamerbaseframecomponents 2013/10/18  (rcs-revision 5cf6c5555a45)
+\beamer@footins=\box44
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasecolor.sty
+Package: beamerbasecolor 2010/06/06  (rcs-revision d1a9b48be06d)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasenotes.sty
+Package: beamerbasenotes 2012/12/19  (rcs-revision 1686da3db3c9)
+\beamer@frameboxcopy=\box45
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasetoc.sty
+Package: beamerbasetoc 2013/05/23  (rcs-revision 0fdf5bc43be8)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasetemplates.sty
+Package: beamerbasetemplates 2010/05/01  (rcs-revision efa082c6111d)
+\beamer@sbttoks=\toks30
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaseauxtemplates.sty
+Package: beamerbaseauxtemplates 2013/09/04  (rcs-revision 4ac715c499d0)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaseboxes.sty
+Package: beamerbaseboxes 2012/05/13  (rcs-revision 56972908a390)
+\bmb@box=\box46
+\bmb@colorbox=\box47
+\bmb@boxshadow=\box48
+\bmb@boxshadowball=\box49
+\bmb@boxshadowballlarge=\box50
+\bmb@temp=\dimen171
+\bmb@dima=\dimen172
+\bmb@dimb=\dimen173
+\bmb@prevheight=\dimen174
+)
+\beamer@blockheadheight=\dimen175
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbaselocalstructure.s
+ty
+Package: beamerbaselocalstructure 2013/09/04  (rcs-revision 4ac715c499d0)
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks31
+)
+\c@figure=\count138
+\c@table=\count139
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasenavigation.sty
+Package: beamerbasenavigation 2013/10/05  (rcs-revision 62be157fe783)
+\beamer@section@min@dim=\dimen176
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasetheorems.sty
+Package: beamerbasetheorems 2010/06/06  (rcs-revision 7e7cc5e53e9d)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks32
+\ex@=\dimen177
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen178
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count140
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count141
+\leftroot@=\count142
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count143
+\DOTSCASE@=\count144
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+\big@size=\dimen179
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count145
+\c@MaxMatrixCols=\count146
+\dotsspace@=\muskip11
+\c@parentequation=\count147
+\dspbrk@lvl=\count148
+\tag@help=\toks33
+\row@=\count149
+\column@=\count150
+\maxfields@=\count151
+\andhelp@=\toks34
+\eqnshift@=\dimen180
+\alignsep@=\dimen181
+\tagshift@=\dimen182
+\tagwidth@=\dimen183
+\totwidth@=\dimen184
+\lineht@=\dimen185
+\@envbody=\toks35
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks36
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2004/08/06 v2.20
+\thm@style=\toks37
+\thm@bodyfont=\toks38
+\thm@headfont=\toks39
+\thm@notefont=\toks40
+\thm@headpunct=\toks41
+\thm@preskip=\skip54
+\thm@postskip=\skip55
+\thm@headsep=\skip56
+\dth@everypar=\toks42
+)
+\c@theorem=\count152
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/beamerbasethemes.sty
+Package: beamerbasethemes 2010/05/01  (rcs-revision efa082c6111d)
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/themes/theme/beamerthemede
+fault.sty
+Package: beamerthemedefault 2010/06/17  (rcs-revision d02a7cf4d8ae)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/themes/font/beamerfontthem
+edefault.sty
+Package: beamerfontthemedefault 2012/12/19  (rcs-revision 1686da3db3c9)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/themes/color/beamercolorth
+emedefault.sty
+Package: beamercolorthemedefault 2012/12/19  (rcs-revision 1686da3db3c9)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/themes/inner/beamerinnerth
+emedefault.sty
+Package: beamerinnerthemedefault 2013/10/15  (rcs-revision 65cb471f9634)
+\beamer@dima=\dimen186
+\beamer@dimb=\dimen187
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/themes/outer/beamerouterth
+emedefault.sty
+Package: beamerouterthemedefault 2012/12/19  (rcs-revision 1686da3db3c9)
+)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip57
+\fb@frw=\dimen188
+\fb@frh=\dimen189
+\FrameRule=\dimen190
+\FrameSep=\dimen191
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/bbm-macros/bbm.sty
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ifsym/ifsym.sty
+Package: ifsym 2000/04/18 I.Kloeckl
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count153
+\calc@Bcount=\count154
+\calc@Adimen=\dimen192
+\calc@Bdimen=\dimen193
+\calc@Askip=\skip58
+\calc@Bskip=\skip59
+LaTeX Info: Redefining \setlength on input line 75.
+LaTeX Info: Redefining \addtolength on input line 76.
+\calc@Ccount=\count155
+\calc@Cskip=\skip60
+)
+\c@ifsymcnt=\count156
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2014/04/30 v1.2b Input encoding file
+\inpenc@prehook=\toks43
+\inpenc@posthook=\toks44
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2014/04/30 v1.2b Input encoding file
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2014/03/24 3.9k The Babel package
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2014/03/24 3.9k Babel common definitions
+\babel@savecnt=\count157
+\U@D=\dimen194
+LaTeX Info: Redefining \textlatin on input line 1428.
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
+(./16spr_01week.aux)
+\openout1 = `16spr_01week.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(28.45274pt, 307.28987pt, 28.45274pt)
+* v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
+* \paperwidth=364.19536pt
+* \paperheight=273.14662pt
+* \textwidth=307.28987pt
+* \textheight=244.6939pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
+* \topmargin=-72.26999pt
+* \headheight=14.22636pt
+* \headsep=0.0pt
+* \topskip=11.0pt
+* \footskip=14.22636pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count158
+\scratchdimen=\dimen195
+\scratchbox=\box53
+\nofMPsegments=\count159
+\nofMParguments=\count160
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count161
+\MPscratchDim=\dimen196
+\MPnumerator=\count162
+\makeMPintoPDFobject=\count163
+\everyMPtoPDFconversion=\toks46
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+ABD: EveryShipout initializing macros
+\AtBeginShipoutBox=\box54
+Package hyperref Info: Link coloring OFF on input line 215.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count164
+)
+LaTeX Info: Redefining \ref on input line 215.
+LaTeX Info: Redefining \pageref on input line 215.
+LaTeX Info: Redefining \nameref on input line 215.
+
+(./16spr_01week.out) (./16spr_01week.out)
+\@outlinefile=\write5
+\openout5 = `16spr_01week.out'.
+
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 215.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 215.
+\symnumbers=\mathgroup6
+\sympureletters=\mathgroup7
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 215.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 215.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 215.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 215.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 215.
+LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 215.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 215.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 215.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 215.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 2
+15.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 
+215.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
+ut line 215.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-basic-dictionary/translator-basic-dictionary-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-bibliography-dictionary/translator-bibliography-dictionary-English.dict
+Dictionary: translator-bibliography-dictionary, Language: English 
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-environment-dictionary/translator-environment-dictionary-English.dict
+Dictionary: translator-environment-dictionary, Language: English 
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-months-dictionary/translator-months-dictionary-English.dict
+Dictionary: translator-months-dictionary, Language: English 
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-numbers-dictionary/translator-numbers-dictionary-English.dict
+Dictionary: translator-numbers-dictionary, Language: English 
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-theorem-dictionary/translator-theorem-dictionary-English.dict
+Dictionary: translator-theorem-dictionary, Language: English 
+)
+LaTeX Info: Redefining \includegraphics on input line 215.
+
+(./16spr_01week.nav)
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+(Font)              size <5> substituted on input line 241.
+
+[1
+
+{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+\openout4 = `16spr_01week.vrb'.
+
+
+(./16spr_01week.vrb
+LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
+line 6.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
+File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
+thkerncmss.
+)) [2
+
+] (./16spr_01week.vrb) [3
+
+] (./16spr_01week.vrb) [4
+
+] (./16spr_01week.vrb)
+[5
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [6
+
+] (./16spr_01week.vrb) [7
+
+] (./16spr_01week.vrb)
+[8
+
+] (./16spr_01week.vrb) [9
+
+] (./16spr_01week.vrb) [10
+
+] (./16spr_01week.vrb)
+[11
+
+] (./16spr_01week.vrb) [12
+
+] (./16spr_01week.vrb) [13
+
+] (./16spr_01week.vrb)
+[14
+
+] (./16spr_01week.vrb) [15
+
+] (./16spr_01week.vrb) [16
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb)
+[17
+
+] (./16spr_01week.vrb) [18
+
+] (./16spr_01week.vrb) [19
+
+] (./16spr_01week.vrb)
+[20
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb <trump.png, id=128, 811.03pt x 323.2075pt>
+File: trump.png Graphic file (type png)
+
+<use trump.png>
+Package pdftex.def Info: trump.png used on input line 5.
+(pdftex.def)             Requested size: 227.62204pt x 90.70955pt.
+
+Overfull \hbox (9.4435pt too wide) in paragraph at lines 16--16
+[][]\OT1/cmtt/m/it/10 #library(devtools); install_github(^^Mkkdey/TrumpTwitterF
+eed^^M)[][] 
+ []
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 17.
+) [21
+
+ <./trump.png>] (./16spr_01week.vrb
+File: trump.png Graphic file (type png)
+ <use trump.png>
+Package pdftex.def Info: trump.png used on input line 5.
+(pdftex.def)             Requested size: 227.62204pt x 90.70955pt.
+
+Overfull \hbox (9.4435pt too wide) in paragraph at lines 16--16
+[][]\OT1/cmtt/m/it/10 #library(devtools); install_github(^^Mkkdey/TrumpTwitterF
+eed^^M)[][] 
+ []
+
+) [22
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [23
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+Overfull \hbox (448.70354pt too wide) in paragraph at lines 46--46
+[]                                                                             
+                                                         \OT1/cmtt/m/n/10 tweet
+_text[] 
+ []
+
+
+Overfull \hbox (448.70354pt too wide) in paragraph at lines 46--46
+[] \OT1/cmtt/m/n/10 MAKE AMERICA GREAT AGAIN!                                  
+                                                                               
+:   7[] 
+ []
+
+
+Overfull \hbox (448.70354pt too wide) in paragraph at lines 46--46
+[] \OT1/cmtt/m/n/10 . #JoeTheismann was great as a political analyst on @FoxNew
+s. He knows far more than football. Thanks for the nice words Joe!             
+:   1[] 
+ []
+
+
+Overfull \hbox (448.70354pt too wide) in paragraph at lines 46--46
+[] \OT1/cmtt/m/n/10 .@andersoncooper did an excellent job of hosting the #DemDe
+bate last night. Tough, firm, but fair.                                        
+:   1[] 
+ []
+
+
+Overfull \hbox (448.70354pt too wide) in paragraph at lines 46--46
+[] \OT1/cmtt/m/n/10 .@AndreaTantaros- You are a true journalistic professional.
+ I so agree with what you say. Keep up the great work! #MakeAmericaGreatAgain  
+:   1[] 
+ []
+
+
+Overfull \hbox (448.70354pt too wide) in paragraph at lines 46--46
+[] \OT1/cmtt/m/n/10 .@AnnCoulter has been amazing. We will win and establish st
+rong borders, we will build a WALL and Mexico will pay. We will be great again!
+:   1[] 
+ []
+
+
+Overfull \hbox (448.70354pt too wide) in paragraph at lines 46--46
+[] \OT1/cmtt/m/n/10 .@AP is doing very badly. I can say from experience their r
+eporting is terrible &amp; highly inaccurate. Sadly, they are now irrelevant!  
+:   1[] 
+ []
+
+
+Overfull \hbox (448.70354pt too wide) in paragraph at lines 46--46
+[] \OT1/cmtt/m/n/10 (Other)                                                    
+                                                                               
+:1324[] 
+ []
+
+)
+Overfull \vbox (121.08467pt too high) detected at line 420
+ []
+
+[24
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [25
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [26
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<figure/graphics-bw_retweets-1.pdf, id=164, 578.16pt x 397.485pt>
+File: figure/graphics-bw_retweets-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-bw_retweets-1.pdf>
+Package pdftex.def Info: figure/graphics-bw_retweets-1.pdf used on input line 1
+1.
+(pdftex.def)             Requested size: 304.21866pt x 209.14977pt.
+)
+Overfull \vbox (5.12335pt too high) detected at line 503
+ []
+
+[27
+
+ <./figure/graphics-bw_retweets-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+Overfull \hbox (2.45743pt too wide) in paragraph at lines 7--7
+[]   []\OT1/cmtt/m/n/10 type[][]=[][]"percent"[][],[] []xlab[][]=[][]"Trump Ret
+weets by month"[][],[] []cex[][]=[][]0.5[][])[][] 
+ []
+
+<figure/graphics-bar_retweets_1-1.pdf, id=175, 578.16pt x 397.485pt>
+File: figure/graphics-bar_retweets_1-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-bar_retweets_1-1.pdf>
+Package pdftex.def Info: figure/graphics-bar_retweets_1-1.pdf used on input lin
+e 11.
+(pdftex.def)             Requested size: 304.21866pt x 209.14977pt.
+)
+Overfull \vbox (5.12335pt too high) detected at line 526
+ []
+
+[28
+
+ <./figure/graphics-bar_retweets_1-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<figure/graphics-bar_retweets_2-1.pdf, id=186, 433.62pt x 252.945pt>
+File: figure/graphics-bar_retweets_2-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-bar_retweets_2-1.pdf>
+Package pdftex.def Info: figure/graphics-bar_retweets_2-1.pdf used on input lin
+e 12.
+(pdftex.def)             Requested size: 304.21866pt x 177.4694pt.
+) [29
+
+ <./figure/graphics-bar_retweets_2-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<figure/graphics-bar_retweets_3-1.pdf, id=197, 650.43pt x 252.945pt>
+File: figure/graphics-bar_retweets_3-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-bar_retweets_3-1.pdf>
+Package pdftex.def Info: figure/graphics-bar_retweets_3-1.pdf used on input lin
+e 13.
+(pdftex.def)             Requested size: 304.21866pt x 118.30908pt.
+) [30
+
+ <./figure/graphics-bar_retweets_3-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<figure/graphics-histogram-1.pdf, id=208, 650.43pt x 252.945pt>
+File: figure/graphics-histogram-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-histogram-1.pdf>
+Package pdftex.def Info: figure/graphics-histogram-1.pdf used on input line 11.
+
+(pdftex.def)             Requested size: 304.21866pt x 118.30908pt.
+) [31
+
+ <./figure/graphics-histogram-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+(./16spr_01week.vrb
+<figure/graphics-scatter-1.pdf, id=220, 433.62pt x 289.08pt>
+File: figure/graphics-scatter-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-scatter-1.pdf>
+Package pdftex.def Info: figure/graphics-scatter-1.pdf used on input line 12.
+(pdftex.def)             Requested size: 304.21866pt x 202.82217pt.
+)
+Overfull \vbox (8.96243pt too high) detected at line 622
+ []
+
+[32
+
+ <./figure/graphics-scatter-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [33
+
+]
+(./16spr_01week.vrb) [34
+
+] (./16spr_01week.vrb) [35
+
+] (./16spr_01week.vrb)
+[36
+
+] (./16spr_01week.vrb) [37
+
+] (./16spr_01week.vrb) [38
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb)
+[39
+
+] [40
+
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [41
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+Overfull \hbox (12.17728pt too wide) in paragraph at lines 16--16
+[]  
+ []
+
+) [42
+
+] (./16spr_01week.vrb
+Overfull \hbox (12.17728pt too wide) in paragraph at lines 16--16
+[]  
+ []
+
+) [43
+
+] (./16spr_01week.vrb
+Overfull \hbox (12.17728pt too wide) in paragraph at lines 16--16
+[]  
+ []
+
+) [44
+
+] (./16spr_01week.vrb
+Overfull \hbox (12.17728pt too wide) in paragraph at lines 16--16
+[]  
+ []
+
+) [45
+
+] (./16spr_01week.vrb
+Overfull \hbox (12.17728pt too wide) in paragraph at lines 16--16
+[]  
+ []
+
+) [46
+
+] (./16spr_01week.vrb
+Overfull \hbox (12.17728pt too wide) in paragraph at lines 16--16
+[]  
+ []
+
+) [47
+
+] (./16spr_01week.vrb
+Overfull \hbox (12.17728pt too wide) in paragraph at lines 16--16
+[]  
+ []
+
+) [48
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [49
+
+] [50
+
+
+]
+Overfull \hbox (21.97241pt too wide) detected at line 806
+\OT1/mathkerncmss/m/sl/10.95 MSD\OT1/cmss/m/n/10.95 (\OT1/mathkerncmss/m/sl/10.
+95 w\OT1/cmss/m/n/10.95 ) = []\OMS/cmsy/m/n/10.95 f\OT1/cmss/m/n/10.95 (\OT1/ma
+thkerncmss/m/sl/10.95 x[] \OMS/cmsy/m/n/10.95 ^^@ \OT1/mathkerncmss/m/sl/10.95 
+w\OT1/cmss/m/n/10.95 )[] + (\OT1/mathkerncmss/m/sl/10.95 x[] \OMS/cmsy/m/n/10.9
+5 ^^@ \OT1/mathkerncmss/m/sl/10.95 w\OT1/cmss/m/n/10.95 )[] + [] (\OT1/mathkern
+cmss/m/sl/10.95 x[] \OMS/cmsy/m/n/10.95 ^^@ \OT1/mathkerncmss/m/sl/10.95 w\OT1/
+cmss/m/n/10.95 )[]\OMS/cmsy/m/n/10.95 g \OT1/cmss/m/n/10.95 = [] [](\OT1/mathke
+rncmss/m/sl/10.95 x[] \OMS/cmsy/m/n/10.95 ^^@ \OT1/mathkerncmss/m/sl/10.95 w\OT
+1/cmss/m/n/10.95 )[]
+ []
+
+[51
+
+] <msdtable.jpeg, id=335, 314.17375pt x 445.665pt>
+File: msdtable.jpeg Graphic file (type jpg)
+ <use msdtable.jpeg>
+Package pdftex.def Info: msdtable.jpeg used on input line 817.
+(pdftex.def)             Requested size: 122.91406pt x 174.35266pt.
+
+[52
+
+ <./msdtable.jpeg>] <msdw.jpeg, id=341, 679.53876pt x 407.5225pt>
+File: msdw.jpeg Graphic file (type jpg)
+
+<use msdw.jpeg>
+Package pdftex.def Info: msdw.jpeg used on input line 836.
+(pdftex.def)             Requested size: 153.64493pt x 92.13632pt.
+
+Overfull \vbox (7.66878pt too high) detected at line 836
+ []
+
+[53
+
+ <./msdw.jpeg>]
+File: msdw.jpeg Graphic file (type jpg)
+ <use msdw.jpeg>
+Package pdftex.def Info: msdw.jpeg used on input line 836.
+(pdftex.def)             Requested size: 153.64493pt x 92.13632pt.
+
+Overfull \vbox (7.66878pt too high) detected at line 836
+ []
+
+[54
+
+]
+File: msdw.jpeg Graphic file (type jpg)
+ <use msdw.jpeg>
+Package pdftex.def Info: msdw.jpeg used on input line 836.
+(pdftex.def)             Requested size: 153.64493pt x 92.13632pt.
+
+Overfull \vbox (7.66878pt too high) detected at line 836
+ []
+
+[55
+
+] [56
+
+] [57
+
+] [58
+
+] <madtable.jpeg, id=373, 206.7725pt x 450.68375pt>
+File: madtable.jpeg Graphic file (type jpg)
+
+<use madtable.jpeg>
+Package pdftex.def Info: madtable.jpeg used on input line 867.
+(pdftex.def)             Requested size: 86.04079pt x 187.53915pt.
+ [59
+
+ <./madtable.jpeg>]
+<madw.jpeg, id=379, 679.53876pt x 407.5225pt>
+File: madw.jpeg Graphic file (type jpg)
+ <use madw.jpeg>
+Package pdftex.def Info: madw.jpeg used on input line 884.
+(pdftex.def)             Requested size: 184.3758pt x 110.5673pt.
+ [60
+
+ <./madw.jpeg>]
+File: madw.jpeg Graphic file (type jpg)
+ <use madw.jpeg>
+Package pdftex.def Info: madw.jpeg used on input line 884.
+(pdftex.def)             Requested size: 184.3758pt x 110.5673pt.
+ [61
+
+]
+File: madw.jpeg Graphic file (type jpg)
+ <use madw.jpeg>
+Package pdftex.def Info: madw.jpeg used on input line 884.
+(pdftex.def)             Requested size: 184.3758pt x 110.5673pt.
+ [62
+
+]
+File: madw.jpeg Graphic file (type jpg)
+ <use madw.jpeg>
+Package pdftex.def Info: madw.jpeg used on input line 884.
+(pdftex.def)             Requested size: 184.3758pt x 110.5673pt.
+ [63
+
+] [64
+
+] [65
+
+]
+[66
+
+] [67
+
+] [68
+
+] [69
+
+] [70
+
+] [71
+
+] [72
+
+] [73
+
+] [74
+
+] [75
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [76
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+
+(./16spr_01week.vrb) [77
+
+] [78
+
+
+] [79
+
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [80
+
+] [81
+
+
+] [82
+
+
+]
+[83
+
+
+] [84
+
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<figure/graphics-unnamed-chunk-5-1.pdf, id=524, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-5-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-5-1.pdf used on input li
+ne 5.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+
+<figure/graphics-unnamed-chunk-6-1.pdf, id=525, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-6-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-6-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-6-1.pdf used on input li
+ne 17.
+(pdftex.def)             Requested size: 307.28987pt x 192.05493pt.
+
+<figure/graphics-unnamed-chunk-7-1.pdf, id=526, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-7-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-7-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-7-1.pdf used on input li
+ne 30.
+(pdftex.def)             Requested size: 307.28987pt x 192.05493pt.
+) [85
+
+ <./figure/graphics-unnamed-chunk-5-1.pdf>] [86
+
+
+ <./figure/graphics-unnamed-chunk-6-1.pdf>] [87
+
+
+ <./figure/graphics-unnamed-chunk-7-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<figure/graphics-unnamed-chunk-8-1.pdf, id=558, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-8-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-8-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-8-1.pdf used on input li
+ne 5.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+
+<figure/graphics-unnamed-chunk-9-1.pdf, id=559, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-9-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-9-1.pdf used on input li
+ne 16.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+
+<figure/graphics-unnamed-chunk-10-1.pdf, id=560, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-10-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-10-1.pdf used on input l
+ine 27.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+
+<figure/graphics-unnamed-chunk-11-1.pdf, id=561, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-11-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-11-1.pdf used on input l
+ine 38.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+
+<figure/graphics-unnamed-chunk-12-1.pdf, id=562, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-12-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-12-1.pdf used on input l
+ine 49.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+) [88
+
+ <./figure/graphics-unnamed-chunk-8-1.pdf>] [89
+
+
+ <./figure/graphics-unnamed-chunk-9-1.pdf>] [90
+
+
+ <./figure/graphics-unnamed-chunk-10-1.pdf>] [91
+
+
+ <./figure/graphics-unnamed-chunk-11-1.pdf>]
+[92
+
+
+ <./figure/graphics-unnamed-chunk-12-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<Normal_distribution.png, id=620, 1304.875pt x 978.65625pt>
+File: Normal_distribution.png Graphic file (type png)
+
+<use Normal_distribution.png>
+Package pdftex.def Info: Normal_distribution.png used on input line 4.
+(pdftex.def)             Requested size: 199.16928pt x 149.37552pt.
+) [93
+
+ <./Normal_distribution.png>]
+\openout4 = `16spr_01week.vrb'.
+
+
+(./16spr_01week.vrb) [94
+
+] (./16spr_01week.vrb) [95
+
+] (./16spr_01week.vrb)
+[96
+
+] (./16spr_01week.vrb) [97
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<6895997.jpeg, id=650, 545.03625pt x 337.26pt>
+File: 6895997.jpeg Graphic file (type jpg)
+ <use 6895997.jpeg>
+Package pdftex.def Info: 6895997.jpeg used on input line 5.
+(pdftex.def)             Requested size: 199.16928pt x 123.24039pt.
+) [98
+
+ <./6895997.jpeg>] <generalnormal6895997.jpeg, id=656, 558.085pt x 314.17375pt>
+File: generalnormal6895997.jpeg Graphic file (type jpg)
+
+<use generalnormal6895997.jpeg>
+Package pdftex.def Info: generalnormal6895997.jpeg used on input line 1351.
+(pdftex.def)             Requested size: 199.16928pt x 112.1197pt.
+ [99
+
+ <./generalnormal6895997.jpeg>]
+<P10.png, id=662, 539.01375pt x 415.5525pt>
+File: P10.png Graphic file (type png)
+ <use P10.png>
+Package pdftex.def Info: P10.png used on input line 1365.
+(pdftex.def)             Requested size: 187.4815pt x 144.54pt.
+ [100
+
+ <./P10.png>]
+<P9.png, id=669, 602.25pt x 262.9825pt>
+File: P9.png Graphic file (type png)
+ <use P9.png>
+Package pdftex.def Info: P9.png used on input line 1377.
+(pdftex.def)             Requested size: 297.91708pt x 130.08621pt.
+ [101
+
+ <./P9.png>] [102
+
+]
+[103
+
+] [104
+
+] [105
+
+] [106
+
+] [107
+
+] [108
+
+] [109
+
+] [110
+
+] [111
+
+] [112
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [113
+
+] [114
+
+
+] [115
+
+
+] [116
+
+
+] [117
+
+
+]
+<figure/graphics-unnamed-chunk-18-1.pdf, id=760, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-18-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-18-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-18-1.pdf used on input l
+ine 1547.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+ [118
+
+ <./figure/graphics-unnamed-chunk-18-1.pdf>] <skewness.jpg, id=772, 602.25pt x 
+231.86626pt>
+File: skewness.jpg Graphic file (type jpg)
+
+<use skewness.jpg>
+Package pdftex.def Info: skewness.jpg used on input line 1556.
+(pdftex.def)             Requested size: 199.16928pt x 76.67883pt.
+ [119
+
+ <./skewness.jpg>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [120
+
+]
+(./16spr_01week.vrb) [121
+
+] (./16spr_01week.vrb) [122
+
+] (./16spr_01week.vrb)
+[123
+
+] (./16spr_01week.vrb) [124
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [125
+
+] (./16spr_01week.vrb) [126
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [127
+
+]
+Overfull \hbox (7.70738pt too wide) in paragraph at lines 1655--1655
+[][]\OT1/cmtt/m/n/10 bwplot[][]([][][]  []retweets,[] []data[][]=trump.data.fra
+me,[] []xlab[][]=[][]"Retweets box
+ []
+
+<figure/graphics-bw_retweets_2-1.pdf, id=820, 578.16pt x 180.675pt>
+File: figure/graphics-bw_retweets_2-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-bw_retweets_2-1.pdf>
+Package pdftex.def Info: figure/graphics-bw_retweets_2-1.pdf used on input line
+ 1655.
+(pdftex.def)             Requested size: 273.4878pt x 85.4631pt.
+ [128
+
+ <./figure/graphics-bw_retweets_2-1.pdf>]
+Overfull \hbox (7.70738pt too wide) in paragraph at lines 1655--1655
+[][]\OT1/cmtt/m/n/10 bwplot[][]([][][]  []retweets,[] []data[][]=trump.data.fra
+me,[] []xlab[][]=[][]"Retweets box
+ []
+
+File: figure/graphics-bw_retweets_2-1.pdf Graphic file (type pdf)
+<use figure/graphics-bw_retweets_2-1.pdf>
+Package pdftex.def Info: figure/graphics-bw_retweets_2-1.pdf used on input line
+ 1655.
+(pdftex.def)             Requested size: 273.4878pt x 85.4631pt.
+ [129
+
+]
+Overfull \hbox (7.70738pt too wide) in paragraph at lines 1655--1655
+[][]\OT1/cmtt/m/n/10 bwplot[][]([][][]  []retweets,[] []data[][]=trump.data.fra
+me,[] []xlab[][]=[][]"Retweets box
+ []
+
+File: figure/graphics-bw_retweets_2-1.pdf Graphic file (type pdf)
+<use figure/graphics-bw_retweets_2-1.pdf>
+Package pdftex.def Info: figure/graphics-bw_retweets_2-1.pdf used on input line
+ 1655.
+(pdftex.def)             Requested size: 273.4878pt x 85.4631pt.
+ [130
+
+] [131
+
+]
+<P13.png, id=847, 900.36375pt x 357.335pt>
+File: P13.png Graphic file (type png)
+ <use P13.png>
+Package pdftex.def Info: P13.png used on input line 1689.
+(pdftex.def)             Requested size: 273.1474pt x 108.405pt.
+ [132
+
+ <./P13.png>]
+<QQ3.png, id=854, 963.6pt x 770.88pt>
+File: QQ3.png Graphic file (type png)
+ <use QQ3.png>
+Package pdftex.def Info: QQ3.png used on input line 1710.
+(pdftex.def)             Requested size: 99.36511pt x 79.49744pt.
+
+<QQ4.png, id=855, 963.6pt x 770.88pt>
+File: QQ4.png Graphic file (type png)
+ <use QQ4.png>
+Package pdftex.def Info: QQ4.png used on input line 1710.
+(pdftex.def)             Requested size: 99.36511pt x 79.49744pt.
+
+<QQ2.png, id=856, 963.6pt x 770.88pt>
+File: QQ2.png Graphic file (type png)
+ <use QQ2.png>
+Package pdftex.def Info: QQ2.png used on input line 1710.
+(pdftex.def)             Requested size: 99.36511pt x 79.49744pt.
+
+<QQ1.png, id=857, 963.6pt x 770.88pt>
+File: QQ1.png Graphic file (type png)
+ <use QQ1.png>
+Package pdftex.def Info: QQ1.png used on input line 1710.
+(pdftex.def)             Requested size: 99.36511pt x 79.49744pt.
+ [133
+
+ <./QQ3.png> <./QQ4.png> <./QQ2.png> <./QQ1.png>]
+<figure/graphics-scatter_2-1.pdf, id=869, 433.62pt x 289.08pt>
+File: figure/graphics-scatter_2-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-scatter_2-1.pdf>
+Package pdftex.def Info: figure/graphics-scatter_2-1.pdf used on input line 172
+7.
+(pdftex.def)             Requested size: 304.21866pt x 202.82217pt.
+ [134
+
+ <./figure/graphics-scatter_2-1.pdf>] [135
+
+] <P1.png, id=885, 428.60126pt x 341.275pt>
+File: P1.png Graphic file (type png)
+ <use P1.png>
+Package pdftex.def Info: P1.png used on input line 1753.
+(pdftex.def)             Requested size: 226.90906pt x 180.67499pt.
+ [136
+
+ <./P1.png>]
+\openout4 = `16spr_01week.vrb'.
+
+
+(./16spr_01week.vrb
+Overfull \hbox (39.2071pt too wide) in paragraph at lines 10--10
+[][]\OT1/cmtt/m/n/10 stdtweets[] []=[] []([][]log[][](trump.data.frame[][]$[][]
+retweets[][]+[][]1[][])[] []-[] []mtweets)[] []/[] []stweets[][] 
+ []
+
+
+Overfull \hbox (12.95734pt too wide) in paragraph at lines 31--31
+[][]\OT1/cmtt/m/n/10 p[] []=[] []c[][]([][]0.01[][],[] []0.025[][],[] []0.16[][
+],[] []0.25[][],[] []0.50[][],[] []0.75[][],[] []0.84[][],[] []0.975[][],[] []0
+.99[][])[][] 
+ []
+
+
+Overfull \hbox (2.45743pt too wide) in paragraph at lines 38--38
+[]\OT1/cmtt/m/n/10 [1] -2.3263 -1.9600 -0.9945 -0.6745  0.0000  0.6745  0.9945[
+] 
+ []
+
+) [137
+
+] [138
+
+
+]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<figure/graphics-unnamed-chunk-23-1.pdf, id=902, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-23-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-23-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-23-1.pdf used on input l
+ine 6.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+
+<figure/graphics-unnamed-chunk-24-1.pdf, id=903, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-24-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-24-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-24-1.pdf used on input l
+ine 20.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+
+<figure/graphics-unnamed-chunk-25-1.pdf, id=904, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-25-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-25-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-25-1.pdf used on input l
+ine 33.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+) [139
+
+ <./figure/graphics-unnamed-chunk-23-1.pdf>] [140
+
+
+ <./figure/graphics-unnamed-chunk-24-1.pdf>] [141
+
+
+ <./figure/graphics-unnamed-chunk-25-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb
+<figure/graphics-unnamed-chunk-26-1.pdf, id=936, 578.16pt x 361.35pt>
+File: figure/graphics-unnamed-chunk-26-1.pdf Graphic file (type pdf)
+
+<use figure/graphics-unnamed-chunk-26-1.pdf>
+Package pdftex.def Info: figure/graphics-unnamed-chunk-26-1.pdf used on input l
+ine 6.
+(pdftex.def)             Requested size: 273.4878pt x 170.92624pt.
+) [142
+
+ <./figure/graphics-unnamed-chunk-26-1.pdf>]
+\openout4 = `16spr_01week.vrb'.
+
+ (./16spr_01week.vrb) [143
+
+]
+\tf@nav=\write6
+\openout6 = `16spr_01week.nav'.
+
+\tf@toc=\write7
+\openout7 = `16spr_01week.toc'.
+
+\tf@snm=\write8
+\openout8 = `16spr_01week.snm'.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1893.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1893.
+ (./16spr_01week.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1893.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1893.
+
+Package rerunfilecheck Info: File `16spr_01week.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.0pt have occurred.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1893.
+ ) 
+Here is how much of TeX's memory you used:
+ 18145 strings out of 493117
+ 340051 string characters out of 6135433
+ 422647 words of memory out of 5000000
+ 20698 multiletter control sequences out of 15000+600000
+ 18948 words of font info for 70 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 56i,16n,55p,457b,445s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb
+></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></
+usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/lo
+cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/loca
+l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/loc
+al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/loc
+al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/loc
+al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/loca
+l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
+/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on 16spr_01week.pdf (143 pages, 3157696 bytes).
+PDF statistics:
+ 1078 PDF objects out of 1200 (max. 8388607)
+ 825 compressed objects within 9 object streams
+ 289 named destinations out of 1000 (max. 500000)
+ 233 words of extra memory for PDF output out of 10000 (max. 10000000)
+

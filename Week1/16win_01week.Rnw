@@ -1,0 +1,1623 @@
+%<<echo=FALSE>>=
+%OLD <- options(width=90)
+%@
+%<<echo=FALSE>>=
+%options(OLD) 
+%@
+
+\documentclass{beamer}% regular slides (with pauses)
+%\documentclass[handout]{beamer}% handout (no pauses)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% Change the lecture information here %%%%%%%%%%%%%%%%
+\def\chapnum{Week \#1}
+\title{Title}
+\author{Author Name}
+\date{Lecture Date}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%% Start of suggested definitions and packages %%%%%%%%%%%%
+%%%%%% Do not change unless you really know what you are doing %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{enumerate}
+\usepackage{amsmath, bbm}
+\usepackage[misc]{ifsym} % for the dice symbol \Cube{}
+\usepackage[latin1]{inputenc}
+\usepackage{hyperref}
+
+%\usepackage{comment}
+%\usepackage{pstricks}
+%\usepackage{graphicx}
+%\usepackage{booktabs}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=3mm]
+%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=3mm
+
+\usepackage{setspace}
+\ifdefined\knitrout
+  \renewenvironment{knitrout}{\begin{spacing}{0.75}\begin{tiny}}{\end{tiny}\end{spacing}}
+\else
+\fi
+
+%%%%%%%%%%%%%%% Defined Shortcuts (macros) %%%%%%%%%%%%%
+% parameters and statistics
+\newcommand{\xbar}{\overline{x}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\ybar}{\overline{y}}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\dbar}{\overline{d}}
+\newcommand{\Dbar}{\overline{D}}
+\newcommand{\zbar}{\overline{z}}
+\newcommand{\Zbar}{\overline{Z}}
+\newcommand{\ehat}{\widehat{\epsilon}}
+\newcommand{\yhat}{\widehat{y}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\betaa}{{\beta_0}}
+\newcommand{\betab}{{\beta_1}}
+\newcommand{\betac}{{\beta_2}}
+\newcommand{\betad}{{\beta_3}}
+\newcommand{\BETA}{{\boldsymbol\beta}}
+\newcommand{\betahata}{\widehat{\beta_0}}
+\newcommand{\betahatb}{\widehat{\beta_1}}
+\newcommand{\betahatc}{\widehat{\beta_2}}
+\newcommand{\betahatd}{\widehat{\beta_3}}
+\newcommand{\bhat}{\widehat{b}}
+\newcommand{\btilde}{\widetilde{b}}
+\newcommand{\ahat}{\widehat{a}}
+\newcommand{\atilde}{\widetilde{a}}
+\newcommand{\rss}{\mathit{SSE}}
+\newcommand{\sigmahat}{\widehat{\sigma}}
+\newcommand{\betahat}{\widehat{\beta}}
+\newcommand{\thetahat}{\widehat{\theta}}
+\newcommand{\phat}{\widehat{p}}
+\newcommand{\pihat}{\widehat{\pi}}
+\newcommand{\muhat}{\widehat{\mu}}
+% real numbers and integers
+\newcommand{\reals}{\mathbbm{R}}
+\newcommand{\integers}{\mathbbm{N}}
+%distributions
+\newcommand{\normal}{\textsf{Norm}}
+\newcommand{\Bin}{\textsf{Binom}}
+\newcommand{\Uni}{\textsf{Unif}}
+\newcommand{\Poisson}{\textsf{Pois}}
+\newcommand{\Exp}{\textsf{Exp}}
+\newcommand{\Beta}{\textsf{Beta}}
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+% probability and expected value
+\newcommand{\rv}{r.v.\ }
+\newcommand{\prob}{{\rm P}}
+\newcommand{\mean}{\mathrm{E}}
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{Cov}}
+\newcommand{\corr}{\mathop{\mathrm{Corr}}}
+% measures of spread
+\newcommand{\IQR}{\textit{IQR}}
+\newcommand{\SAD}{\textit{SAD}}
+\newcommand{\MAD}{\textit{MAD}}
+\newcommand{\SSD}{\textit{SSD}}
+\newcommand{\MSD}{\textit{MSD}}
+\newcommand{\RMSD}{\textit{RMSD}}
+\newcommand{\MSE}{\textit{MSE}}
+\newcommand{\MSR}{\textit{MSR}}
+% formatting code and such
+\providecommand{\variable}[1]{}
+\renewcommand{\variable}[1]{{\color{green!50!black}\texttt{#1}}}
+\providecommand{\function}[1]{}
+\renewcommand{\function}[1]{{\color{purple!75!blue}\texttt{\StrSubstitute{#1}{()}{}()}}}
+\providecommand{\option}[1]{}
+\renewcommand{\option}[1]{{\color{brown!80!black}\texttt{#1}}}
+\providecommand{\pkg}[1]{}
+\renewcommand{\pkg}[1]{{\color{red!80!black}\texttt{#1}}}
+\providecommand{\code}[1]{}
+\renewcommand{\code}[1]{{\color{blue!80!black}\texttt{#1}}}
+
+%%%%%%%%%
+% Changed by Linda Collins, University of Chicago
+%\providecommand{\file}[1]{}
+%\renewcommand{\file}[1]{{\tt #1}}
+\providecommand{\file}[1]{}
+\renewcommand{\file}[1]{{\color{orange!80!black}\texttt{#1}}}
+%\providecommand{\dataframe}[1]{}
+%\renewcommand{\dataframe}[1]{{\color{blue!80!black}\texttt{#1}}}
+\providecommand{\dataframe}[1]{}
+\renewcommand{\dataframe}[1]{{\color{cyan!80!black}\texttt{#1}}}
+%%%%%%%%%
+
+% other
+\def\Sum{\sum\nolimits}
+\def\b#1{\fboxsep=0pt\colorbox{black}{\color{white}\Cube{#1}}}
+\def\w#1{\Cube{#1}}
+%%%%%%%%%%%% End of shortcuts (macros) ##############
+
+%%%%%%%%% One way to hide answers until you want to show them %%%%%%%%%
+\def\Hide#1#2{\ul{~~~\onslide<#1>{\alert{#2}}~~~}}
+\def\hide#1#2{\ul{~~\onslide<#1>{\alert{#2}}~~}}
+\def\hid#1#2{\onslide<#1>{\alert{#2}}}
+% Choose the color of answers here too
+\setbeamercolor{alerted text}{fg=darkgray} 
+%\setbeamercolor{alerted text}{fg=black} 
+
+%------Centered Page Number Setup ------
+\defbeamertemplate{footline}{centered page number}
+{%
+  \hspace*{\fill}%
+  %\usebeamercolor[fg]{page number in head/foot}%
+  %\usebeamerfont{page number in head/foot}%
+  \tiny \chapnum: Page \insertframenumber\, of \inserttotalframenumber%
+  \hspace*{\fill}\vskip2pt%
+}
+%\setbeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber}
+\setbeamertemplate{footline}[centered page number]
+%--------------------------------
+
+%\usetheme{Copenhagen}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[english]{babel}
+\def\ul{\underline}
+\linespread{1.1}
+% or whatever
+
+
+
+%\parskip=0pt
+
+\begin{document}%large
+
+%<<setup, include=FALSE, cache=FALSE>>=
+%options(replace.assign=TRUE,width=90, digits=4)
+%opts_chunk$set(fig.path='figure/graphics-', cache.path='cache/graphics-', fig.align='center', fig.width=8, fig.height=5.5, fig.show='as.is', out.width='0.9\\linewidth', cache=FALSE, par=TRUE, size = 'tiny', tidy=TRUE, cache.extra=rand_seed)
+%knit_hooks$set(par=function(before, options, envir){
+%if (before && options$fig.show!='none') par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+%}, document = function(x) {
+%  gsub('\\\\(begin|end)\\{kframe\\}', '', x)
+%}, crop=hook_pdfcrop)
+%@
+%<<setup2, include=FALSE, cache=FALSE>>=
+%knit_theme$set("print")
+%@
+
+<<setup, include=FALSE, cache=FALSE>>=
+require(xtable)
+# require(mosaic)
+require(Hmisc)
+require(fastR)
+require(Lock5Data)
+options(format.R.blank=FALSE) 
+options(width=60)
+options(continue=" ")
+options(replace.assign=TRUE)
+options(scipen=8, digits=4)
+opts_chunk$set(
+  fig.path='figure/graphics-', 
+  cache.path='cache/graphics-', 
+  dev="pdf",
+  fig.align='center', 
+  fig.width=8, 
+  fig.height=5.5, 
+  fig.pos='H', 
+  fig.show='asis', 
+  out.width='0.99\\linewidth', 
+  par=TRUE, 
+  size = 'small', 
+  tidy=FALSE,
+  prompt=FALSE,
+  comment=NA
+)
+# Tighten the spacing within R output from knitr
+hook1 <- function(x){ gsub("```\n*```r*\n*", "", x) }
+hook2 <- function(x){ gsub("```\n+```\n", "", x) }
+knit_hooks$set(
+  crop=hook_pdfcrop,
+  document = hook1,
+  par=function(before, options, envir){
+    if (before) {
+    ## load packages before a chunk is executed
+    for (p in options$packages) library(p, character.only = TRUE)
+    }
+    if (before && options$fig.show!='none') par(oma=c(0,0,0,0)+0.01, mar=c(4,4,0,0)+0.01, cex=0.9, cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+  } 
+)
+opts_knit$set(concordance=TRUE)
+# For printing code blocks in black and white
+knit_theme$set("greyscale0") 
+
+# trellis.par.set(theme=col.mosaic(bw=FALSE))
+uchicago.lattice.theme=col.fastR(bw=TRUE)
+uchicago.lattice.theme$box.dot$pch=20
+uchicago.lattice.theme$dot.symbol$pch=20
+uchicago.lattice.theme$plot.symbol$pch=20
+trellis.par.set(theme=uchicago.lattice.theme, warn=FALSE)
+trellis.par.set(fontsize=list(text=18,points=10))
+@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% End of suggested definitions and packages %%%%%%%%%%%%
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+
+%%%%%%%%%% Title frame (optional) %%%%%%%%%%%%%
+%\begin{frame}{}
+%\maketitle
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%% Begin slides here %%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Statistics Terminology\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+Like any field of inquiry, \\
+statistics assigns very specific meaning
+to some everyday words.
+\begin{itemize}
+\item sample (data), statistic
+\item population, parameter
+\item dataset: case, label, variable, value
+\item variable: quantitative, categorical
+\item distribution: variance, skew
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Example: American College Football Fumbles\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip0.25cm
+
+%require(fastR)  # A package with sample datasets
+%require(mosaic)  # A package with extra functions you'll need
+\code{glimpse(fumbles)}
+<<echo=FALSE>>=
+glimpse(fumbles)
+@
+\textbf{Terms:}
+popn vs.\ sample,
+cases vs.\ labels,
+variables vs.\ values
+
+\textbf{Variables:}
+quantitative vs.\  categorical
+\vskip0.25cm
+
+\code{help(fumbles)}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[scale=0.40]{./mygraphs/fumblesHelpDescription.png}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[scale=0.5]{./mygraphs/CasesLabelsVariablesValues.png}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[scale=0.30]{./mygraphs/DistributionDictionaryDefinition.png}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+What is the distribution of number of team fumbles in week \#1?
+\vskip0.5cm
+The sample (or population) \textbf{distribution} \\
+of a variable has two components:
+
+1. the set values observed (or possible to observe) \\
+2. the relative frequency of occurrence for those values
+\vskip1cm
+
+\includegraphics[scale=0.5]{./mygraphs/CategoricalQuantitativeDistribution.png}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+<<echo=FALSE>>=
+OLD <- options(width=50)
+@
+\code{head(fumbles)}
+<<echo=FALSE>>=
+head(fumbles, 5) 
+@
+\code{tail(fumbles)}
+<<echo=FALSE>>=
+tail(fumbles, 5) 
+@
+<<echo=FALSE>>=
+options(OLD) 
+@
+...and how was the \code{rank} variable determined?\\
+It just looks wrong.
+\vskip0.15cm
+\code{help(fumbles)}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[scale=0.38]{./mygraphs/fumblesHelpDescription.png}
+
+The rank was based on fumbles per game
+over the whole season, \\
+not on just the first 3 weeks
+(not on winning percentage either).
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+What is the distribution of number of team fumbles in week \#1?
+\vskip0.5cm
+\code{tally(~ week1, data=fumbles)}
+<<echo=FALSE>>=
+tally(~ week1, data=fumbles)
+@
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+Qualitatively describing the distribution of a quantitative variable:\\
+center, spread, and shape
+<<histogram-fumbles-week1, fig.height=5, fig.width=8, out.width='0.79\\linewidth'>>=
+histogram(~ week1, data=fumbles, type="percent", 
+          xlab="Team Fumbles in Week #1")
+@
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Distribution of the \textbf{total} team fumbles over 3 games:
+<<echo=FALSE>>=
+myFumbles <- mutate(fumbles, total123 = week1 + week2 + week3 )
+@
+<<histogram-fumbles-total123, echo=FALSE, fig.height=6.0, fig.width=8, out.width='0.79\\linewidth'>>=
+n <- nrow(myFumbles)
+myData <- data.frame( fumbles=c(myFumbles$week1, myFumbles$total123),
+  games=c(rep("Week 1", n), rep("Total: Weeks 1, 2, 3", n)) )
+histogram(~ fumbles | games, data=myData, breaks=c(0:16)-0.5, type="percent", layout=c(1,2), xlab="Team Fumbles", ylab="Percent")
+#histogram(~ week1, data=myFumbles, type="percent", breaks=c(0:16)-0.5, 
+#          xlab="Team Fumbles in Week #1", ylab="Percent")
+#histogram(~ total123, data=myFumbles, type="percent", breaks=c(0:16)-0.5,
+#          xlab="Total Team Fumbles in Weeks #1, 2, 3", ylab="Percent")
+@
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Distribution of the \textbf{average} team fumbles over 3 games:
+<<echo=FALSE>>=
+myFumbles <- mutate(myFumbles, avg123 = total123 / 3 )
+@
+<<histogram-fumbles-avg123, echo=FALSE, fig.height=6.0, fig.width=8, out.width='0.79\\linewidth'>>=
+myData <- data.frame( fumbles=c(myFumbles$week1, myFumbles$avg123),
+  games=c(rep("Week 1", n), rep("Average: Weeks 1, 2, 3", n)) )
+histogram(~ fumbles | games, data=myData, breaks=c(0:16)-0.5, type="percent", layout=c(1,2), xlab="Team Fumbles", ylab="Percent")
+#histogram(~ week1, data=myFumbles, type="percent", breaks=c(0:8)-0.5,
+#          xlab="Team Fumbles in Week #1", ylab="Percent")
+#histogram(~ avg123, data=myFumbles, type="percent", breaks=c(0:8)-0.5, 
+#          xlab="Average Team Fumbles in Weeks #1, 2, 3", ylab="Percent")
+@
+Center of averages similar to individuals,
+but less spread and skew.
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%
+<<histogram-fumbles-avg123-total123, echo=FALSE, fig.height=7.0, fig.width=7, out.width='0.79\\linewidth'>>=
+myData <- data.frame( fumbles=c(myFumbles$week1, myFumbles$avg123, myFumbles$total123),
+  games=c(rep("One Week: Week 1", n), rep("Average: Weeks 1, 2, 3", n), rep("Total: Weeks 1, 2, 3", n)) )
+histogram(~ fumbles | games, data=myData, breaks=c(0:16)-0.5, type="percent", layout=c(1,3), xlab="Team Fumbles", ylab="Percent")
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Software Installation: RStudio (and R)\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+RStudio = the work environment\\
+R = the engine (a statistical programming language)
+\vspace{0.25cm}
+
+To use the R code suggested for homework,
+you must install the \pkg{mosaic} package
+\ul{\textbf{once}} at the start of the quarter.
+<<eval=FALSE>>=
+install.packages("mosaic", ...and other packages)
+@
+Then, \ul{\textbf{every}} time you start RStudio, type
+<<eval=FALSE>>=
+require(mosaic)
+@
+\vspace{0.35cm}
+Software installation instructions:\\
+\url{http://statistics.uchicago.edu/~collins/Rinstall}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Example: Bicycle weight and commuting time\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+<<eval=FALSE, echo=FALSE>>=
+require(Lock5Data)  # A package with sample datasets
+@
+<<echo=FALSE>>=
+OLD <- options(width=60)
+@
+<<echo=FALSE>>=
+#names(BikeCommute)
+data(BikeCommute) # load the dataset
+myBikeCommute <- select(BikeCommute, 
+  Bike, Date, Distance, Minutes, AvgSpeed, TopSpeed, Month)
+@
+\code{glimpse(myBikeCommute)}
+<<echo=FALSE>>=
+glimpse(myBikeCommute)
+@
+<<echo=FALSE>>=
+options(OLD) 
+@
+Thanks to Dr.\ Jeremy Groves for providing his personal data.
+\vspace{0.25cm}
+
+{\small{
+\url{http://www.bmj.com/content/341/bmj.c6801}
+Groves, J. 
+Bicycle weight and commuting time: randomised trial, 
+\textit{British Medical Journal}, 
+BMJ 2010;341:c6801.
+}}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<echo=FALSE>>=
+OLD <- options(width=60)
+@
+\code{head(myBikeCommute)}
+<<echo=FALSE>>=
+head(myBikeCommute, 13) 
+@
+<<echo=FALSE>>=
+options(OLD) 
+@
+\vskip-0.2cm
+Why not alternating Steel, Carbon, Steel, Carbon, Steel, etc.?
+\vskip0.2cm
+\textbf{Terms:}
+popn vs.\ sample,
+cases vs.\ labels,
+variables vs.\ values
+
+\textbf{Variables:}
+quantitative vs.\  categorical
+
+\code{help(BikeCommute)}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[scale=0.40]{./mygraphs/BikeCommuteHelpDescription.png}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<bargraph-month-bike, fig.height=5, fig.width=8, out.width='0.79\\linewidth'>>=
+bargraph(~ Month, data=myBikeCommute, 
+         xlab="Month of Bike Commute")
+@
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<bargraph-bike, fig.height=5, fig.width=8, out.width='0.79\\linewidth'>>=
+bargraph(~ Bike, data=myBikeCommute, 
+         xlab="Month of Bike Commute")
+@
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<eval=FALSE>>=
+histogram(~ AvgSpeed | Bike, data=myBikeCommute, type="percent", 
+  xlab="Average Speed by Frame", ylab="Percent", layout=c(1,2))
+@
+<<histogram-speed-by-bike, echo=FALSE, fig.height=6, fig.width=8, out.width='0.79\\linewidth'>>=
+histogram(~ AvgSpeed | Bike, data=myBikeCommute, 
+  breaks=seq(from=12.5, to=17.5, by=0.5), type="percent", 
+  xlab="Average Speed by Frame",  ylab="Percent", layout=c(1,2))
+@
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<histogram-speed-by-bike2, echo=FALSE, fig.height=6, fig.width=8, out.width='0.79\\linewidth'>>=
+histogram(~ AvgSpeed | Bike, data=myBikeCommute, 
+  breaks=seq(from=12.5, to=17.5, by=0.5), type="percent", 
+  xlab="Average Speed by Frame",  ylab="Percent", layout=c(1,2))
+@
+%\vskip-0.25cm
+Compare speed distributions: center, spread, shape\\
+Steel: same average?, less spread, right skewed\\
+Carbon: same average?, more spread, left skewed
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Compare centers and spreads of speed distributions
+\vskip0.25cm
+<<>>=
+mean(~ AvgSpeed | Bike, data=myBikeCommute)
+favstats(~ AvgSpeed | Bike, data=myBikeCommute)
+IQR(~ AvgSpeed | Bike, data=myBikeCommute)
+@
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<histogram-distance-bike, fig.height=4.5, fig.width=8, out.width='0.79\\linewidth'>>=
+histogram(~ Distance, data=myBikeCommute, type="percent",
+          xlab="Bike Commute Distance (miles)")
+@
+Why does the commute distance vary from ride to ride?
+
+Isn't it the same route to work every day?
+
+Why is one commute so much shorter than the others?
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<>>=
+quantile(~ Distance, data=myBikeCommute)
+@
+<<echo=FALSE>>=
+Q1 <- as.numeric(quantile(~ Distance, data=myBikeCommute, probs=0.25))
+Q3 <- as.numeric(quantile(~ Distance, data=myBikeCommute, probs=0.75))
+IQR <- Q3 - Q1
+@
+<<echo=FALSE>>=
+OLD <- options(digits=2)
+@
+<<>>=
+c(Q1, Q3, IQR, 1.5*IQR, Q1 - 1.5*IQR, Q3 + 1.5*IQR)
+@
+<<echo=FALSE>>=
+options(OLD) 
+@
+<<>>=
+sort(myBikeCommute$Distance)
+@
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<bwplot-distance-bike, fig.height=5, fig.width=8, out.width='0.79\\linewidth'>>=
+bwplot(~ Distance, data=myBikeCommute, 
+       xlab="Bike Commute Distance (miles)")
+@
+
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Time series plot of AvgSpeed
+
+%<<>>=
+%xyplot(AvgSpeed ~ Date, groups=Bike, data=myBikeCommute)
+%@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Measuring Center of Data Distribution: Average\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+<<tidy=TRUE>>=
+mean(~ AvgSpeed | Bike, data=myBikeCommute)
+@
+Average of average speed is about the same for both frame types.
+<<tidy=TRUE>>=
+mean(~ Distance, data=myBikeCommute)
+@
+The average distance is close to claimed distance: 27 miles
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%
+
+{\Large{\textbf{Definition:}}}\;\;
+\vskip0.5cm
+$\displaystyle{
+\mbox{sample average} \;\;= \overline{x} = \mbox{ ``x-bar" }
+= \frac{1}{n} \sum_{i=1}^n\, x_i
+}$
+\skip0.5cm
+
+$n=$ sample size
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Measuring Center of Data Distribution: Median\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+<<tidy=TRUE>>=
+median(~ AvgSpeed | Bike, data=myBikeCommute)
+median(~ Distance, data=myBikeCommute)
+@
+The median distance is close to claimed distance: 27 miles
+<<tidy=TRUE>>=
+sort(myBikeCommute$Distance)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{The Average is the Balancing Point\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+Consider the data $x_1=9, x_2=3, x_3=15, x_4=1$
+\begin{itemize}
+\item What is the average of these values?
+\pause
+\item What are the deviations of the data from the average?
+\pause
+\item What is the sum of the deviations from the average?
+\pause
+\item The average is the ``balancing point" of the data, the ``center of mass" (assigning each data value the same mass = $1/4$)
+\end{itemize}
+\vskip0.5cm
+\pause
+Talk a moment with your neighbor.  See if you can 
+come up an equation to express this ``balancing point"
+property of the average.
+\vskip0.5cm
+\pause
+\textbf{Proof:} Show that for \textbf{any} sample of size $n,$
+\;\;$\displaystyle{\sum_{i=1}^n\, (x_i-\overline{x}) = 0}$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{How to Prove the Math Stuff\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+\begin{itemize}
+\item
+A proof is a ``paragraph"
+of mathematical ``sentences",
+\item
+written in order to make logical sense to the reader.\\
+...just like you do in the Core all the time!
+\item
+It's your personal argument as to why
+a claim must be true.
+\item
+Justify each step ("sentence") using statistics\\
+(and using results already proven in the course).
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+OK. Our first proof is to confirm an equation.
+\vskip0.5cm
+\textbf{Proof:} Show that for \textbf{any} sample of size $n,$
+\;\;$\displaystyle{\sum_{i=1}^n\, (x_i-\xbar) = 0}$
+\vskip0.5cm
+
+Start on the left side:\;\;
+\;\;$\displaystyle{\sum_{i=1}^n\, (x_i-\xbar) }$
+
+= rewrite
+
+= and rewrite
+
+= and rewrite again
+
+= until arriving at the right side = 0
+\vskip0.5cm
+\textbf{In groups:} Write down a first step.
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Our First Proof!\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+Four common starting points.\\
+Three are great, but one is incorrect.
+Which one?  Why?
+
+
+\begin{enumerate}
+
+\item $\displaystyle{
+\sum_{i=1}^n (x_i - \xbar)
+= (x_1 -\xbar) + (x_2 - \xbar) + \cdots + (x_n-\xbar)
+}$
+
+\item $\displaystyle{
+\sum_{i=1}^n (x_i - \xbar) 
+= \sum_{i=1}^n \left[x_i - \frac{1}{n}\sum_{j=1}^n x_j\right] 
+}$
+
+\item $\displaystyle{
+\sum_{i=1}^n (x_i - \xbar) 
+= 0
+}$
+
+\item $\displaystyle{
+\sum_{i=1}^n (x_i - \xbar) 
+= \left[\sum_{i=1}^n x_i\right]  - \left[\sum_{i=1}^n \xbar\right] 
+}$
+
+\end{enumerate}
+Is ``$\Sigma$" confusing you? Read Chapter 0 (Math Supplement).
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Our First Proof!\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+Starting with the first option:
+\begin{align*}
+ \sum_{i=1}^n (x_i - \xbar)
+&= (x_1 -\xbar) + (x_2 - \xbar) + \cdots + (x_n-\xbar) \\
+&= \hid{2-}{(x_1 + x_2 + \cdots + x_n) - \underbrace{(\xbar + \xbar + \cdots + \xbar)}_{n \text{ times}}}\\
+&= \hid{3-}{\left[\sum_{i=1}^n x_i\right]  - n\xbar}
+\hid{4-}{\;\;=\;\; \left[\frac{n}{n}\sum_{i=1}^n x_i\right]  - n\xbar}\\
+&= \hid{5-}{n\xbar - n\xbar}
+\hid{6-}{\hskip0.5cm \text{since } 
+\xbar = \frac{1}{n}\sum_{i=1}^n x_i 
+\quad\text{(Justification required!)}}\\
+&= \hid{7-}{0} 
+\end{align*}
+\hid{7-}{Let's agree that $b-b=0$ for any real number $b$.\;\; :)}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Measuring Spread of Data Distribution\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+The average devation
+$\displaystyle{
+\frac{1}{n}  \sum_{i=1}^n (x_i - \xbar) 
+}$
+\;\textbf{always} = 0!
+
+Need a different measure for ``typical size of deviations"  (spread)
+\vskip0.35cm
+
+There are many measures of spread: 
+\begin{itemize}
+\item
+mean squared deviation (\MSD\ or ``variance"), 
+\item
+mean absolute deviation (\MAD),
+\item
+standard deviation (\textit{SD}) = root \MSD\ = \RMSD\ = $\sqrt{MSD}$, 
+\item
+interquartile range (\IQR = range of middle 50\% of data) 
+\item range,
+\item ...and more (not covered in this course).
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\item
+No matter what number we might choose to measure center, 
+\item
+we are summarizing an entire distribution with one number. 
+\item
+There is a cost. 
+\item
+We lose information. 
+\item
+We should measure that loss and be aware of its magnitude.
+\item
+The mean and the median minimize the loss of information in some sense.
+\item
+Statisticians measure loss numerically with a ``loss function"
+\item
+A loss function measures the distance of the data
+from the one-number summary (the ``center").
+\end{itemize}
+\vskip0.3cm
+A loss functions can be thought of as a measure of spread.
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%
+Let's consider two common loss functions (measures of spread)
+\begin{itemize}
+\item The mean of absolute deviations: 
+$$MAD(w) = \frac{1}{n} \sum_{i=1}^n\, |x_i-w|$$
+\item The mean of squared deviations: 
+$$MSD(w) = \frac{1}{n} \sum_{i=1}^n\, (x_i-w)^2$$
+\end{itemize}
+What value of $w$ should we choose using \MAD?  Using \MSD? 
+\vskip0.2cm
+It seems reasonable that $w$ should be in the ``center" of the data
+for each measure.  But which value in the middle would be best?
+\vskip0.2cm
+One optimality criteria: Choose $w$ that 
+minimizes \MAD\ or \MSD.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{What is so special about the median?\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+Consider again the data $x_1=9, x_2=3, x_3=15, x_4=1$
+\vskip0.2cm
+What does the $MAD(w)$ function look like for these data?
+<<>>=
+x <- c(9,3,15,1)
+MAD <- function(w) { mean( abs(x-w) ) }
+@
+\vskip-0.25cm
+<<xyplot-MAD-4values, echo=FALSE, fig.height=3.5>>=
+w <- sort(x)
+xyplot(sapply(w, MAD) ~ w, type=c('l','p'), xlab="w", ylab="MAD(w)")
+@
+\vskip-0.25cm
+Where is the function $MAD(w)$ smallest (minimized)?
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%
+Consider again the bike commute data: Carbon frame \code{AvgSpeed}
+\vskip0.2cm
+What does the $MAD(w)$ function look like for these data?
+<<>>=
+x <- with(myBikeCommute, AvgSpeed[Bike=="Carbon"])
+favstats(x)
+@
+\vskip-0.25cm
+<<xyplot-MAD-bike-speed, echo=FALSE, fig.height=3.5>>=
+m <- median(x)
+MAD <- function(w) { mean( abs(x-w) ) }
+w <- sort(x[ x >= (m-0.4) & x <= (m+0.4) ])
+xyplot(sapply(w, MAD) ~ w, type=c('l', 'p'), xlab="w", ylab="MAD(w)",
+       abline=list(v=m, lwd=2, lty=2))
+@
+\vskip-0.25cm
+Where is the function $MAD(w)$ smallest (minimized)?
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%
+%Where is the function $MAD(w)$ smallest (minimized)?
+\vskip-0.25cm
+<<xyplot-MAD-bike-speed-repeat, echo=FALSE, fig.height=3.5>>=
+xyplot(sapply(w, MAD) ~ w, type=c('l','p'), xlab="w", ylab="MAD(w)",
+       abline=list(v=m, lwd=2, lty=2))
+@
+\vskip-0.25cm
+<<>>=
+sort(x)
+median(x)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{What is so special about the average?\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+Consider again the data $x_1=9, x_2=3, x_3=15, x_4=1$
+\vskip0.2cm
+What does the $MSD(w)$ function look like for these data?
+<<>>=
+x <- c(9,3,15,1)
+MSD <- function(w) { mean( (x-w)^2 ) }
+@
+\vskip-0.75cm
+<<xyplot-MSD-4values, echo=FALSE, fig.height=3.5>>=
+w <- seq(from=min(x), to=max(x), by=0.01)
+xyplot(sapply(w, MSD) ~ w, type=c('l'), xlab="w", ylab="MSD(w)")
+@
+%\vskip-0.25cm
+Note: In this case, $MSD(W) = w^2 - 14w + 79$
+\vskip0.1cm
+
+Where is the function $MSD(w)$ smallest (minimized)?
+%$\displaystyle{
+%MSD(w) = \frac{1}{4} \sum_{i=1}^4\, (x_i-w)^2
+%= w^2 - 14w + 79
+%}$
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+What value $w$ minimizes $MSD(w)$ for \textbf{any} sample:\;
+$x_1, x_2, \ldots, x_n$?
+\vskip0.35cm
+We want to minimize the following function with respect to $w$:
+$$f(w) = MSD(w) = \frac{1}{n} \sum_{i=1}^n\, (x_i-w)^2$$
+\vskip0.1cm
+\textbf{On your own:}\;
+Show that $w=\overline{x}$ (average) minimizes $MSD(w)$.
+\vskip0.25cm
+
+Check that the average is the \emph{unique} minimum 
+(not just one of several values that attain the minimum, as for the median).
+\vskip0.25cm
+
+\textbf{Solution:}\; See Section 1.3 (Math Supplement) 
+
+\vskip0.35cm
+We say that $\xbar$ is a \textbf{``least squares"} statistic.
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%
+Consider again the bike commute data: Carbon frame \code{AvgSpeed}
+\vskip0.2cm
+What does the $MAD(w)$ function look like for these data?
+<<>>=
+x <- with(myBikeCommute, AvgSpeed[Bike=="Carbon"])
+xbar <- mean(x)
+xbar
+@
+\vskip-0.25cm
+<<xyplot-MSD-bike-speed, echo=FALSE, fig.height=3.5>>=
+w <- seq(from=xbar-0.4, to=xbar+0.4, by=0.01)
+MSD <- function(w) { mean( (x-w)^2 ) }
+xyplot(sapply(w, MSD) ~ w, type=c('l'), xlab="w", ylab="MSD(w)",
+       abline=list(v=xbar, lwd=2, lty=2))
+@
+\vskip-0.25cm
+Where is the function $MAD(w)$ smallest (minimized)?
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Formulas for Sample Average, Variance, SD\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+$$\mbox{sample average } = \overline{x} = \mbox{ ``x-bar" }
+= \frac{1}{n} \sum_{i=1}^n\, x_i$$
+
+$$\mbox{sample variance } = s^2 = \mbox{ ``s-squared" }
+= \frac{1}{n-1} \sum_{i=1}^n\, (x_i-\overline{x})^2$$
+
+\begin{align*}
+\mbox{sample standard deviation } &= s
+= \sqrt{s^2} = \sqrt{\frac{1}{n-1} \sum_{i=1}^n\, (x_i-\overline{x})^2}\\
+&= \mbox{ ``typical" distance from the average}
+\end{align*}
+\vskip0.1cm
+Why divide by $(n-1)$ instead of $n$ for sample variance and SD?
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Why divide by $(n-1)$ for sample variance and SD?\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+\textbf{Variance} has a particular meaning in
+statistics: \\
+\textbf{mean squared distance from the average}
+\begin{equation*}
+MSD_n(\,\xbar\,)
+= \frac{1}{n}\sum_{i=1}^n (x_i-\xbar)^2
+%\label{eqn:MSDxbar}
+\end{equation*}
+Why collect data (\textbf{statistics})?  
+
+To learn about the population (\textbf{parameters}).
+\begin{equation*}
+\text{population mean} = \mu = \text{``myoo"}
+= \frac{1}{N}\sum_{i=1}^N x_i
+%\label{eqn:mu}
+\end{equation*}
+\begin{equation*}
+\text{popn variance} = \sigma^2 = \text{``sigma squared"}
+= \frac{1}{N}\sum_{i=1}^N (x_i-\mu)^2
+\end{equation*}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+$\displaystyle{
+\text{truth} = \text{popn variance}
+= \sigma^2 = MSD_N(\,\mu\,) = \frac{1}{N}\sum_{i=1}^N (x_i-\mu)^2
+}$
+\vskip0.1cm
+
+If we know the true popn mean ($\mu$)
+and had a sample of $n$, use
+\begin{equation}
+\text{estimate}
+= \sigmahat_{\mu}^2 = MSD_n(\,\mu\,) = \frac{1}{n}\sum_{i=1}^n (x_i-\mu)^2
+\label{eqn:MSDmu}
+\end{equation}
+But, we almost never know $\mu$!  That's why we sample!
+\begin{equation}
+\text{realistic estimate}
+= \sigmahat_{\xbar}^2 = MSD_n(\,\xbar\,) = \frac{1}{n}\sum_{i=1}^n (x_i-\xbar)^2
+\label{eqn:MSDxbar}
+\end{equation}
+The problem: $\eqref{eqn:MSDxbar} \le \eqref{eqn:MSDmu}$.
+\quad Why?\;\; ...and why is this a problem?\\
+How does dividing by $(n-1)$ for \eqref{eqn:MSDxbar} help?
+solve the problem?
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+OK. So, we should divide by a number smaller than $n$.
+
+But, why $(n-1)$ in particular?
+\vskip0.25cm
+
+\textbf{Claim:}\;
+Just $(n-1)$ observations and $\xbar$ are sufficient
+to determine the one remaining observation.
+\vskip0.25cm
+
+\textbf{Proof:}\;
+We know $n\xbar = x_1+x_2+\cdots +x_n$, since
+$\xbar = \frac{1}{n} \sum x_i$
+
+So, $x_n = n\xbar - (x_1+x_2+\cdots+x_{n-1})$.
+
+\vskip0.4cm
+In a sense, $\sum (x_i-\xbar)^2$  
+adds up $(n-1)$ ``independent" values.
+\vskip0.1cm
+
+We say that the sum $\sum (x_i-\xbar)^2$
+has $(n-1)$ \textbf{degrees of freedom} .
+\vskip0.1cm
+
+So, the sample average squared deviation (variance) is defined as
+\vskip0.4cm
+
+$\displaystyle{
+s^2 = \mbox{ ``s-squared" }
+= \frac{1}{n-1} \sum_{i=1}^n\, (x_i-\overline{x})^2
+}$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks, fragile]{Linear Transformation of Data\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+Sometimes we want to analyze data in different units
+\begin{itemize}
+\item Temperature: 
+$\displaystyle{ \text{Celsius} = \frac{5}{9} (\text{Fahrenheit} - 32)}$
+\item Curve: exam = score + (0.25)(100 $-$ score)
+\vskip0.2cm
+This curve adds back 25\% of exam points missed. 
+
+\item Standardized Score: $\displaystyle{z_i = \frac{x_i-\xbar}{s} }$
+\end{itemize}
+
+\textbf{Claim:}\;
+All 3 are examples of linear transformations: $y = a + bx$
+
+\begin{itemize}
+\item Temperature: 
+$\displaystyle{ 
+\text{Celsius}  
+= -\left(\frac{160}{9}\right)
++ \left(\frac{5}{9}\right) \text{Fahrenheit}
+}$
+\item Curve: 
+$\displaystyle{
+\text{exam}  = 25  + (0.75)\, \text{score}
+}$
+
+\item Standardized Score: 
+$\displaystyle{
+z_i 
+=  -\left(\frac{\xbar}{s}\right) 
++ \left(\frac{1}{s}\right) x_i
+}$
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+High temperature in Chicago last 5 days of December
+<<echo=FALSE>>=
+Fahrenheit <- c(39, 39, 29, 28, 31)
+OLD <- options(digits=3)
+@
+<<>>=
+Fahrenheit
+mean(Fahrenheit)
+Celsius = -(160/9) + (5/9)*Fahrenheit
+
+rbind(Fahrenheit, Celsius)
+mean(Celsius)
+@
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<>>=
+mean(Celsius)
+-(160/9) + (5/9) * mean(Fahrenheit)
+@
+\textbf{Claim:} \;
+If data $x_1, x_2,\ldots, x_n$ \\
+are
+linearly transformed to
+$y_i = a + b x_i$
+\vskip0.2cm
+
+Then, $\ybar = a + b\xbar$.
+\vskip0.5cm
+
+\textbf{Proof:}\;
+In class, if time.
+
+A proof appears in Section 1.4 (Math Supplement).
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+<<>>=
+sd(Celsius)
+(5/9) * sd(Fahrenheit)
+@
+\textbf{Claim:} \;
+If data $x_1, x_2,\ldots, x_n$ \\
+are
+linearly transformed to
+$y_i = a + b x_i$
+\vskip0.2cm
+
+Then, $SD(y) = s_y = |b|s_x = |b|SD(x)$.
+\vskip0.5cm
+
+\textbf{Proof:}\;
+On your own for HW \#2.
+
+<<echo=FALSE>>=
+options(OLD) 
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Class Survey Data\;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25cm}
+
+<<echo=FALSE>>=
+surveyData <- read.csv("./data/14aut_SurveyResults_Cleaner.csv")
+attach(surveyData)
+@
+<<>>=
+glimpse(surveyData)
+@
+%<<14aut-survey-data, echo=FALSE, fig.height=6.5, fig.width=8, out.width='0.79\\linewidth'>>=
+%bwplot(gender ~ haircut, data=surveyData, xlab="Cost of most recent haircut ($)")
+%histogram(~ haircut, data=surveyData, xlab="Cost of most recent haircut ($)")
+%histogram(~ haircut | gender, data=surveyData, xlab="Cost of most recent haircut ($)", layout=c(1,2))
+%bwplot(~ ageguess, data=surveyData,, xlab="Guess of Dr. Collins age (years)")
+%histogram(~ ageguess, data=surveyData,, xlab="Guess of Dr. Collins age (years)")
+%histogram(~ height, data=surveyData, breaks=seq(57,80,2.5), type="percent", xlab="height (inches)")
+%histogram(~ height | gender, data=surveyData, breaks=seq(57,80,2.5), type="density", layout=c(1,2), xlab="height (inches)",
+%  panel = function(x, ...) {
+%    panel.histogram(x, ...)
+%    panel.mathdensity(dmath = dnorm, col = "black",
+%          args = list(mean=mean(x),sd=sd(x)))
+%  } 
+%)
+%xqqmath(~ height | gender, data=surveyData)
+%@
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]{Is the cost of a haircut related to gender?\;\;}
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+histogram(~ haircut, data=surveyData, breaks=seq(0,120,10))
+
+boxplot(haircut ~ gender, data=surveyData, horizontal=TRUE, xlab="Cost of most recent haircut ($)")
+
+histogram(~ haircut | gender, data=surveyData, breaks=seq(0,120,10), layout=c(1,2), xlab="Cost of most recent haircut ($)")
+@
+%\end{frame}
+%\begin{frame}[allowframebreaks, fragile]{How well did students guess Dr. Collins' age?\;\;}
+%<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+%bwplot(~ ageguess, xlab="Guess of Dr. Collins age (years)")
+%
+%histogram(~ ageguess, xlab="Guess of Dr. Collins age (years)")
+%
+%hist(ageguess, main="")
+%abline(v=51, lwd=5)
+%@
+\end{frame}
+\begin{frame}[allowframebreaks, fragile]{The distribution of heights\;\;}
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+histogram(~ height, data=surveyData, type="count", xlab="Height (inches)", breaks=seq(57,80,2.5))
+histogram(~ height | gender, data=surveyData, type="count", xlab="Height (inches)", layout=c(1,2), breaks=seq(57,80,2.5))
+table(gender)
+@
+
+\newpage
+Let's make the comparison based on percentages, not counts
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+histogram(~ height | gender, data=surveyData, type="percent", breaks=seq(57,80,2.5), layout=c(1,2))
+@
+\end{frame}
+\begin{frame}[allowframebreaks, fragile]{Getting a feel for the shape of a distribution\;\;}
+Too much "detail"?  More than is really available in the data?
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+par(mfrow=c(1,2))
+hist(height, freq=FALSE, breaks=seq(57,80,2.5), col="lightgray", main="")
+lines(density(height, adjust=0.5, na.rm=TRUE), lwd=2)
+hist(haircut, freq=FALSE, breaks=seq(0,120,10), col="lightgray", main="")
+lines(density(haircut, adjust=0.5, na.rm=TRUE), lwd=2)
+#hist(ageguess, freq=FALSE, col="lightgray", main="")
+#lines(density(ageguess, adjust=0.5, na.rm=TRUE), lwd=2)
+@
+\newpage
+
+The smoothing R does as default
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+par(mfrow=c(1,2))
+hist(height, freq=FALSE, breaks=seq(57,80,2.5), col="lightgray", main="")
+lines(density(height, na.rm=TRUE), lwd=2)
+hist(haircut, freq=FALSE, breaks=seq(0,120,10), col="lightgray", main="")
+lines(density(haircut, na.rm=TRUE), lwd=2)
+#ist(ageguess, freq=FALSE, col="lightgray", main="")
+#ines(density(ageguess, na.rm=TRUE), lwd=2)
+@
+\newpage
+
+You could make smooth things out more to get a feel for shape
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+par(mfrow=c(1,2))
+hist(height, freq=FALSE, breaks=seq(57,80,2.5), col="lightgray", main="")
+lines(density(height, adjust=1.5, na.rm=TRUE), lwd=2)
+hist(haircut, freq=FALSE, breaks=seq(0,120,10), col="lightgray", main="")
+lines(density(haircut, adjust=1.5, na.rm=TRUE), lwd=2)
+#hist(ageguess, freq=FALSE, col="lightgray", main="")
+#lines(density(ageguess, adjust=1.5, na.rm=TRUE), lwd=2)
+@
+\newpage
+...and smooth some more.  Too much?\\
+The smooth curve no longer represents the shape?
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+par(mfrow=c(1,2))
+hist(height, freq=FALSE, breaks=seq(57,80,2.5), col="lightgray", main="")
+lines(density(height, adjust=3, na.rm=TRUE), lwd=2)
+hist(haircut, freq=FALSE, breaks=seq(0,120,10), col="lightgray", main="")
+lines(density(haircut, adjust=3, na.rm=TRUE), lwd=2)
+#hist(ageguess, freq=FALSE, col="lightgray", main="")
+#lines(density(ageguess, adjust=3, na.rm=TRUE), lwd=2)
+@
+
+\newpage
+Way too much smoothing!
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+par(mfrow=c(1,2))
+hist(height, freq=FALSE, breaks=seq(57,80,2.5), col="lightgray", main="")
+lines(density(height, adjust=6, na.rm=TRUE), lwd=2)
+hist(haircut, freq=FALSE, breaks=seq(0,120,10), col="lightgray", main="")
+lines(density(haircut, adjust=6, na.rm=TRUE), lwd=2)
+#hist(ageguess, freq=FALSE, col="lightgray", main="")
+#lines(density(ageguess, adjust=6, na.rm=TRUE), lwd=2)
+par(mfrow=c(1,1))
+@
+\end{frame}
+\begin{frame}[allowframebreaks, fragile]{The "normal density" model\;\;}
+
+The  68-95-99.7 rule for the normal distribution.
+
+The normal density a good ``fit" for these data distributions?
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+par(mfrow=c(1,2))
+mht = mean(height, na.rm=TRUE)
+sht = sd(height, na.rm=TRUE)
+hist(height, freq=FALSE, breaks=seq(57,80,2.5), col="lightgray", xlim=c(mht-3*sht,mht+3*sht), main="")
+lines(density(height, na.rm=TRUE), lwd=2)
+curve(dnorm(x, mht, sht), lwd=4, lty=2, add=TRUE)
+
+mhair = mean(haircut, na.rm=TRUE)
+shair = sd(haircut, na.rm=TRUE)
+hist(haircut, freq=FALSE, breaks=seq(0,120,10), col="lightgray", xlim=c(mhair-3*shair,mhair+3*shair), main="")
+lines(density(haircut, na.rm=TRUE), lwd=2)
+curve(dnorm(x, mhair, shair), lwd=4, lty=2, add=TRUE)
+
+#mage = mean(ageguess, na.rm=TRUE)
+#sage = sd(ageguess, na.rm=TRUE)
+#hist(ageguess, freq=FALSE, col="lightgray", xlim=c(mage-3*sage,mage+3*sage), main="")
+#lines(density(ageguess, na.rm=TRUE), lwd=2)
+#curve(dnorm(x, mage, sage), lwd=4, lty=2, add=TRUE)
+
+par(mfrow=c(1,1))
+@
+\newpage
+
+
+
+I would have thought the distribution of height would be more symmetric and mound-shaped.  
+\vskip0.5cm
+
+It seems to have two humps (bimodal).
+\vskip0.5cm
+
+We'll deal with that later...
+\end{frame}
+\begin{frame}[allowframebreaks, fragile]{The "normal density" model (haircut cost)\;\;}
+
+The "normal density" model.  
+
+A good fit for these data distributions?
+
+A numerical look
+
+What percent of area under standard normal density is above/below 1?
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+pnorm(-1, m=0, s=1)
+pnorm(-1)  # the default is mean=0, sd=1 ("standard" normal)
+pnorm(1)
+1 - pnorm(1)
+@
+\newpage
+
+ What percent of area under \emph{any} normal density is above/below 1 sd from mean?
+ <<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+mhair+shair
+1 - pnorm(mhair + shair, m=mhair, s=shair)
+pnorm(mhair - shair, m=mhair, s=shair)
+@
+\newpage
+
+What percent of the observed data are right/left of 1 sd from mean?
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+n = length(na.omit(haircut));    n
+sum(haircut >= mhair + shair, na.rm=TRUE) / n
+sum(haircut <= mhair - shair, na.rm=TRUE) / n
+@
+\newpage
+
+
+What percent of the model/data are 2 sd to the right mean?
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+1 - pnorm(2)
+sum(haircut >= mhair + 2*shair, na.rm=TRUE) / n
+@
+
+What percent of the model/data are 2 sd to the left of mean?
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+pnorm(-2)
+sum(haircut <= mhair - 2*shair, na.rm=TRUE) / n
+@
+\newpage
+
+Does this difference between data and model make sense?
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+hist(haircut, freq=FALSE, breaks=seq(0,120,10), col="lightgray", xlim=c(mhair-3*shair,mhair+3*shair), main="")
+lines(density(haircut, na.rm=TRUE), lwd=2)
+curve(dnorm(x, mhair, shair), lwd=4, lty=2, add=TRUE)
+@
+
+\end{frame}
+\begin{frame}[allowframebreaks, fragile]{Normal quantile plot\;\;}
+A special plot can help us to compare all quantiles/percentiles of the data and the normal model (from 1\% to 100\%)
+
+... the "normal probability plot" or "normal quantile plot"
+
+Let's 1st draw this plot on our own and then let R draw the fancy plot
+\newpage
+
+standard normal density quantiles (percentiles)
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+p = c(0.01, 0.025, 0.16, 0.25, 0.50, 0.75, 0.84, 0.975, 0.99)
+modelQuantile = qnorm(p)
+modelQuantile
+@
+
+Strong suggestion (always do this)\\
+Standardize data first to make comparison to "standard normal" model easier
+
+z = (x - xbar) / s
+\newpage
+
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+stdHaircut = (haircut - mhair) / shair
+@
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+hist(stdHaircut, freq=FALSE, col="lightgray", xlim=c(-3,3), main="")
+lines(density(stdHaircut, na.rm=TRUE), lwd=2)
+curve(dnorm(x, m=0, s=1), lwd=4, lty=2, add=TRUE)
+@
+\newpage
+Data quantiles (percentiles)
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+dataQuantile = quantile(stdHaircut, p, na.rm=TRUE)
+dataQuantile
+
+rbind(dataQuantile, modelQuantile)
+@
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+limits = c(0.9*min(dataQuantile,modelQuantile), 1.1*max(dataQuantile,modelQuantile))
+limits = c(-4,4)
+
+xyplot(dataQuantile ~ modelQuantile, abline=list(a=0,b=1), xlim=limits, ylim=limits, cex=1.5)
+@
+\newpage
+
+I wish the "normal probability plot" was actually plotted like this
+(much easier to read)
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+xyplot((dataQuantile-modelQuantile) ~ modelQuantile, abline=list(h=0), cex=1.5)
+@
+\newpage
+
+ But here is the style of plot traditionally called the "normal probability plot" or "normal quantile plot"
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+xyplot(dataQuantile ~ modelQuantile, abline=list(a=0,b=1), xlim=limits, ylim=limits, cex=1.5)
+@
+\newpage
+
+OK.  Let R calculate the quantile (percentile) for ALL data points and compare to the quantiles (percentiles) of the normal distribution
+%<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+%qqnorm(stdHaircut, pch=20, cex=0.7, xlim=limits, ylim=limits, main="")
+%# ... and put in the reference line
+%abline(a=0, b=1)
+%@
+%\newpage
+
+%R will also automatically draw a reference line through Q1 and Q3 (usually easier to read)
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+qqnorm(stdHaircut, pch=20, cex=0.7, xlim=limits, ylim=limits, main="")
+qqline(stdHaircut)
+@
+%\newpage
+%
+%lattice graphics will make this plot too
+%<<echo-FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+%xqqmath(~ stdHaircut, xlim=limits, ylim=limits)
+%@
+\newpage
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]{interpreting a normal quantile plot\;\;}
+
+How could we decide when a normal density might be a reasonable model (or not) for the population from which the data came?
+
+Do the data fall "too far" from the line for it to make sense that the data came from a normal model?
+
+What would n data points look like if they ACTUALLY came from a normal density model?
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+# My personal favorite graphics settings (not necessary)
+par(oma=c(0,0,0,0)+0.01, mar=c(3,3,0,0)+0.01)
+set.seed(1233)
+
+x = stdHaircut
+n = length(na.omit(x))
+
+# NOTE: Just fixing the randomization starting point for lecture to allow reproducibility of results
+set.seed(12345) 
+@
+
+<<message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+n
+z <- rnorm(n)
+@
+<<echo=FALSE>>=
+rbind(quantile(z, probs=p), modelQuantile)
+@
+\newpage
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+histogram(z)
+bwplot(z)
+zlim = c(-4,4)
+qqnorm(z, pch=20, xlim=zlim, ylim=zlim, main="");  qqline(z)
+@
+
+
+How do data actually from a normal population compare to the (standardized) haircut cost data we actually observed?
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+zlim = c(-4,4)
+par(mfrow=c(1,2))
+qqnorm(x, pch=20, xlim=zlim, ylim=zlim, main="", ylab="Standardized Haircut Cost");  qqline(x)
+qqnorm(z, pch=20, xlim=zlim, ylim=zlim, main="", ylab="'Data' from normal model");  qqline(z)
+par(mfrow=c(1,1))
+
+
+zlim = c(-4,4)
+par(mfrow=c(3,3))
+qqnorm(x, pch=20, xlim=zlim, ylim=zlim, main="");  qqline(x)
+text(-3.5, 3, "Actual Data", pos=4)
+set.seed(123456)
+for (i in 1:8) {
+	z = rnorm(n)
+	qqnorm(z, pch=20, xlim=zlim, ylim=zlim, main="");  qqline(z)
+	text(-3.5, 3, paste("Simulation", i), pos=4)
+
+}
+par(mfrow=c(1,1))
+@
+\end{frame}
+\begin{frame}[allowframebreaks, fragile]{The "normal density" model (heights)\;\;}
+From past experience, I would expect the population distribution is approximately normal
+
+
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+hist(height, freq=FALSE, col="lightgray", xlim=c(mht-3*sht,mht+3*sht), main="")
+lines(density(height, na.rm=TRUE), lwd=2)
+curve(dnorm(x, mht, sht), lwd=4, lty=2, add=TRUE)
+
+
+# Strong suggestion (always do this)
+# Standardize data first to make comparison to "standard normal" model easier
+# z = (x - xbar) / s
+stdHeight = (height - mht) / sht
+x = stdHeight
+
+histogram(x)
+bwplot(x)
+
+n = length(na.omit(x))
+zlim = c(-4,4)
+par(mfrow=c(3,3))
+qqnorm(x, pch=20, xlim=zlim, ylim=zlim, main="");  qqline(x)
+text(-3.5, 3, "Actual Data", pos=4)
+set.seed(1234567)
+for (i in 1:8) {
+	z = rnorm(n)
+	qqnorm(z, pch=20, xlim=zlim, ylim=zlim, main="");  qqline(z)
+	text(-3.5, 3, paste("Simulation", i), pos=4)
+
+}
+par(mfrow=c(1,1))
+@
+
+In my experience, height is pretty much symmetric and mound-shaped
+
+What is the distribution by gender?
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+histogram(~ height | gender, density=TRUE, breaks=seq(57,80,2.5), layout=c(1,2))
+@
+
+\end{frame}
+\begin{frame}[allowframebreaks, fragile]{The "normal density" model (male heights)\;\;}
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+ht = na.omit(height[gender=="M"])
+histogram(ht, breaks=seq(57,80,2.5))
+
+# Standardize the data: z = (x - xbar) / s
+
+x = (ht - mean(ht)) / sd(ht)
+
+par(mfrow=c(3,3))
+n = length(na.omit(x));   n
+par(mfrow=c(3,3))
+zlim = c(-4,4)
+qqnorm(x, pch=20, xlim=zlim, ylim=zlim, main="");  qqline(x)
+text(-3.5, 3, "Actual Data (Men)", pos=4)
+set.seed(1234567)
+for (i in 1:8) {
+	z = rnorm(n)
+	qqnorm(z, pch=20, xlim=zlim, ylim=zlim, main="");  qqline(z)
+	text(-3.5, 3, paste("Simulation", i), pos=4)
+
+}
+par(mfrow=c(1,1))
+@
+
+\end{frame}
+\begin{frame}[allowframebreaks, fragile]{The "normal density" model (female heights)\;\;}
+<<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
+ht = na.omit(height[gender=="F"])
+histogram(ht)
+
+# Standardize the data: z = (x - xbar) / s
+x = (ht - mean(ht)) / sd(ht)
+
+par(mfrow=c(3,3))
+n = length(na.omit(x));   n
+par(mfrow=c(3,3))
+zlim = c(-4,4)
+qqnorm(x, pch=20, xlim=zlim, ylim=zlim, main="");  qqline(x)
+text(-3.5, 3, "Actual Data (Women)", pos=4)
+set.seed(1234567)
+for (i in 1:8) {
+	z = rnorm(n)
+	qqnorm(z, pch=20, xlim=zlim, ylim=zlim, main="");  qqline(z)
+	text(-3.5, 3, paste("Simulation", i), pos=4)
+
+}
+par(mfrow=c(1,1))
+
+@
+
+\end{frame}
+
+%%%%%%%%%%%%%% End of slides %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
