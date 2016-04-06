@@ -1327,7 +1327,7 @@ sum(log_retweets <= mtweets - 2*stweets, na.rm=TRUE) / n
 \frametitle{When things are not normal!!}
 <<echo=FALSE, message=FALSE, warning=FALSE, fig.height=5, out.width='0.89\\linewidth'>>=
 mtweets2 <- mean(trump.data.frame$retweets); stweets2 <- sd(trump.data.frame$retweets);
-hist(trump.data.frame$retweets, xlab="Log of number of retweets", 
+hist(trump.data.frame$retweets, xlab="Number of retweets", 
      xlim=c(min(trump.data.frame$retweets), max(trump.data.frame$retweets)), breaks=100,
      freq=FALSE, col="lightgray", main="Histogram (100 bins)")
 lines(density(trump.data.frame$retweets, na.rm=TRUE))

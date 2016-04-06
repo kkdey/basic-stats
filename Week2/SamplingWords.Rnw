@@ -11,15 +11,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%% Change the lecture information here %%%%%%%%%%%%%%%%
 \def\chapnum{Week \#2: Sampling from a Population (Sample Statistics have a Distribution)}
-\title{Title}
-\author{Author Name}
-\date{Lecture Date}
+\title{Lecture 2: Sampling Distibution}
+\author{Kushal K Dey}
+\date{04.05.2016}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-%%%%%% Start of suggested definitions and packages %%%%%%%%%%%%
-%%%%%% Do not change unless you really know what you are doing %%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{enumerate}
 \usepackage{amsmath, bbm}
@@ -27,7 +23,13 @@
 \usepackage[latin1]{inputenc}
 \usepackage{hyperref}
 
-\usepackage{definitions}
+%\usepackage{comment}
+%\usepackage{pstricks}
+%\usepackage{graphicx}
+%\usepackage{booktabs}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=3mm]
+%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=3mm
 
 \usepackage{setspace}
 \ifdefined\knitrout
@@ -35,6 +37,90 @@
 \else
 \fi
 
+%%%%%%%%%%%%%%% Defined Shortcuts (macros) %%%%%%%%%%%%%
+% parameters and statistics
+\newcommand{\xbar}{\overline{x}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\ybar}{\overline{y}}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\dbar}{\overline{d}}
+\newcommand{\Dbar}{\overline{D}}
+\newcommand{\zbar}{\overline{z}}
+\newcommand{\Zbar}{\overline{Z}}
+\newcommand{\ehat}{\widehat{\epsilon}}
+\newcommand{\yhat}{\widehat{y}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\betaa}{{\beta_0}}
+\newcommand{\betab}{{\beta_1}}
+\newcommand{\betac}{{\beta_2}}
+\newcommand{\betad}{{\beta_3}}
+\newcommand{\BETA}{{\boldsymbol\beta}}
+\newcommand{\betahata}{\widehat{\beta_0}}
+\newcommand{\betahatb}{\widehat{\beta_1}}
+\newcommand{\betahatc}{\widehat{\beta_2}}
+\newcommand{\betahatd}{\widehat{\beta_3}}
+\newcommand{\bhat}{\widehat{b}}
+\newcommand{\btilde}{\widetilde{b}}
+\newcommand{\ahat}{\widehat{a}}
+\newcommand{\atilde}{\widetilde{a}}
+\newcommand{\rss}{\mathit{SSE}}
+\newcommand{\sigmahat}{\widehat{\sigma}}
+\newcommand{\betahat}{\widehat{\beta}}
+\newcommand{\thetahat}{\widehat{\theta}}
+\newcommand{\phat}{\widehat{p}}
+\newcommand{\pihat}{\widehat{\pi}}
+\newcommand{\muhat}{\widehat{\mu}}
+% real numbers and integers
+\newcommand{\reals}{\mathbbm{R}}
+\newcommand{\integers}{\mathbbm{N}}
+%distributions
+\newcommand{\normal}{\textsf{Norm}}
+\newcommand{\Bin}{\textsf{Binom}}
+\newcommand{\Uni}{\textsf{Unif}}
+\newcommand{\Poisson}{\textsf{Pois}}
+\newcommand{\Exp}{\textsf{Exp}}
+\newcommand{\Beta}{\textsf{Beta}}
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+% probability and expected value
+\newcommand{\rv}{r.v.\ }
+\newcommand{\prob}{{\rm P}}
+\newcommand{\mean}{\mathrm{E}}
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{Cov}}
+\newcommand{\corr}{\mathop{\mathrm{Corr}}}
+% measures of spread
+\newcommand{\IQR}{\textit{IQR}}
+\newcommand{\SAD}{\textit{SAD}}
+\newcommand{\MAD}{\textit{MAD}}
+\newcommand{\SSD}{\textit{SSD}}
+\newcommand{\MSD}{\textit{MSD}}
+\newcommand{\RMSD}{\textit{RMSD}}
+\newcommand{\MSE}{\textit{MSE}}
+\newcommand{\MSR}{\textit{MSR}}
+% formatting code and such
+\providecommand{\variable}[1]{}
+\renewcommand{\variable}[1]{{\color{green!50!black}\texttt{#1}}}
+\providecommand{\function}[1]{}
+\renewcommand{\function}[1]{{\color{purple!75!blue}\texttt{\StrSubstitute{#1}{()}{}()}}}
+\providecommand{\option}[1]{}
+\renewcommand{\option}[1]{{\color{brown!80!black}\texttt{#1}}}
+\providecommand{\pkg}[1]{}
+\renewcommand{\pkg}[1]{{\color{red!80!black}\texttt{#1}}}
+\providecommand{\code}[1]{}
+\renewcommand{\code}[1]{{\color{blue!80!black}\texttt{#1}}}
+
+%%%%%%%%%
+% Changed by Kushal K Dey, University of Chicago
+%\providecommand{\file}[1]{}
+%\renewcommand{\file}[1]{{\tt #1}}
+\providecommand{\file}[1]{}
+\renewcommand{\file}[1]{{\color{orange!80!black}\texttt{#1}}}
+%\providecommand{\dataframe}[1]{}
+%\renewcommand{\dataframe}[1]{{\color{blue!80!black}\texttt{#1}}}
+\providecommand{\dataframe}[1]{}
+\renewcommand{\dataframe}[1]{{\color{cyan!80!black}\texttt{#1}}}
+%%%%%%%%%
 
 % other
 \def\Sum{\sum\nolimits}
@@ -150,12 +236,38 @@ trellis.par.set(fontsize=list(text=18,points=10))
 %------------------------------------------------------------------
 
 %%%%%%%%%% Title frame (optional) %%%%%%%%%%%%%
-%\begin{frame}{}
-%\maketitle
-%\end{frame}
+\begin{frame}{}
+\maketitle
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%% Begin slides here %%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Game of Words \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip0.25cm
+
+\includegraphics[width=10cm,keepaspectratio]{game-of-thrones.jpg}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Loading the Data \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip0.25cm
+
+<<>>=
+library(devtools)
+install_github("kkdey/GOTnames")
+library(GOTnames)
+data(GOTnames)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[allowframebreaks, fragile]{Sample Statistics ($\xbar$'s) have a Distribution Too\;\;}
@@ -164,20 +276,20 @@ trellis.par.set(fontsize=list(text=18,points=10))
 
 %par(oma=c(0,0,0,0)+0.01, mar=c(4,4,0,0)+0.01, pch=20)  
 
-My personal sample of $n=10$ words
+My personal sample of $n=8$ words
 <<echo=FALSE>>=
-mySample <- c("endure", "have", "which", "testing", "world",
-"we",  "perish",  "poor",  "never",  "detract")
+mySample <- c("Eddard Stark", "Sansa Stark", "Robb Stark", "Arya Stark", "Benjen Stark",
+"Catelyn Stark",  "Bran Stark",  "Jon Snow");
 @
 <<>>=
 mySample
 @
-The lengths of my $n=10$ words:
+The lengths of my $n=8$ words:
 <<echo=FALSE>>=
 mySampleWordLen <- sapply(mySample, nchar)
 mySampleWordLen
 @
-Average length of my sample of $n=10$ words:
+Average length of my sample of $n=8$ words:
 <<>>=
 myxbar <- mean(mySampleWordLen)
 myxbar
@@ -186,26 +298,26 @@ myxbar
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-My personal sample of $n=10$ words
+My personal sample of $n=8$ words
 <<>>=
 mySample
 @
-How many of my words contain the letter e?
+How many of my words contain the letter "a"?
 <<echo=FALSE>>=
-mySample[grep("e", mySample)]
+mySample[grep("a", mySample)]
 @
 <<echo=FALSE>>=
-length(grep("e", mySample))
+length(grep("a", mySample))
 @
-What proportion of my words contain the letter e?
+What proportion of my words contain the letter "a"?
 <<>>=
-myphat <- length(grep("e", mySample)) / length(mySample)
+myphat <- length(grep("a", mySample)) / length(mySample)
 myphat
 @
 
 %humanSampleMeans <- c(2.2,4.4,6.9,5.9,6.4,4.6,7.2,5.5,3.2,5.4,5.1,7,6.2,5.8,6.4,6.3,4.8,7.6,5.1,2.9,4.9,5.5)
 <<tidy=TRUE>>=
-humanSampleMeans <- c(6.9,8.4,6.4,6.7,6.6,6.8,5.5,5.1,5.9,8.3,6.1,8.2,5.1,6.1,7.6,6.7,7.3,5.6,8.7,7.1,6.1,6.2,6.0)
+humanSampleMeans <- c(6.9,12.4,13.4,13.7,14.6,7.8,15.5,12.1,18.9,16.3,7.1,8.2,8.1,10.1,10.6,7.7,10.3,9.6,6.7,11.1,16.1,10.2,12.0)
 @
 How many sample means (xbars)?
 <<echo=FALSE>>=
@@ -224,8 +336,6 @@ histogram(~ humanSampleMeans)
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-What is the mean length (xbar) ``on average" for your 
-\Sexpr{length(humanSampleMeans)} samples?
 <<histogram-humanSampleMeans-2, echo=FALSE, fig.height=5, fig.width=8, out.width='0.79\\linewidth'>>=
 histogram(~ humanSampleMeans)
 @
@@ -235,10 +345,9 @@ mean(humanSampleMeans)
 
 
 <<>>=
-worddata <- read.csv("../data/address.csv")
+worddata <- as.data.frame(GOTnames);
 @
-What is stored in the data did we just read in?\\
-How many words are in the Gettysburg Address?
+How many words are in the Game of Thrones characters?
 <<>>=
 glimpse(worddata)
 @
@@ -246,7 +355,7 @@ glimpse(worddata)
 %attach(worddata)
 %@
 
-What is actual average length of all 268 words in the Address?
+What is actual average length of all 100 characters in Game of Thrones?
 <<>>=
 mean(wordlen, data=worddata)
 @
@@ -258,10 +367,11 @@ What symbol do we use to denote this mean?
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-A histogram of the lengths of all 268 words
+A histogram of the lengths of all 100 words.
+
 <<histogram-humanSampleMeans-3, echo=FALSE, fig.height=6, fig.width=9, out.width='0.79\\linewidth'>>=
 hist(worddata$wordlen, main="", ylab="Number of words",
-     xlab="Lengths of 268 words in Gettysburg Address", col="lightgrey", cex.lab=1.5, cex.axis=1.5) 
+     xlab="Lengths of 100 character names in GoT", col="lightgrey", cex.lab=1.5, cex.axis=1.5) 
 abline(v=mu, lwd=3, lty=2)
 text(mu, 50, pos=4,
      paste("Average word length = ", round(mu,2)), cex=2.5)
@@ -272,28 +382,27 @@ text(mu, 50, pos=4,
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 How does the original population of word lengths compare
-with the \Sexpr{length(humanSampleMeans)} average lengths (xbars) of 10 human-chosen words?
+with the \Sexpr{length(humanSampleMeans)} average lengths (xbars) of 8 human-chosen words?
 \vskip0.25cm
 <<echo=FALSE, fig.height=5, fig.width=8, out.width='0.79\\linewidth'>>=
-hist(worddata$wordlen, main="", ylim=c(0,0.4), prob=TRUE, 
+hist(worddata$wordlen, main="", ylim=c(0,0.15), prob=TRUE, 
      col="lightgray", ylab="Density",
-     xlab="Lengths of 268 words in Gettysburg Address", cex=1.5, cex.lab=1.5, cex.axis=1.5) 
+     xlab="Avg. Lengths of 8 randomly chosen words of 100 GoT character", cex=1.5, cex.lab=1.5, cex.axis=1.5) 
 abline(v=mu, lwd=3, lty=2)
 hist(humanSampleMeans, add=TRUE, prob=TRUE, density=10, angle=-45)
 @
 \vskip0.25cm
-Our sample averages (xbars) tend to overestimate
-the true average ($\mu=\Sexpr{round(mu,2)})$.
+Our sample averages (xbars) tend to underestimate
+the true average $\mu$.
 This is evidence of \textbf{bias} in our estimation method.
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-What is the actual proportion of all 268 words that contain an ``e"?
+What is the actual proportion of all 100 words that contain an ``a"?
 \vskip0.25cm
 <<echo=FALSE>>=
-tally(~ containE, data=worddata) / 268
-p <- as.numeric((tally(~ containE, data=worddata) / 268)[2])
+p <- length(which(worddata$A.present=="Yes"))/100
 @
 <<>>=
 p
@@ -304,44 +413,42 @@ This is a population parameter labeled $p$ (sometimes $\pi$).
 \vskip0.5cm
 How many of you had a sample proportion ($\phat$) \\
 higher than the true value? \\
-The population parameter $p=\Sexpr{round(p,3)}$.
+%The population parameter $p=\Sexpr{round(p,3)}$.
 \vskip0.5cm
 Is this evidence of \textbf{bias} in our estimation method?
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-Now, randomly sample just 5 words from the Address using
-the table of random digits on the back side of the handout.
+Now, randomly sample just 8 words from the list
 \vskip0.25cm
 
-Just pick any spot to start reading in the table.
-Read upwards, to the right, left, diagonally, whatever.
+Pick a random point in the list and start drawing next 8 characters.
 \vskip0.25cm
 
-For example, Row 7, column 8 reading left to right...\\
-\verb| 59   136   85   175   258|
+For example, start reading from Grey Worm and go down...\\
 \vskip0.25cm
 
 These random numbers correspond to the words...\\
-\verb| a   to   their   work   the|
+\verb| Grey Worm,   Anguy,   Orell,   Irri,   Craster |\\
+\verb| Mirri Maz Duur, Syrio Forrel, Rakharo |
 \vskip0.25cm
 
 With word lengths...
-\verb| 1  2  5  4  3|
+\verb| 10  6  6  5  8 15 13  8 |
 \vskip0.25cm
 
-and average = $\xbar=3$\;\; and proportion with ``e" = $\phat=2/5=0.40$.
+and average = $\xbar=8.875$\;\; and proportion with ``a" = $\phat=4/8=0.50$.
 \vskip0.25cm
 
-Oops!  My estimate is too low since $\mu = \Sexpr{round(mu,2)}$\\
+Oops!  My estimate is too low since 
+%$\mu = \Sexpr{round(mu,2)}$\\
 Did I do something wrong?  Is random sampling also biased? 
 
 
-Your averages (xbars) from 5 randomly-chosen words
-%humanRandomMeans <- c(3.8,4.1,5.6,5.8,3.4,3.2,5.2,3.3,3.4,3.6,3.8,2.5,3,4.2,5,5.8,4.6,5.2,2.6,3.1,6)
+Your averages (xbars) from 8 randomly-chosen words 
 <<tidy=TRUE>>=
-humanRandomMeans <- c(4.8,4.8,4.6,3.8,3.2,4.2,3.4,4.2,2.4,4.2,5.1,5.2,4.8,4.8,6.0,3.0,3.2,4.6,5.0,4.0)
+humanRandomMeans <- c(11.1, 10.2, 11.8, 12.6, 11.5, 14.6, 11.4, 13.1, 13.2, 11.5, 12, 11.5, 14.1, 11.5, 11.2, 10.2, 10.9, 12.5, 13.3, 12.3, 12, 13, 15.1);
 @
 How many sample means (xbars)?
 <<echo=FALSE>>=
@@ -363,8 +470,8 @@ histogram(~ humanRandomMeans)
 What is the mean length (xbar) ``on average" for your 
 \Sexpr{length(humanRandomMeans)} samples?
 
-What is the mean length "on average" for your samples of 5 ``random" words
-vs.\ 10 ``representative" words?  
+What is the mean length "on average" for your samples of 8 ``random" words
+vs.\ 8 ``representative" words?  
 <<>>=
 mean(humanRandomMeans)
 mean(humanSampleMeans)
@@ -376,11 +483,11 @@ mu
 
 How does the original population of word lengths compare
 with the \Sexpr{length(humanRandomMeans)} average lengths
-(xbars) from  $n=5$ randomly-chosen words?
+(xbars) from  $n=8$ randomly-chosen words?
 <<histogram-humanRandomMeans-2, echo=FALSE, fig.height=6, fig.width=9, out.width='0.79\\linewidth'>>=
-hist(worddata$wordlen, main="", ylim=c(0,0.6), prob=TRUE, 
+hist(worddata$wordlen, main="", ylim=c(0,0.5), prob=TRUE, 
      col="lightgray", ylab="Density",
-     xlab="Lengths of 268 words in Gettysburg Address", cex=1.5, cex.axis=1.5, cex.lab=1.5) 
+     xlab="Lengths of 100 character names in GoT", cex=1.5, cex.axis=1.5, cex.lab=1.5) 
 abline(v=mu, lwd=3, lty=2)
 hist(humanRandomMeans, add=TRUE, prob=TRUE, density=10, angle=-45)
 @
@@ -388,15 +495,15 @@ hist(humanRandomMeans, add=TRUE, prob=TRUE, density=10, angle=-45)
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%
 
-How do the averages from the ``representative" samples of $n=10$
-compare with the random samples of n=5?
+How do the averages from the ``representative" samples of $n=8$
+compare with the random samples of n=8?
 <<echo=FALSE, fig.height=6, fig.width=9, out.width='0.79\\linewidth'>>=
 par(mfrow=c(2,1)) # setup for 2 graphs on 1 page: 2 rows, 1 column
 # Set up the x-axis to be the same units for both plots
 lim=c(min(humanSampleMeans,humanRandomMeans),max(humanSampleMeans,humanRandomMeans))
 hist(humanSampleMeans, xlim=lim, main="", col="lightgrey", cex=1.5, cex.axis=1.5, cex.lab=1.5)
 abline(v=mu, lwd=2, lty=2)
-hist(humanRandomMeans, xlim=lim, main="", col="lightgrey")
+hist(humanRandomMeans, xlim=lim, main="", col="lightgrey", cex=1.5, cex.axis=1.5, cex.lab=1.5)
 abline(v=mu, lwd=2, lty=2)
 par(mfrow=c(1,1)) # return setup for 1 graph per page
 @
@@ -404,7 +511,7 @@ par(mfrow=c(1,1)) # return setup for 1 graph per page
 \newpage
 %%%%%%%%%%%%%%%%%%
 
-Let's let R randomly sample 5 words from the Gettysburg Address and record their 
+Let's let R randomly sample 8 words from the list of character names in GoT and record their 
 average length (xbar). 
 \vskip0.25cm
 Repeat this 500 times. 
@@ -420,8 +527,8 @@ set.seed(123456)
 attach(worddata)
 @
 <<>>=
-sample1 <- sample(1:268,5);   sample1
-word[sample1]
+sample1 <- sample(1:100,8);   sample1
+x[sample1]
 wordlen[sample1]
 mean(wordlen[sample1])
 @
@@ -430,8 +537,8 @@ mean(wordlen[sample1])
 %%%%%%%%%%%%%%%%
 
 <<>>=
-sample2 <- sample(1:268,5);   sample2
-word[sample2]
+sample2 <- sample(1:100,8);   sample2
+x[sample2]
 wordlen[sample2]
 mean(wordlen[sample2])
 @
@@ -453,13 +560,13 @@ Now, let's repeat the random sampling a few times
 set.seed(12345)
 @
 <<>>=
-replicate(10, wordlen[sample(1:268,5)] )
+replicate(10, wordlen[sample(1:100,8)] )
 @
 <<echo=FALSE>>=
 set.seed(12345)
 @
 <<>>=
-replicate(10, mean(wordlen[sample(1:268,5)]) )
+replicate(10, mean(wordlen[sample(1:100,8)]) )
 @
 
 \newpage
@@ -470,17 +577,18 @@ Let's repeat the random sampling 500 times
 set.seed(12345)
 @
 <<>>=
-randomSampleMeans = replicate(500, mean(wordlen[sample(1:268,5)]) )
+randomSampleMeans = replicate(500, mean(wordlen[sample(1:100,8)]) )
 sort(randomSampleMeans[1:20])
 mu
-sort(randomSampleMeans[1:20] - mu)
+plot(randomSampleMeans - mu)
+abline(h=0)
 @
 
 \newpage
 %%%%%%%%%%%%%%%%%%%
 
 What is the average lenght (xbar) "on average" for many, many ($M=500$)
-samples each with $n=5$ randomly chosen words?  
+samples each with $n=8$ randomly chosen words?  
 <<>>=
 mean(randomSampleMeans)
 @
@@ -492,11 +600,11 @@ mu
 @
 
 
-Histogram of the average lengths ($n=5$)
+Histogram of the average lengths ($n=8$)
 <<echo=FALSE, fig.height=6, fig.width=9, out.width='0.79\\linewidth'>>=
 hist(randomSampleMeans, main="", 
-     ylab="# samples of 5 randomly chosen words (N=500 samples)",
-     xlab="Mean length of 5 random words from Gettysburg Address", col="lightgrey", cex=1.5, cex.lab=1.5, cex.axis=1.5) 
+     ylab="# samples of 8 randomly chosen words (N=500 samples)",
+     xlab="Avg. Lengths of 100 character names in GoT", col="lightgrey", cex=1.5, cex.lab=1.5, cex.axis=1.5) 
 abline(v=mu, lwd=3, lty=2)
 text(mean(wordlen), 120, pos=4,
      paste("True mean word length = ", round(mu,2)))
@@ -506,11 +614,11 @@ text(mean(wordlen), 120, pos=4,
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 How does the original population of word lengths compare
-with the $M=500$ avreage lengths (xbars) of $n=5$ randomly chosen words?
+with the $M=500$ avreage lengths (xbars) of $n=8$ randomly chosen words?
 <<echo=FALSE, fig.height=6, fig.width=9, out.width='0.79\\linewidth'>>=
 hist(wordlen, main="", ylim=c(0,150), ylab="Number of words",
      col="lightgray", 
-     xlab="Lengths of 268 words in Gettysburg Address", cex=1.5, cex.lab=1.5, cex.axis=1.5) 
+     xlab="Lengths of 100 character names in GoT", cex=1.5, cex.lab=1.5, cex.axis=1.5) 
 abline(v=mu, lwd=3, lty=2)
 hist(randomSampleMeans, add=TRUE, density=10, angle=-45)
 @
@@ -523,23 +631,24 @@ Standardize the averages
 <<echo=FALSE, fig.height=6, fig.width=9, out.width='0.79\\linewidth'>>=
 z <- (randomSampleMeans - mean(randomSampleMeans)) / sd(randomSampleMeans)
 qqnorm(z, main="")
-qqline(z)
+#qqline(z)
 @
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Let's randomly sample $n=15$ words instead of 5
+Let's randomly sample $n=15$ words instead of 8
 
 Let's repeat the random sampling 500 times
 <<echo=FALSE>>=
 set.seed(12345)
 @
 <<>>=
-randomSampleMeans.15 = replicate(500, mean(wordlen[sample(1:268,15)]) )
+randomSampleMeans.15 = replicate(500, mean(wordlen[sample(1:100,15)]) )
 sort(randomSampleMeans.15[1:20])
 mu
-sort(randomSampleMeans.15[1:20] - mu)
+plot(randomSampleMeans.15 - mu)
+abline(h=0)
 @
 
 \newpage
@@ -564,7 +673,7 @@ Histogram of the average lengths ($n=15$)
 <<echo=FALSE, fig.height=6, fig.width=9, out.width='0.79\\linewidth'>>=
 hist(randomSampleMeans.15, main="", 
      ylab="# samples of 15 randomly chosen words (N=500 samples)",
-     xlab="Mean length of 15 random words from Gettysburg Address", col="lightgrey", cex=1.5, cex.lab=1.5, cex.axis=1.5) 
+     xlab="Avg. Lengths of 15 randomly chosen words of 100 GoT characters", col="lightgrey", cex=1.5, cex.lab=1.5, cex.axis=1.5) 
 abline(v=mu, lwd=3, lty=2)
 text(mu, 120, pos=4,
      paste("True mean word length = ", round(mu,2)))
@@ -578,7 +687,7 @@ with the $M==500$ mean lengths of $n=15$ randomly chosen words?
 <<echo=FALSE, fig.height=6, fig.width=9, out.width='0.79\\linewidth'>>=
 hist(wordlen, main="", ylim=c(0,150), ylab="Number of words",
      col="lightgray", 
-     xlab="Lengths of 268 words in Gettysburg Address") 
+     xlab="Avg. Lengths of 15 randomly chosen words of 100 GoT character") 
 abline(v=mu, lwd=3, lty=2)
 hist(randomSampleMeans.15, add=TRUE, density=10, angle=-45)
 @
@@ -601,14 +710,14 @@ par(mfrow=c(1,1))
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%
 
-How do the means from the random samples with 15 words compare
-with the $M=500$ mean lengths of 5 randomly chosen words?
+How do the means from the random samples with $15$ words compare
+with the $M=500$ mean lengths of $8$ randomly chosen words?
 <<echo=FALSE, fig.height=6, fig.width=9, out.width='0.79\\linewidth'>>=
 xlimit <- c(min(randomSampleMeans,randomSampleMeans.15)-0.5,
             max(randomSampleMeans,randomSampleMeans.15)+0.5)
-hist(randomSampleMeans, main="", xlim=xlimit, prob=TRUE, 
+hist(randomSampleMeans, main="", xlim=xlimit, prob=TRUE, ylim=c(0,0.5),
      col="lightgray", ylab="Density",
-     xlab="Mean Length of 268 words in Gettysburg Address") 
+     xlab="Avg. Lengths of 8 randomly chosen words of 100 GoT characters") 
 abline(v=mu, lwd=3, lty=2)
 hist(randomSampleMeans.15, add=TRUE, prob=TRUE, density=10, angle=-45)
 @
@@ -632,7 +741,5 @@ detach(worddata)
 
 %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%
-\end{frame}
-\end{document}
 %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%
