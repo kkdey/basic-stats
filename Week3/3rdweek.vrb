@@ -1,0 +1,14 @@
+\frametitle{Sum of random variables \;\;}
+
+\begin{align}
+E(Y) & = E(X_1 + X_2) \\
+     & = 0 \times 0.25 + 2 \times 0.50 + 3 \times 0.25 \\
+     & = 1.75 \\
+\end{align} \pause
+
+$$ E(X_1) = 1 \hspace{1 cm} E(X_2) = 0.75 $$ \pause
+
+$$ E(X_1 + X_2) = E(X_1) + E(X_2)  $$ \pause
+
+Is that always true? \pause YES!!! Lets derive it.
+

@@ -1,0 +1,645 @@
+%<<echo=FALSE>>=
+%OLD <- options(width=90)
+%@
+%<<echo=FALSE>>=
+%options(OLD)
+%@
+
+\documentclass{beamer}% regular slides (with pauses)
+%\documentclass[handout]{beamer}% handout (no pauses)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% Change the lecture information here %%%%%%%%%%%%%%%%
+\def\chapnum{Week \#2: Sampling from a Population (Sample Statistics have a Distribution)}
+\title{Lecture 3: Probability}
+\author{Kushal K Dey}
+\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{enumerate}
+\usepackage{amsmath, bbm}
+\usepackage[misc]{ifsym} % for the dice symbol \Cube{}
+\usepackage[latin1]{inputenc}
+\usepackage{hyperref}
+
+%\usepackage{comment}
+%\usepackage{pstricks}
+%\usepackage{graphicx}
+%\usepackage{booktabs}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=3mm]
+%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=3mm
+
+\usepackage{setspace}
+\ifdefined\knitrout
+  \renewenvironment{knitrout}{\begin{spacing}{0.75}\begin{tiny}}{\end{tiny}\end{spacing}}
+\else
+\fi
+
+%%%%%%%%%%%%%%% Defined Shortcuts (macros) %%%%%%%%%%%%%
+% parameters and statistics
+\newcommand{\xbar}{\overline{x}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\ybar}{\overline{y}}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\dbar}{\overline{d}}
+\newcommand{\Dbar}{\overline{D}}
+\newcommand{\zbar}{\overline{z}}
+\newcommand{\Zbar}{\overline{Z}}
+\newcommand{\ehat}{\widehat{\epsilon}}
+\newcommand{\yhat}{\widehat{y}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\betaa}{{\beta_0}}
+\newcommand{\betab}{{\beta_1}}
+\newcommand{\betac}{{\beta_2}}
+\newcommand{\betad}{{\beta_3}}
+\newcommand{\BETA}{{\boldsymbol\beta}}
+\newcommand{\betahata}{\widehat{\beta_0}}
+\newcommand{\betahatb}{\widehat{\beta_1}}
+\newcommand{\betahatc}{\widehat{\beta_2}}
+\newcommand{\betahatd}{\widehat{\beta_3}}
+\newcommand{\bhat}{\widehat{b}}
+\newcommand{\btilde}{\widetilde{b}}
+\newcommand{\ahat}{\widehat{a}}
+\newcommand{\atilde}{\widetilde{a}}
+\newcommand{\rss}{\mathit{SSE}}
+\newcommand{\sigmahat}{\widehat{\sigma}}
+\newcommand{\betahat}{\widehat{\beta}}
+\newcommand{\thetahat}{\widehat{\theta}}
+\newcommand{\phat}{\widehat{p}}
+\newcommand{\pihat}{\widehat{\pi}}
+\newcommand{\muhat}{\widehat{\mu}}
+% real numbers and integers
+\newcommand{\reals}{\mathbbm{R}}
+\newcommand{\integers}{\mathbbm{N}}
+%distributions
+\newcommand{\normal}{\textsf{Norm}}
+\newcommand{\Bin}{\textsf{Binom}}
+\newcommand{\Uni}{\textsf{Unif}}
+\newcommand{\Poisson}{\textsf{Pois}}
+\newcommand{\Exp}{\textsf{Exp}}
+\newcommand{\Beta}{\textsf{Beta}}
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+% probability and expected value
+\newcommand{\rv}{r.v.\ }
+\newcommand{\prob}{{\rm P}}
+\newcommand{\mean}{\mathrm{E}}
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{Cov}}
+\newcommand{\corr}{\mathop{\mathrm{Corr}}}
+% measures of spread
+\newcommand{\IQR}{\textit{IQR}}
+\newcommand{\SAD}{\textit{SAD}}
+\newcommand{\MAD}{\textit{MAD}}
+\newcommand{\SSD}{\textit{SSD}}
+\newcommand{\MSD}{\textit{MSD}}
+\newcommand{\RMSD}{\textit{RMSD}}
+\newcommand{\MSE}{\textit{MSE}}
+\newcommand{\MSR}{\textit{MSR}}
+% formatting code and such
+\providecommand{\variable}[1]{}
+\renewcommand{\variable}[1]{{\color{green!50!black}\texttt{#1}}}
+\providecommand{\function}[1]{}
+\renewcommand{\function}[1]{{\color{purple!75!blue}\texttt{\StrSubstitute{#1}{()}{}()}}}
+\providecommand{\option}[1]{}
+\renewcommand{\option}[1]{{\color{brown!80!black}\texttt{#1}}}
+\providecommand{\pkg}[1]{}
+\renewcommand{\pkg}[1]{{\color{red!80!black}\texttt{#1}}}
+\providecommand{\code}[1]{}
+\renewcommand{\code}[1]{{\color{blue!80!black}\texttt{#1}}}
+
+%%%%%%%%%
+% Changed by Kushal K Dey, University of Chicago
+%\providecommand{\file}[1]{}
+%\renewcommand{\file}[1]{{\tt #1}}
+\providecommand{\file}[1]{}
+\renewcommand{\file}[1]{{\color{orange!80!black}\texttt{#1}}}
+%\providecommand{\dataframe}[1]{}
+%\renewcommand{\dataframe}[1]{{\color{blue!80!black}\texttt{#1}}}
+\providecommand{\dataframe}[1]{}
+\renewcommand{\dataframe}[1]{{\color{cyan!80!black}\texttt{#1}}}
+%%%%%%%%%
+
+% other
+\def\Sum{\sum\nolimits}
+\def\b#1{\fboxsep=0pt\colorbox{black}{\color{white}\Cube{#1}}}
+\def\w#1{\Cube{#1}}
+%%%%%%%%%%%% End of shortcuts (macros) ##############
+
+%%%%%%%%% One way to hide answers until you want to show them %%%%%%%%%
+\def\Hide#1#2{\ul{~~~\onslide<#1>{\alert{#2}}~~~}}
+\def\hide#1#2{\ul{~~\onslide<#1>{\alert{#2}}~~}}
+\def\hid#1#2{\onslide<#1>{\alert{#2}}}
+% Choose the color of answers here too
+\setbeamercolor{alerted text}{fg=darkgray}
+%\setbeamercolor{alerted text}{fg=black}
+
+%------Centered Page Number Setup ------
+\defbeamertemplate{footline}{centered page number}
+{%
+  \hspace*{\fill}%
+  %\usebeamercolor[fg]{page number in head/foot}%
+  %\usebeamerfont{page number in head/foot}%
+  \tiny \chapnum: Page \insertframenumber\, of \inserttotalframenumber%
+  \hspace*{\fill}\vskip2pt%
+}
+%\setbeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber}
+\setbeamertemplate{footline}[centered page number]
+%--------------------------------
+
+%\usetheme{Copenhagen}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[english]{babel}
+\def\ul{\underline}
+\linespread{1.1}
+% or whatever
+
+
+
+%\parskip=0pt
+
+\begin{document}%large
+
+%<<setup, include=FALSE, cache=FALSE>>=
+%options(replace.assign=TRUE,width=90, digits=4)
+%opts_chunk$set(fig.path='figure/graphics-', cache.path='cache/graphics-', fig.align='center', fig.width=8, fig.height=5.5, fig.show='as.is', out.width='0.9\\linewidth', cache=FALSE, par=TRUE, size = 'tiny', tidy=TRUE, cache.extra=rand_seed)
+%knit_hooks$set(par=function(before, options, envir){
+%if (before && options$fig.show!='none') par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+%}, document = function(x) {
+%  gsub('\\\\(begin|end)\\{kframe\\}', '', x)
+%}, crop=hook_pdfcrop)
+%@
+%<<setup2, include=FALSE, cache=FALSE>>=
+%knit_theme$set("print")
+%@
+
+<<setup, include=FALSE, cache=FALSE>>=
+require(xtable)
+# require(mosaic)
+require(Hmisc)
+require(fastR)
+require(Lock5Data)
+options(format.R.blank=FALSE)
+options(width=60)
+options(continue=" ")
+options(replace.assign=TRUE)
+options(scipen=8, digits=4)
+opts_chunk$set(
+  fig.path='figure/graphics-',
+  cache.path='cache/graphics-',
+  dev="pdf",
+  fig.align='center',
+  fig.width=8,
+  fig.height=5.5,
+  fig.pos='H',
+  fig.show='asis',
+  out.width='0.99\\linewidth',
+  par=TRUE,
+  size = 'small',
+  tidy=FALSE,
+  prompt=FALSE,
+  comment=NA
+)
+# Tighten the spacing within R output from knitr
+hook1 <- function(x){ gsub("```\n*```r*\n*", "", x) }
+hook2 <- function(x){ gsub("```\n+```\n", "", x) }
+knit_hooks$set(
+  crop=hook_pdfcrop,
+  document = hook1,
+  par=function(before, options, envir){
+    if (before) {
+    ## load packages before a chunk is executed
+    for (p in options$packages) library(p, character.only = TRUE)
+    }
+    if (before && options$fig.show!='none') par(oma=c(0,0,0,0)+0.01, mar=c(4,4,0,0)+0.01, cex=0.9, cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+  }
+)
+opts_knit$set(concordance=TRUE)
+# For printing code blocks in black and white
+knit_theme$set("greyscale0")
+
+# trellis.par.set(theme=col.mosaic(bw=FALSE))
+uchicago.lattice.theme=col.fastR(bw=TRUE)
+uchicago.lattice.theme$box.dot$pch=20
+uchicago.lattice.theme$dot.symbol$pch=20
+uchicago.lattice.theme$plot.symbol$pch=20
+trellis.par.set(theme=uchicago.lattice.theme, warn=FALSE)
+trellis.par.set(fontsize=list(text=18,points=10))
+@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% End of suggested definitions and packages %%%%%%%%%%%%
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+
+%%%%%%%%%% Title frame (optional) %%%%%%%%%%%%%
+\begin{frame}{}
+\maketitle
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%% Begin slides here %%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Toss a coin \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<>>=
+TossCoin <- function(n=1){
+    return(replicate(n, sample(c("H","T"),1)))
+}
+TossCoin(1)
+TossCoin(n=2)
+TossCoin(n=10)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Experimental States \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+All possible states of an experiment.
+
+1 toss of coin: $\left \{ H, T  \right \}$ \pause \newline
+
+2 tosses : $\left \{H, H \right \}, \left \{H, T \right \}, \left \{T, H \right \},
+            \left \{T, T \right \}$ \pause \newline
+
+10 tosses: $\left\{x_{1}x_{2} \cdots x_{n} : x_{i} \in \{H,T \} \right \}$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Random Variable \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A function that associates a unique numerical value with every outcome of an experiment. \pause \newline
+
+For example, associate $1$ with H and $0$ with T in 1 coin toss experiment. \pause \newline
+
+The value of the random variable will vary from trial to trial as the experiment is repeated. \pause \newline
+
+Ex: A coin is tossed 2 times. The random variable X is the number of tails that are noted.
+
+\begin{tabular}{|c|c|}
+\hline
+state & X \\ \hline
+HH & 0 \\ \hline
+HT & 1 \\ \hline
+TH & 1 \\ \hline
+TT & 2 \\ \hline
+\end{tabular}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Events \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Are all the states of an experiment equally likely? \pause \newline
+
+What if a coin is biased to come up heads $80 \%$ times? \pause \newline
+
+Events: Sets of outcomes of the experiment \pause \newline
+
+ $X=1$ is an event, comprises of two outcomes $\{HT, TH \}$ \pause ]\newline
+
+ $X=2$ is also an event, comprises of $\{ HH \}$. \pause \newline
+
+ $X=0$ is also an event, comprises of $\{ TT \}$.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Events  \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Take another example. Let X be a random variable that takes 1 if there is
+at least one head. \pause \newline
+
+\begin{tabular}{|c|c|}
+\hline
+state & X \\ \hline
+HH & 1 \\ \hline
+HT & 1 \\ \hline
+TH & 1 \\ \hline
+TT & 0 \\ \hline
+\end{tabular}
+
+Then  $X=1$ is an event, comprises of two outcomes $\{HH, HT, TH \}$ \pause \newline
+
+$X=0$ is also an event, comprises of $\{ TT \}$.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Probability  \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Take any experiment (say 2 independent tosses of a coin).  \pause \newline
+
+In one experiment, there may be many states (4 in this case- HH, HT, TH and TT) but remember, you observe only one. \pause \newline
+
+Repeat the experiment many many times (as many as you can imagine- may be $10^7$). \pause \newline
+
+The proportion of times you observe each experimental state after all these many repititions gives you the probability of that state.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Example of Probability  \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We cite an example of how to measure probability for one coin toss with states
+H and T.
+
+\url{http://digitalfirst.bfwpub.com/stats_applet/stats_applet_10_prob.html}
+\pause \newline
+
+Cases: Coin fair and unfair!! \pause \newline
+
+Question : What is the \emph{probability} of Heads in a coin toss? \pause \newline
+
+Reframe the question: What is the proportion of times you would expect to see
+Heads if you tossed the coin many many times? \pause \newline
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Probability  Table \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For a fair toss of coin, we saw
+
+\begin{tabular}{|c|c|}
+\hline
+state & Prob \\ \hline
+H & Pr(H) = 0.5\\ \hline
+T & Pr(T) = 0.5 \\ \hline
+\end{tabular} \pause \newline
+
+Let $X$ be 1 if state is H and 0 if T. \pause \newline
+
+\begin{tabular}{|c|c|}
+\hline
+X & Prob \\ \hline
+1 & Pr(X=1) := Pr(H) = 0.5\\ \hline
+0 & Pr(X=0) := Pr(T) = 0.5 \\ \hline
+\end{tabular}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Probability  of an Event \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\emph{Probability of an event} is the sum of probability of all states making up the event. \pause \newline
+
+For two independent tosses of a fair coin, the probability table on states \pause \newline
+
+\begin{tabular}{|c|c|}
+\hline
+state & Prob \\ \hline
+HH & Pr(HH) = Pr(H in toss 1) * Pr(H in toss 2) = 0.25\\ \hline
+HT & Pr(HT) = Pr(H in toss 1) * Pr(T in toss 2) = 0.25 \\ \hline
+TH & Pr(TH) = Pr(T in toss 1) * Pr(H in toss 2) = 0.25\\ \hline
+TT & Pr(HT) = Pr(T in toss 1) * Pr(T in toss 2) = 0.25 \\ \hline
+\end{tabular} \pause \newline
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Probability  of an Event \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let X be 1 if we observe at least one H in two coin tosses. \pause \newline
+
+Then the probability table for the random variable X. \newline
+
+\begin{tabular}{|c|c|c|}
+\hline
+X & states & Prob \\ \hline
+0 & TT & Pr(X=0) = Pr(TT) = 0.25 \\ \hline
+1 & \{ HH, HT, TH \} & Pr(X=1) = Pr(HH) + Pr(HT) + Pr(TH) = 0.75 \\ \hline
+\end{tabular} \newline \newline
+
+Note that the sum of the probabilities for any probability table would be 1 (sum across all possible states).
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Probability  of an Event \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let X be number of Ts observed in two tosses of a coin \pause \newline
+
+Then the probability table for the random variable X. \newline
+
+\begin{tabular}{|c|c|c|}
+\hline
+X & states & Prob \\ \hline
+0 & HH & Pr(X=0) = Pr(HH) = 0.25 \\ \hline
+1 & \{ HT, TH \} & Pr(X=1) = Pr(HT) + Pr(TH) = 0.50 \\ \hline
+2 & TT & Pr(X=2) = Pr(TT) = 0.25 \\ \hline
+\end{tabular} \newline \newline
+
+Note that the sum of the probabilities for any probability table would be 1 (sum across all possible states).
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Why do we need Random variables? \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+When we can define probability in terms of states and events, why do we need random variable X? \pause \newline
+
+\emph{It is easier to interpret the experiment through numbers and bunch of symbols}.
+
+What type of interpreting? \pause \newline
+
+Measures of central tendency and spread
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Probability distribution of random variable \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Suppose $X$ is a random variable that takes values $x_{1}, x_{2}, \cdots. x_{n}$
+and let us define the probability
+
+$$ p(x_{i}) = Pr(X=x_{i}) $$
+
+Then we have
+
+$$ 0 \leq p(x_{i}) \leq 1 $$
+
+$$ \sum_{i=1}^{n} p(x_{i}) = 1 $$
+
+Cumulative probability
+
+$$ F(x) = Pr(X \leq x) = \sum_{x_{i} \leq x} p(x_{i}) $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Expectation of random variable \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+If X is a discrete random variable with possible values $x_1, x_2, x_3, ..., x_n$
+
+$$ E(X) : = \sum_{i=1}^{n} x_{i} Pr(X=x_{i})  $$
+
+For one coin toss, let X be 1 if H and 0 if T.
+
+$$ E(X) = 0. Pr(X=0) + 1. Pr(X=1) = 0.5 $$
+
+If X is number of Ts in 2 independent tosses of a coin
+
+$$ E(X) = 0. Pr(X=0) + 1. Pr(X=1) + 2. Pr(X=2) = 0 + 0.5 + 2*0.25 = 1 $$
+
+If I am asked to choose ONE value of the variable X, this is the value we may want to choose.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Expectation and $\bar{x}$ \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We saw that if we observe values $x_1, x_2, \cdots, x_{n}$ with frequencies $f_{1}, f_{2}, \cdots, f_{n}$, then
+
+$$ \bar{x} := \frac{1}{n} \sum_{i=1}^{n} x_i f_i = \frac{1}{n} \sum_{i=1}^{n} x_{i} \left ( \frac{f_{i}}{n} \right ) $$
+
+Now we can argue that as $n \rightarrow \infty$, $\frac{f_i}{n} \approx Pr(X=x_{i})$,
+then we get the expectation
+
+$$ E(X) = \sum_{i=1}^{n} x_{i} Pr (X= x_{i}) $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Variance \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\emph{Variance of a random variable} is a non-negative number which gives an idea of how widely spread the values of the random variable are likely to be; the larger the variance, the more scattered the observations on average. \pause \newline
+
+Define it as
+
+\begin{align}
+Var(X) & : = \sum_{i=1}^{n} (x_{i} - E(X))^2 Pr(X=x_{i})  \\
+          & = E(X - E(X))^2 \\
+          & = E(X^2) - E(X)^2 \\
+          & = \sum_{i=1}^{n} x^2_{i} Pr(X=x_{i}) - \left (\sum_{i=1}^{n} x_{i} Pr (X= x_{i}) \right)^2 \\
+\end{align}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Our first Probability Distribution \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $X$ be a random variable taking values 0 and 1 for T and H in a coin toss experiment. \pause \newline
+
+\begin{align}
+X & = 1 \hspace{0.5 cm}  \;\; prob \;\; p \\
+  & = 0 \hspace{0.5 cm}  \;\;prob \;\; (1-p) \\
+\end{align}
+
+where $p$ is the probability of head (0.5 in fair coin toss case).\pause \newline
+
+This distribution is called a \textbf{Bernoulli distribution} and we term
+$ X \sim Ber(p) $
+
+$$ E(X) = p \hspace{0.5 cm} var(X) = E(X^2) - E(X)^2 = p - p^2 = p(1-p) $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Bernoulli distribution graph \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=FALSE>>=
+graph <- function(n,p){
+  x <- dbinom(0:n,size=n,prob=p)
+  barplot(x,names.arg=0:n,
+         main=sprintf(paste('bin. dist. ',n,p,sep=':')))
+}
+par(mfcol=c(2,5))
+  mapply(graph,1,seq(0.1,1,0.1))
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Binomial Distribution \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Here $X$ denotes number of heads observed in $n$ tosses. Let probability of observing head in one toss be $p$
+
+\begin{align}
+Pr(X=0) & = (1-p)^{n} \\
+Pr(X=1) & = np(1-p)^{n-1} \\
+Pr(X=2) & = n \choose 2 p^2 (1-p)^{n-2} \\
+....  &  ...  \\
+Pr(X=x) & = n \choose x p^x (1-p)^{n-x}  \\
+.... &  .... \\
+Pr(X=n) & = p^{n} \\
+\end{align}
+
+$$ E(X) = ?  \hspace{0.5 cm} Var(X) = ?  $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Binomial Distribution graph (n=20) \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=FALSE>>=
+graph <- function(n,p){
+  x <- dbinom(0:n,size=n,prob=p)
+  barplot(x,names.arg=0:n,
+         main=sprintf(paste('bin. dist. ',n,p,sep=':')))
+}
+par(mfcol=c(2,5))
+  mapply(graph,20,seq(0.1,1,0.1))
+@
+
+\end{frame}
+
+\end{document}
+
+
+
+
+
+
+
+
