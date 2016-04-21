@@ -1,0 +1,12 @@
+\frametitle{Continuity Correction}
+
+\begin{tabular}{|c|c|}
+\hline
+Discrete & Continuous \\ \hline
+$X=3$ & $2.5 < X < 3.5$ \\ \hline
+$X > 3$ & $X > 3.5$ \\ \hline
+$X \geq 3$ & $ X > 2.5 $ \\ \hline
+$X < 3$ & $X < 2.5$ \\ \hline
+$X \leq 3$ & $X < 3.5$ \\ \hline
+\end{tabular}
+

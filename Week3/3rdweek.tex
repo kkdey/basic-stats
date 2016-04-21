@@ -259,13 +259,13 @@
 \hlkwd{TossCoin}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{2}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-[1] "T" "H"
+[1] "H" "T"
 \end{verbatim}
 \begin{alltt}
 \hlkwd{TossCoin}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{10}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
- [1] "H" "H" "T" "H" "T" "T" "T" "T" "H" "H"
+ [1] "H" "T" "H" "T" "T" "T" "H" "T" "H" "T"
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -589,6 +589,21 @@ The more times you repeat the experiment, the closer you should get to the true 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Chebyshev Inequality \;\;}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\emph{General Chebyshev Inequality:}  For any random variable $X$, for any fixed $\epsilon>0$ and a function $g(X) \geq 0$,
+
+$$ Pr [ g(X) \geq \epsilon ] \leq \frac { E (g(X)) }{\epsilon} $$
+
+\emph{Chebyshev Inequality:}
+
+$$ Pr [ \left | \bar{X}_{n} - \mu \right | \geq \epsilon ] \leq \frac{E(\bar{X}_{n} - \mu)^2}{\epsilon^2}  $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Variance \;\;}
@@ -608,20 +623,6 @@ Var(X) & : = \sum_{i=1}^{n} (x_{i} - E(X))^2 Pr(X=x_{i})  \\
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Chebyshev Inequality \;\;}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\emph{General Chebyshev Inequality:}  For any random variable $X$, for any fixed $\epsilon>0$
-
-$$ Pr [ g(X) \geq \epsilon ] \leq \frac { E (g(X)) }{\epsilon} $$
-
-\emph{Chebyshev Inequality:}
-
-$$ Pr [ \left | \bar{X}_{n} - \mu \right | \geq \epsilon ] \leq \frac{E(\bar{X}_{n} - \mu)^2}{\epsilon^2}  $$
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Our first Probability Distribution \;\;}
