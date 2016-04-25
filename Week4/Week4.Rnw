@@ -721,7 +721,7 @@ $\mu$.
 \begin{frame}{Last relation: Variance}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-$$ var(a_1X_1v+ a_2 X_2 + \cdots + a_nX_n) = \sum_{i=1}^{n} a^2_{i} var (X_{i}) $$ \pause
+$$ var(a_1X_1+ a_2 X_2 + \cdots + a_nX_n) = \sum_{i=1}^{n} a^2_{i} var (X_{i}) $$ \pause
 
 This implies 
 
@@ -759,7 +759,7 @@ $$ var \left (\frac{X_1 + X_2 + \cdots + X_{n}}{n} \right ) = \frac{1}{n^2}(n \s
 \begin{frame}{Last relation: Variance}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-$$ var(a_1X_1v+ a_2 X_2 + \cdots + a_nX_n) = \sum_{i=1}^{n} a^2_{i} var (X_{i}) $$ 
+$$ var(a_1X_1+ a_2 X_2 + \cdots + a_nX_n) = \sum_{i=1}^{n} a^2_{i} var (X_{i}) $$ 
 
 This implies 
 
@@ -788,7 +788,7 @@ $$ E(\frac{1}{n} \sum_{i=1}^{n} X_i) = p $$
 
 Now here there is another way of viewing the mean of the $X_i$, it is the proportion of heads you get in $n$ trials, so we call it \textit{sampling proportion} 
 
-$$ \hat{p} = \sum_{i=1}^{n} X_i $$
+$$ \hat{p} = \frac{1}{n} \sum_{i=1}^{n} X_i $$
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

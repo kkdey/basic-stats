@@ -718,7 +718,7 @@ $\mu$.
 \begin{frame}{Last relation: Variance}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-$$ var(a_1X_1v+ a_2 X_2 + \cdots + a_nX_n) = \sum_{i=1}^{n} a^2_{i} var (X_{i}) $$ \pause
+$$ var(a_1X_1+ a_2 X_2 + \cdots + a_nX_n) = \sum_{i=1}^{n} a^2_{i} var (X_{i}) $$ \pause
 
 This implies 
 
@@ -756,7 +756,7 @@ $$ var \left (\frac{X_1 + X_2 + \cdots + X_{n}}{n} \right ) = \frac{1}{n^2}(n \s
 \begin{frame}{Last relation: Variance}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-$$ var(a_1X_1v+ a_2 X_2 + \cdots + a_nX_n) = \sum_{i=1}^{n} a^2_{i} var (X_{i}) $$ 
+$$ var(a_1X_1+ a_2 X_2 + \cdots + a_nX_n) = \sum_{i=1}^{n} a^2_{i} var (X_{i}) $$ 
 
 This implies 
 
@@ -785,7 +785,7 @@ $$ E(\frac{1}{n} \sum_{i=1}^{n} X_i) = p $$
 
 Now here there is another way of viewing the mean of the $X_i$, it is the proportion of heads you get in $n$ trials, so we call it \textit{sampling proportion} 
 
-$$ \hat{p} = \sum_{i=1}^{n} X_i $$
+$$ \hat{p} = \frac{1}{n} \sum_{i=1}^{n} X_i $$
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -927,7 +927,7 @@ $100$ fair coins and recording the number of heads $10$ times.
 \hlstd{Y}
 \end{alltt}
 \begin{verbatim}
- [1] 48 53 53 46 55 53 40 54 53 57
+ [1] 47 49 55 48 55 58 47 46 48 55
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -986,7 +986,7 @@ $100$ fair coins and recording the number of heads $100$ times.
 \end{alltt}
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   39.0    46.0    50.0    49.8    53.0    61.0 
+   32.0    47.0    50.0    49.8    53.2    62.0 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1028,7 +1028,7 @@ $100$ fair coins and recording the number of heads $10000$ times.
 \end{alltt}
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-     30      47      50      50      53      68 
+     32      46      50      50      53      72 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1069,7 +1069,7 @@ Let us perform the same experiments but instead of observing the number of heads
 \end{alltt}
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  0.390   0.490   0.510   0.515   0.558   0.590 
+  0.370   0.435   0.460   0.474   0.515   0.590 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1110,7 +1110,7 @@ Let us perform the same experiments but instead of observing the number of heads
 \end{alltt}
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  0.330   0.470   0.500   0.499   0.530   0.610 
+  0.390   0.460   0.490   0.498   0.530   0.620 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1151,7 +1151,7 @@ Let us perform the same experiments but instead of observing the number of heads
 \end{alltt}
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   0.31    0.47    0.50    0.50    0.53    0.71 
+   0.27    0.47    0.50    0.50    0.53    0.70 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1191,7 +1191,7 @@ In the previous case, the variables generated were $Bin(100,0.5)$. Now lets look
 \end{alltt}
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   0.15    0.40    0.50    0.50    0.60    0.95 
+   0.10    0.45    0.50    0.50    0.55    0.90 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1231,7 +1231,7 @@ Now lets look at variables generated at $Bin(100,0.5)$ and repeat the process $1
 \end{alltt}
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   0.33    0.47    0.50    0.50    0.53    0.69 
+   0.32    0.47    0.50    0.50    0.53    0.69 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1271,7 +1271,7 @@ Now lets look at variables generated at $Bin(1000,0.5)$ and repeat the process $
 \end{alltt}
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  0.437   0.489   0.500   0.500   0.511   0.563 
+  0.437   0.489   0.500   0.500   0.511   0.562 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

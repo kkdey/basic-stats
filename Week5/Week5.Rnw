@@ -1,0 +1,859 @@
+%<<echo=FALSE>>=
+%OLD <- options(width=90)
+%@
+%<<echo=FALSE>>=
+%options(OLD) 
+%@
+
+\documentclass{beamer}% regular slides (with pauses)
+%\documentclass[handout]{beamer}% handout (no pauses)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% Change the lecture information here %%%%%%%%%%%%%%%%
+\def\chapnum{Week \#5}
+\title{STAT234: Lecture 4 - Sums of random Variables}
+\author{Kushal K. Dey}
+\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%% Start of suggested definitions and packages %%%%%%%%%%%%
+%%%%%% Do not change unless you really know what you are doing %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{enumerate}
+\usepackage{amsmath, bbm}
+\usepackage[misc]{ifsym} % for the dice symbol \Cube{}
+\usepackage[latin1]{inputenc}
+\usepackage{hyperref}
+
+%\usepackage{comment}
+%\usepackage{pstricks}
+%\usepackage{graphicx}
+%\usepackage{booktabs}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=3mm]
+%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=3mm
+
+\usepackage{setspace}
+\ifdefined\knitrout
+  \renewenvironment{knitrout}{\begin{spacing}{0.75}\begin{tiny}}{\end{tiny}\end{spacing}}
+\else
+\fi
+
+%%%%%%%%%%%%%%% Defined Shortcuts (macros) %%%%%%%%%%%%%
+% parameters and statistics
+\newcommand{\xbar}{\overline{x}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\ybar}{\overline{y}}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\dbar}{\overline{d}}
+\newcommand{\Dbar}{\overline{D}}
+\newcommand{\zbar}{\overline{z}}
+\newcommand{\Zbar}{\overline{Z}}
+\newcommand{\ehat}{\widehat{\epsilon}}
+\newcommand{\yhat}{\widehat{y}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\betaa}{{\beta_0}}
+\newcommand{\betab}{{\beta_1}}
+\newcommand{\betac}{{\beta_2}}
+\newcommand{\betad}{{\beta_3}}
+\newcommand{\BETA}{{\boldsymbol\beta}}
+\newcommand{\betahata}{\widehat{\beta_0}}
+\newcommand{\betahatb}{\widehat{\beta_1}}
+\newcommand{\betahatc}{\widehat{\beta_2}}
+\newcommand{\betahatd}{\widehat{\beta_3}}
+\newcommand{\bhat}{\widehat{b}}
+\newcommand{\btilde}{\widetilde{b}}
+\newcommand{\ahat}{\widehat{a}}
+\newcommand{\atilde}{\widetilde{a}}
+\newcommand{\rss}{\mathit{SSE}}
+\newcommand{\sigmahat}{\widehat{\sigma}}
+\newcommand{\betahat}{\widehat{\beta}}
+\newcommand{\thetahat}{\widehat{\theta}}
+\newcommand{\phat}{\widehat{p}}
+\newcommand{\pihat}{\widehat{\pi}}
+\newcommand{\muhat}{\widehat{\mu}}
+% real numbers and integers
+\newcommand{\reals}{\mathbbm{R}}
+\newcommand{\integers}{\mathbbm{N}}
+%distributions
+\newcommand{\normal}{\textsf{Norm}}
+\newcommand{\Bin}{\textsf{Binom}}
+\newcommand{\Uni}{\textsf{Unif}}
+\newcommand{\Poisson}{\textsf{Pois}}
+\newcommand{\Exp}{\textsf{Exp}}
+\newcommand{\Beta}{\textsf{Beta}}
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+% probability and expected value
+\newcommand{\rv}{r.v.\ }
+\newcommand{\prob}{{\rm P}}
+\newcommand{\mean}{\mathrm{E}}
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{Cov}}
+\newcommand{\corr}{\mathop{\mathrm{Corr}}}
+% measures of spread
+\newcommand{\IQR}{\textit{IQR}}
+\newcommand{\SAD}{\textit{SAD}}
+\newcommand{\MAD}{\textit{MAD}}
+\newcommand{\SSD}{\textit{SSD}}
+\newcommand{\MSD}{\textit{MSD}}
+\newcommand{\RMSD}{\textit{RMSD}}
+\newcommand{\MSE}{\textit{MSE}}
+\newcommand{\MSR}{\textit{MSR}}
+% formatting code and such
+\providecommand{\variable}[1]{}
+\renewcommand{\variable}[1]{{\color{green!50!black}\texttt{#1}}}
+\providecommand{\function}[1]{}
+\renewcommand{\function}[1]{{\color{purple!75!blue}\texttt{\StrSubstitute{#1}{()}{}()}}}
+\providecommand{\option}[1]{}
+\renewcommand{\option}[1]{{\color{brown!80!black}\texttt{#1}}}
+\providecommand{\pkg}[1]{}
+\renewcommand{\pkg}[1]{{\color{red!80!black}\texttt{#1}}}
+\providecommand{\code}[1]{}
+\renewcommand{\code}[1]{{\color{blue!80!black}\texttt{#1}}}
+
+%%%%%%%%%
+% Changed by Kushal K Dey, University of Chicago
+%\providecommand{\file}[1]{}
+%\renewcommand{\file}[1]{{\tt #1}}
+\providecommand{\file}[1]{}
+\renewcommand{\file}[1]{{\color{orange!80!black}\texttt{#1}}}
+%\providecommand{\dataframe}[1]{}
+%\renewcommand{\dataframe}[1]{{\color{blue!80!black}\texttt{#1}}}
+\providecommand{\dataframe}[1]{}
+\renewcommand{\dataframe}[1]{{\color{cyan!80!black}\texttt{#1}}}
+%%%%%%%%%
+
+% other
+\def\Sum{\sum\nolimits}
+\def\b#1{\fboxsep=0pt\colorbox{black}{\color{white}\Cube{#1}}}
+\def\w#1{\Cube{#1}}
+%%%%%%%%%%%% End of shortcuts (macros) ##############
+
+%%%%%%%%% One way to hide answers until you want to show them %%%%%%%%%
+\def\Hide#1#2{\ul{~~~\onslide<#1>{\alert{#2}}~~~}}
+\def\hide#1#2{\ul{~~\onslide<#1>{\alert{#2}}~~}}
+\def\hid#1#2{\onslide<#1>{\alert{#2}}}
+% Choose the color of answers here too
+\setbeamercolor{alerted text}{fg=darkgray} 
+%\setbeamercolor{alerted text}{fg=black} 
+
+%------Centered Page Number Setup ------
+\defbeamertemplate{footline}{centered page number}
+{%
+  \hspace*{\fill}%
+  %\usebeamercolor[fg]{page number in head/foot}%
+  %\usebeamerfont{page number in head/foot}%
+  \tiny \chapnum: Page \insertframenumber\, of \inserttotalframenumber%
+  \hspace*{\fill}\vskip2pt%
+}
+%\setbeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber}
+\setbeamertemplate{footline}[centered page number]
+%--------------------------------
+
+%\usetheme{Copenhagen}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[english]{babel}
+\def\ul{\underline}
+\linespread{1.1}
+% or whatever
+
+
+
+%\parskip=0pt
+
+\begin{document}%large
+
+%<<setup, include=FALSE, cache=FALSE>>=
+%options(replace.assign=TRUE,width=90, digits=4)
+%opts_chunk$set(fig.path='figure/graphics-', cache.path='cache/graphics-', fig.align='center', fig.width=8, fig.height=4.5, fig.show='as.is', out.width='0.9\\linewidth', cache=FALSE, par=TRUE, size = 'tiny', tidy=TRUE, cache.extra=rand_seed)
+%knit_hooks$set(par=function(before, options, envir){
+%if (before && options$fig.show!='none') par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+%}, document = function(x) {
+%  gsub('\\\\(begin|end)\\{kframe\\}', '', x)
+%}, crop=hook_pdfcrop)
+%@
+%<<setup2, include=FALSE, cache=FALSE>>=
+%knit_theme$set("print")
+%@
+
+<<setup, include=FALSE, cache=FALSE>>=
+require(xtable)
+# require(mosaic)
+require(Hmisc)
+require(fastR)
+require(Lock5Data)
+options(format.R.blank=FALSE) 
+options(width=60)
+options(continue=" ")
+options(replace.assign=TRUE)
+options(scipen=8, digits=4)
+opts_chunk$set(
+  fig.path='figure/graphics-', 
+  cache.path='cache/graphics-', 
+  dev="pdf",
+  fig.align='center', 
+  fig.width=8, 
+  fig.height=5.5, 
+  fig.pos='H', 
+  fig.show='asis', 
+  out.width='0.99\\linewidth', 
+  par=TRUE, 
+  size = 'small', 
+  tidy=FALSE,
+  prompt=FALSE,
+  comment=NA
+)
+# Tighten the spacing within R output from knitr
+hook1 <- function(x){ gsub("```\n*```r*\n*", "", x) }
+hook2 <- function(x){ gsub("```\n+```\n", "", x) }
+knit_hooks$set(
+  crop=hook_pdfcrop,
+  document = hook1,
+  par=function(before, options, envir){
+    if (before) {
+    ## load packages before a chunk is executed
+    for (p in options$packages) library(p, character.only = TRUE)
+    }
+    if (before && options$fig.show!='none') par(oma=c(0,0,0,0)+0.01, mar=c(4,4,0,0)+0.01, cex=0.9, cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+  } 
+)
+opts_knit$set(concordance=TRUE)
+# For printing code blocks in black and white
+knit_theme$set("greyscale0") 
+
+# trellis.par.set(theme=col.mosaic(bw=FALSE))
+uchicago.lattice.theme=col.fastR(bw=TRUE)
+uchicago.lattice.theme$box.dot$pch=20
+uchicago.lattice.theme$dot.symbol$pch=20
+uchicago.lattice.theme$plot.symbol$pch=20
+trellis.par.set(theme=uchicago.lattice.theme, warn=FALSE)
+trellis.par.set(fontsize=list(text=18,points=10))
+@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% End of suggested definitions and packages %%%%%%%%%%%%
+
+%------------------------------------------------------------------
+%------------------------------------------------------------------
+
+%%%%%%%%%% Title frame (optional) %%%%%%%%%%%%%
+\begin{frame}{}
+\maketitle
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%% Begin slides here %%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Binomial Distribution and Normal approx.}
+
+More generally if $X_1, X_2, \cdots, X_n$ be independent identically distributed (iid) $Ber(p)$ random variables, 
+
+then 
+
+$$ Y_{n} = \sum_{i=1}^{n} X_{i} \sim Bin \left ( n, p \right) $$
+
+So, 
+
+$$ E(Y_{n}) = np  \hspace{1 cm} var(Y_{n}) = np (1-p) $$
+
+As $n \rightarrow \infty$
+
+$$ Y_{n} \approx N \left ( np, np(1-p) \right)  $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Lets look at variables generated at $Bin(20,0.5)$ and repeat the process $10,000$ times.
+
+<<>>=
+Y1 <- rbinom(10000, 20, p=0.5)/ 20;
+summary(Y1)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=FALSE, fig.height=4, out.width='0.89\\linewidth'>>=
+par(mar=c(2,2,2,2))
+hist(Y1, main="n=20, p=0.5 replicated 10000 times", 
+     xlim=c(min(Y1), max(Y1)), ylab="proportion",
+     col="lightgray", freq=FALSE,
+     xlab="Prop of heads out of 100 tosses") 
+lines(density(Y1, na.rm=TRUE))
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Now lets look at variables generated at $Bin(100,0.5)$ and repeat the process $10,000$ times.
+
+<<>>=
+Y2 <- rbinom(10000, 100, p=0.5)/ 100;
+summary(Y2)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=FALSE, fig.height=4, out.width='0.89\\linewidth'>>=
+par(mar=c(2,2,2,2))
+hist(Y2, main="n=100, p=0.5 replicated 10000 times", 
+     xlim=c(min(Y2), max(Y2)), ylab="proportion",
+     col="lightgray", freq=FALSE,
+     xlab="Prop of heads out of 100 tosses") 
+lines(density(Y2, na.rm=TRUE))
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Now lets look at variables generated at $Bin(1000,0.5)$ and repeat the process $10,000$ times.
+
+<<>>=
+Y3 <- rbinom(10000, 1000, p=0.5)/ 1000;
+summary(Y3)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=FALSE, fig.height=4, out.width='0.89\\linewidth'>>=
+par(mar=c(2,2,2,2))
+hist(Y3, main="n=1000, p=0.5 replicated 10000 times", 
+     xlim=c(min(Y3), max(Y3)), ylab="proportion",
+     col="lightgray", freq=FALSE,
+     xlab="Prop of heads out of 100 tosses") 
+lines(density(Y3, na.rm=TRUE))
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Normal approx. of Binomial}
+
+\url{http://digitalfirst.bfwpub.com/stats_applet/stats_applet_2_cltbinom.html}
+
+We define $ \hat{p} = \frac{1}{n} \sum_{i=1}^{n} X_{i}$.
+
+$$ \hat{p} \approx N \left (p, \frac{p(1-p)}{n} \right) $$
+
+This approximation is better when $p$ is not to close to $0$ or $1$.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Continuity Correction}
+
+\begin{tabular}{|c|c|}
+\hline
+Discrete & Continuous \\ \hline
+$X=3$ & $2.5 < X < 3.5$ \\ \hline
+$X > 3$ & $X > 3.5$ \\ \hline
+$X \geq 3$ & $ X > 2.5 $ \\ \hline
+$X < 3$ & $X < 2.5$ \\ \hline
+$X \leq 3$ & $X < 3.5$ \\ \hline
+\end{tabular}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Continuity Correction}
+
+\begin{itemize}
+\item $X$ is approximately Normal with mean $np$ and sd $\sqrt{np(1-p)}$ \pause
+\item But $X$ is a discrete random variable and Normal is a continuous one. \pause
+\item $X \sim Bin(16, 0.6 ) $. How to find $P( X \leq 3)$? \pause $P(X \leq 3)= P( X \leq 3.5)$ ? \pause
+\item By R : \textit{ pbinom(3,16,0.6) \# 0.000938 } \pause
+\item $$P( X \leq 3 )= P( \frac{X- 9.6}{1.959} \leq \frac{3-9.6}{1.959}) \pause = P(z \leq -3.369) = 0.00037$$ \pause
+\item $$P( X < 3.5 )= P( \frac{X- 9.6}{1.959} \leq \frac{3.5-9.6}{1.959})  = P(z \leq -3.114) = 0.000923$$ \pause
+\item To find $P(X \geq 10)$ Should we use 10.5 or 9.5 ? 
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Continuous distribution}
+
+We would want to define $Pr(X=x)$ for a continuous random variable $X$, but unfortunately it is $0$. We will soon see why \pause \newline
+
+So how do we proceed to build something like a probability table for discrete variable?
+
+We define \textbf{cumulative density function} (cdf)
+
+$$ F(x) = Pr (X \leq x) $$
+
+If we differentiate this function, we get \textbf{probability density function} (pdf)
+
+$$ \frac{d}{dx} F(x) = f(x) $$
+
+$$ f(x) \geq 0 \hspace {1 cm} \int f(x) dx = 1 $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Normal Distribution}
+
+For normal distribution with mean $\mu$ and variance $\sigma^2$, 
+
+$$ \phi(x) := \int \frac{1}{\sqrt{2 \pi}} exp \left (-\frac{(x-\mu)^2}{2 \sigma^2} \right ) $$
+
+Cumulative distribution
+
+$$ \Phi(x) : = \int_{-\infty}^{x} \phi(x) dx $$
+
+The mean and variance 
+
+$$ E(X) = \mu  \hspace{1 cm} var(X) = \sigma^2 $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{probability density graph}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=FALSE>>=
+
+y <- seq(-4,4, length=1000)
+hy <- dnorm(y)
+plot(y, hy, type="l")
+
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{cumulative density graph}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<echo=FALSE>>=
+y <- seq(-4,4, length=1000)
+hy <- pnorm(y)
+plot(y, hy, type="l")
+
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Sum of normal variables}
+
+Suppose we consider two random variables $X$ and $Y$ which follow normal distribution.
+
+$$ X \sim N(\mu, \sigma^2)  \hspace{1 cm} Y \sim N(\mu, \sigma^2) $$ \pause \newline
+
+Assume now that $X$ and $Y$ are independent. \pause \newline
+
+What is the distribution of $X+Y$ \pause \newline 
+
+$$ E(X+Y) = E(X) + E(Y) = \mu + \mu = 2 \mu $$
+$$ var(X+Y) = var(X) + var(Y) = \sigma^2 + \sigma^2 = 2 \sigma^2 $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Sum of normal variables}
+
+To find the distribution, we perform a large number of repetitions (close to infinity)
+of the experiment of drawing random variables $X$ and $Y$. \pause 
+
+Suppose we repeat it $100,000$ times. \pause
+
+<<echo=TRUE, eval=TRUE>>=
+x <- rnorm(100000, 1, 1);
+y <- rnorm(100000, 1, 1);
+z <- x+y;
+length(z)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Sum of normal variables}
+
+<<echo=FALSE, eval=TRUE>>=
+par(mar=c(2,2,2,2))
+hist(z, main="histogram of z, sum of X and Y (after 100,000 reps)", 
+     xlim=c(min(z), max(z)), ylab="proportion",
+     col="lightgray", freq=FALSE,
+     xlab="z = x+y")
+lines(density(z, na.rm=TRUE))
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Sum of normal variables}
+
+Assume now three random variables $X$, $Y$ and $W$ and consider their sum 
+
+$$  Z = X+Y+W $$ \pause  \newline
+
+Suppose we repeat it $100,000$ times. \pause
+
+<<echo=TRUE, eval=TRUE>>=
+x <- rnorm(100000, 1, 1);
+y <- rnorm(100000, 1, 3);
+w <- rnorm(100000, 10, 2);
+z <- x+y+w;
+length(z)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Sum of normal variables}
+
+<<echo=FALSE, eval=TRUE>>=
+par(mar=c(2,2,2,2))
+hist(z, main="histogram of z, sum of X and Y (after 100,000 reps)", 
+     xlim=c(min(z), max(z)), ylab="proportion",
+     col="lightgray", freq=FALSE,
+     xlab="z = x+y")
+lines(density(z, na.rm=TRUE))
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Result}
+
+If $X_1$, $X_2$, $\cdots$, $X_n$ are \emph{independent} normal random variables such that 
+
+$$ X_{i} \sim N \left (\mu_i, \sigma^2_{i} \right) $$
+
+Then if we define 
+
+$$ Z = X_1 + X_2 + \cdots + X_{n} $$
+
+then 
+
+$$  Z \sim N \left (\sum_{i=1}^{n} \mu_{i}, \sum_{i=1}^{n} \sigma^2_{i} \right ) $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frametitle{Scaling of normal variables}
+
+Let $X$ be a random variable that follows a distribution 
+
+$$ X \sim N(\mu, \sigma^2) $$
+
+Let $a$ be a constant.
+
+What is the distribution of $aX$.
+
+<<echo=TRUE, eval=TRUE>>=
+x <- rnorm(100000, 1, 1);
+a <- 4;
+z <- a*x
+length(z)
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Sum of normal variables}
+
+<<echo=FALSE, eval=TRUE>>=
+par(mar=c(2,2,2,2))
+hist(z, main="histogram of z = ax a=4 (after 100,000 reps)", 
+     xlim=c(min(z), max(z)), ylab="proportion",
+     col="lightgray", freq=FALSE,
+     xlab="z = ax a=4")
+lines(density(z, na.rm=TRUE))
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Result}
+
+If $X$ be a  normal random variables such that 
+
+$$ X \sim N \left (\mu, \sigma^2 \right) $$
+
+Let $a$ be a constant,
+
+$$ Z = aX $$
+
+$$ E(Z) = aE(X) = a\mu $$
+
+$$ var(Z)= var(aX) = a^2 var(X) = a^2 \sigma^2 $$
+
+and 
+
+$$  Z \sim N \left (a\mu, a^2\sigma^2 \right ) $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Result}
+
+If $X_1$, $X_2$, $\cdots$, $X_n$ are \emph{independent} normal random variables such that 
+
+$$ X_{i} \sim N \left (\mu_i, \sigma^2_{i} \right) $$
+
+Then if we define 
+
+$$ Z = c_1 X_1 + c_2 X_2 + \cdots + c_n X_{n} $$
+
+Check 
+
+$$ E(Z) = \sum_{i=1}^{n} c_{i} \mu_{i} \hspace{1 cm} var(Z)=\sum_{i=1}^{n} c^2_{i} \sigma^2_{i} $$
+
+then 
+
+$$  Z \sim N \left (\sum_{i=1}^{n} c_{i} \mu_{i}, \sum_{i=1}^{n} c^2_{i} \sigma^2_{i} \right) $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Corollary of Previous Result}
+
+If $X_1$, $X_2$, $\cdots$, $X_n$ are \emph{independent} normal random variables such that 
+
+$$ X_{i} \sim N \left (\mu, \sigma^2 \right) $$
+
+then if we define 
+
+$$ Z = \frac{1}{n} \sum_{i=1}^{n} X_{i} $$
+
+and 
+
+$$  Z \sim N \left (\mu, \frac{\sigma^2}{n} \right) $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Conclusions}
+
+We showed that sum of independent normal random variables is normal. \pause \newline
+
+Linear transformation of normal random variables is normal. \pause \newline
+
+Sum of independent Bernoulli random variables is Binomial. \pause \newline
+
+Sum of independent Binomial random variables?  \pause \newline
+
+Its Binomial.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Central Limit Theorem}
+
+All the results we discussed today are true for sum of any $n$ independent variables,
+where $n$ can be small or large. What about large n? \pause \newline
+
+if $X_1, X_2, \cdots, X_n$ be independent identically distributed (iid) random variables coming from a distribution with mean $\mu$ and variance $\sigma^2$, 
+
+then 
+
+$$ \sum_{i=1}^{n} X_{i} \approx N \left (n \mu, n \sigma^2 \right )  \hspace{0.5 cm} n \;\; large $$
+
+and 
+
+$$ \frac{1}{n}\sum_{i=1}^{n} X_{i} \approx N \left (\mu, \frac{\sigma^2}{n} \right ) \hspace{0.5 cm} n \;\; large$$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Conclusions}
+
+CLT claims sum of a large number of random variables coming from any distribution (well behaved) is approximately normal. \pause \newline
+
+As a special case, Sum of a large number of Bernoulli or Binomial random variables is approximately normal. \pause \newline
+
+When the underlying distribution is discrete, remember \textit{continuity correction}.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Moment generating function}
+
+We define a moment generating function (mgf) as a function of $t$ 
+
+$$ mgf(t) : = E \left (e^{tX} \right)  = \int e^{tx} f(x) dx $$
+
+where $f(x)$ is the probability density function (pdf) observed at point $x$. \pause \newline
+
+\textbf{Very important note}: Moment generating functions characterize distributions for most cases. \pause \newline
+
+What does that mean? \pause \newline
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Normal Moment generating function}
+
+For a normal random variable $X$, it can be shown that the moment generating function has the following form 
+
+$$ mgf(t) : = exp \left (\mu t + \frac{1}{2} t^2 \sigma^2 \right ) $$
+
+Using the characterizing property of mgf, if suppose we have 
+
+$$ mgf(t): exp \left (2 t + \frac{1}{2} 6t^2\right ) $$
+
+then this is the mgf of 
+
+$$ X \sim N(2,6) $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frametitle{Moment generating function for sums}
+
+If $X_1$, $X_2$, $\cdots$, $X_{n}$ are independent random variables following a distribution with pdf $f(x)$, then the moment generating function of $X$
+
+$$ mgf_{X}(t) : E(e^{tX})  $$
+
+If we define 
+
+$$ Y = X_1 + X_2 + \cdots X_n $$
+
+$$ mgf_{Y}(t):  E(e^{tY}) = E(e^{tX_1 + tX_2 + \cdots + tX_n}) $$
+
+We can show that  (check Canvas for proof)
+
+$$ mgf_{Y}(t) = \left [ mgf_{X}(t) \right ]^{n} $$
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\frametitle{How to use mgf}
+
+We use the mgf properties to show that sum of normal random variables is normal, or sum of linear transformation of normal random variables is normal. \pause \newline
+
+Check Canvas for the detailed proof. We will give a brief sketch here. \pause \newline
+
+Questions?  \pause \newline
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\end{document}
