@@ -1,0 +1,21 @@
+\frametitle{p-value}
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{upper_tail_p} \hlkwb{<-} \hlkwd{pbinom}\hlstd{(}\hlnum{80}\hlstd{,}\hlnum{124}\hlstd{,}\hlnum{0.5}\hlstd{,}\hlkwc{lower.tail}\hlstd{=}\hlnum{FALSE}\hlstd{)} \hlopt{+} \hlkwd{dbinom}\hlstd{(}\hlnum{80}\hlstd{,}\hlnum{124}\hlstd{,}\hlnum{0.5}\hlstd{);}
+\hlstd{lower_tail_p} \hlkwb{<-} \hlkwd{pbinom}\hlstd{(}\hlnum{44}\hlstd{,}\hlnum{124}\hlstd{,}\hlnum{0.5}\hlstd{,}\hlkwc{lower.tail}\hlstd{=}\hlnum{TRUE}\hlstd{)}
+\hlstd{pvalue} \hlkwb{<-} \hlstd{upper_tail_p} \hlopt{+} \hlstd{lower_tail_p}
+\hlstd{pvalue}
+\end{alltt}
+\begin{verbatim}
+[1] 0.001565
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+By convention in statistics, we usually say if $pvalue$ is less than $0.05$, then the null hypothesis is rejected. \pause \newline
+
+So, what do we do here? \pause \newline
+
+We reject the null or we believe the researcher.
+

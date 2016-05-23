@@ -1,0 +1,42 @@
+
+
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{obs.samp} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlkwd{rep}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{80}\hlstd{),} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{44}\hlstd{));}
+\hlstd{bootstrap_counts} \hlkwb{<-} \hlkwd{replicate}\hlstd{(}\hlnum{1000}\hlstd{,} \hlkwd{sum}\hlstd{(}\hlkwd{sample}\hlstd{(obs.samp,} \hlkwc{replace}\hlstd{=}\hlnum{TRUE}\hlstd{)))}
+\hlkwd{summary}\hlstd{(bootstrap_counts)}
+\end{alltt}
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+   65.0    77.0    80.0    80.2    84.0    95.0
+\end{verbatim}
+\begin{alltt}
+\hlstd{bootstrap_prop} \hlkwb{<-} \hlstd{bootstrap_counts}\hlopt{/}\hlnum{124}\hlstd{;}
+\hlcom{## 2-sided}
+
+\hlkwd{quantile}\hlstd{(bootstrap_prop,} \hlnum{0.025}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+  2.5%
+0.5645
+\end{verbatim}
+\begin{alltt}
+\hlkwd{quantile}\hlstd{(bootstrap_prop,} \hlnum{0.975}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+ 97.5%
+0.7258
+\end{verbatim}
+\begin{alltt}
+\hlcom{## 1-sided}
+\hlkwd{quantile}\hlstd{(bootstrap_prop,} \hlnum{0.05}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+    5%
+0.5806
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+

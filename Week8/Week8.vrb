@@ -1,0 +1,12 @@
+\frametitle{Chi-square table}
+
+Take the observed table $O$ and the expected table $E$. If the null hypothesis is not true, we will expect the squared differences $$ (O_{ij} - E_{ij})^2 $$ to be high (i=1,2 , j=1,2). \pause
+
+Lets consider the expression
+
+$$ X = \sum_{i,j} \frac{(O_{ij}-E_{ij})^2}{E_{ij}} $$
+
+We need  distribution for  $X$. This distribution has a fancy name - \textbf{Chi-square distribution} with degrees of freedom $(r-1) \times (c-1)$ where $r$ is the number of rows in table and $c$ is the number of columns.
+
+$$  X \sim \chi^2_{(2-1)(2-1))} = \chi^2_{1} $$
+

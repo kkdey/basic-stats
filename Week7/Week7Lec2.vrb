@@ -1,0 +1,9 @@
+
+How to know when to assume $\sigma_1 = \sigma_2 = \sigma$. \pause \newline
+
+The rule is  - is the ratio of sample variances less than $2$. \pause \newline
+
+if $\frac{largest{s^2_X, s^2_Y}}{smallest{s^2_X, s^2_Y}} < 2$, then assume $\sigma_X = \sigma_Y = \sigma$. \pause \newline
+
+When we hold this assumption to be true, we do the t-test for same $\sigma$, else the Welch method t-test.
+
